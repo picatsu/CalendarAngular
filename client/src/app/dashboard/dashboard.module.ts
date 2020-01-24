@@ -11,6 +11,7 @@ import { ExtractComponent } from './extract/extract.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import {MatDividerModule} from '@angular/material/divider';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -25,6 +26,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     ScrollingModule,
     MatDividerModule,
     SocketIoModule.forRoot(config),
+    MatExpansionModule
     
     
   ],

@@ -16,6 +16,7 @@ public class CouchDBController {
 
 
     @GetMapping("/getalldb")
+    @CrossOrigin
     public ResponseEntity<String> getAllDb() throws Exception {
         RestTemplate a = new RestTemplate();
         String quote = a.getForObject(

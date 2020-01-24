@@ -26,74 +26,212 @@
 
 </header>
 
-  <h2>Ce text vient de : {{showText()}}</h2>
+  <h2> {{showText()}}</h2>
+  
+  <mat-accordion >
+
+  
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          SAUVEGARDE
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-form-field>
+          {{ data }}
+      </mat-form-field>
+    </mat-expansion-panel>
 
 
-<!--      COMPARAISON OLD VS NEW BUILD       -->
-
-  <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-    <div class="input-group-append">
-      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
-    </div>
-  </div>
-
-<form class="form-inline my-2 my-lg-0">
-  <input type="text" id="input3-group2" [(ngModel)]="searchKeyword" name="input3-group2" class="form-control mr-sm-2"
-    placeholder="Rechercher">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_PARAMETRES_GENERAUX        
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_PARAMETRES_GENERAUX  DATA </p>
+    </mat-expansion-panel>
 
 
-</form>
-<br>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_PERIODES_NOMMEES       
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_PERIODES_NOMMEES DATA </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_COMPOSANTES      
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_COMPOSANTES DATA </p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_NIVEAUX    
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_NIVEAUX DATA </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_DIPLOMES  
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_DIPLOMES DATA </p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_PROFESSEURS 
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_PROFESSEURS DATA </p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_ETUDIANTS
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_ETUDIANTS DATA </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_MATERIELS
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_MATERIELS DATA </p>
+    </mat-expansion-panel>
+
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_GROUPES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_GROUPES DATA </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_SALLES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_SALLES DATA </p>
+    </mat-expansion-panel>
+
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_MATIERES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_MATIERES DATA </p>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_ENSEIGNEMENTS
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_ENSEIGNEMENTS DATA </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_SEANCES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_GRADES DATA </p>
+    </mat-expansion-panel>
+
+
+    
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_TYPES_ACTIVITES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_TYPES_ACTIVITES DATA </p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_CODES_CNU
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_CODES_CNU DATA </p>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_TYPES_DE_SALLES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_TYPES_DE_SALLES DATA </p>
+    </mat-expansion-panel>
+
+
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          LES_ZONES_DE_SALLES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>LES_ZONES_DE_SALLES DATA </p>
+    </mat-expansion-panel>
+
+
+  </mat-accordion>
+  
+
 
 
 
 <!--      TABLE BUILDS        -->
 <mat-divider></mat-divider><br>
-<table class="table table-hover table-dark">
-  <thead>
-    <tr>
-      <th>_id</th>
-      <th>Last Name</th>
-      <th>Birth Name</th>
-      <th>SSN</th>
-      <th>Commune</th>
-      <th>Departement</th>
-      <th>Pays</th>
-      <th>Naissance</th>
 
-      <th> ClearAll <input class="form-check-input" type="checkbox" id="defaultCheck1"
-          style="width: 20px; height: 20px; margin-left:10px; margin-right:auto; " (change)="clearAll()"> </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of tab.slice(0, numberShow) | filter: searchKeyword" >
-      <th scope="row"> <span class="badge badge-primary" [ngStyle]="{'font-size.px':15}" (click)="open(content, item.Build )"> {{item._id}} </span></th>
-      <td>{{item.lastname}}</td>
-      <td> <a href="https://google.fr" target="_blank" class="badge badge-pill badge-light">{{item.birthname}}</a></td>
-      <td [ngClass]="{'text-danger': item.Branche === 'RELEASE'}">{{item.ssn}}</td>
-      <td>{{item.commune}}</td>
-      <td>{{item.departement}}</td>
-      <td> <span class="badge badge-light" [ngStyle]="{'font-size.px':15}"> {{item.pays}} </span> </td>
-      <td> <span class="badge badge-success" [ngStyle]="{'font-size.px':15}"> {{item.naissance}} </span> </td>
-
-
-      <td>
-        <input class="form-check-input" type="checkbox" id="defaultCheck1"
-          style="width: 20px; height: 20px; margin-left:auto; margin-right:auto; " [checked]="item.checked"
-          (change)="showSuccess(item.Build)">
-      </td>
-    </tr>
-
-
-  </tbody>
-</table>
-
-<br><form class="form-inline my-2 my-lg-0">
-
-
-
-</form>
+<br>
 <br><br>
 
 

@@ -1,5 +1,5 @@
 
-import { Pipe, PipeTransform, SystemJsNgModuleLoader, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Pipe, PipeTransform, SystemJsNgModuleLoader, ViewChild, ElementRef, ChangeDetectionStrategy, AfterViewInit, ViewChildren } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
@@ -15,15 +15,16 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'td-tile',
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.scss'],
-  providers: [FilterPipe, NgbModalConfig, NgbModal
-
-  ],
+  providers: [FilterPipe, NgbModalConfig, NgbModal],
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
 
 
-export class TileComponent implements OnInit {
+export class TileComponent implements OnInit{
+  panelOpenState = false;
+  public isCollapsed = false;
+
   isDarkTheme: Observable<boolean>;
   public searchString: string;
   searchKeyword: any;
@@ -36,6 +37,7 @@ export class TileComponent implements OnInit {
   map = new Map();
   maptext = new Map();
   activeDB: string;
+  data: Object;
   constructor(
     private themeService: ThemeService,
     private buildService: BuildServiceService,
@@ -67,13 +69,19 @@ export class TileComponent implements OnInit {
     this.maptext.set('PROJETVOLDEMORT', 'CE TEXT VIENT DE PROJETVOLDEMORT');
 
 
-
+      this.buildService.getCouchDB().subscribe ( (value) => {
+        this.data = value;
+      })
+      
   }
 
 
   showText() {
       return this.maptext.get(this.activeDB);
   }
+
+  
+  
 
   open(content, build: any) {
     this.activeBuild = this.tab.find( element => element.Build == build);

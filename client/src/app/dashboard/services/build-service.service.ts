@@ -12,7 +12,8 @@ export class BuildServiceService {
 
   tab = [];
   private url = 'http://localhost:5984/meulun/c71818b6436e95d582979d4e58001587';
-    
+  private ulrapi ='http://localhost:8080/api/couchdb/getalldb';
+
   tab2 = [];
 
   constructor(private http:HttpClient) {
@@ -28,6 +29,10 @@ export class BuildServiceService {
      return this.tab2;
    }
 
+
+   getCouchDB() {
+     return this.http.get(this.ulrapi);
+   }
 
    public sendMessage(message) {
   }
@@ -53,7 +58,14 @@ export class BuildServiceService {
 }
 
 
-
+export interface Biologie {
+  DATA_VISUAL_TIMETABLING: { 
+    SAUVEGARDE: string;
+    LES_PARAMETRES_GENERAUX: string;
+    LES_PERIODES_NOMMEES: string;
+    LES_COMPOSANTES: string;
+  }
+}
 
 
 export interface BuildJson {
