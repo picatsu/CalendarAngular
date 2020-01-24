@@ -1,0 +1,16 @@
+// CSS Reset, comment out if not required or using a different module
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Pacifico');
+@import '~@angular/material/theming';
+@import './styles/material-theme';
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+@media only screen and (max-width: 800px)  {
+  html {
+    font-size: 80%;
+  }
+}

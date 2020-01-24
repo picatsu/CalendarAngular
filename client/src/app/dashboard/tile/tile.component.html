@@ -1,0 +1,93 @@
+<!--      MODAL DETAILS PUBLICATION       -->
+<div class="container-fluid"> 
+
+
+
+
+<header> <h1 class="mat-display-2">Dashboard</h1>
+</header>
+
+<mat-slide-toggle [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">Dark theme </mat-slide-toggle>
+
+
+
+<!--      COMPARAISON OLD VS NEW BUILD       -->
+
+
+
+<form class="form-inline my-2 my-lg-0">
+  <input type="text" id="input3-group2" [(ngModel)]="searchKeyword" name="input3-group2" class="form-control mr-sm-2"
+    placeholder="Rechercher">
+    
+ <button type="button" class="btn btn-primary btn-sm" style=' position: relative; text-align: right;
+ left: 81.5%;' (click)="addRows()" >More</button>
+ <button type="button" class="btn btn-secondary btn-sm" style=' position: relative; text-align: right;
+ left: 74.5%;' (click)="removeRows()" >Less</button>
+</form>
+<br>
+
+
+
+<!--      TABLE BUILDS        -->
+<mat-divider></mat-divider><br>
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th>_id</th>
+      <th>Last Name</th>
+      <th>Birth Name</th>
+      <th>SSN</th>
+      <th>Commune</th>
+      <th>Departement</th>
+      <th>Pays</th>
+      <th>Naissance</th>
+      
+      <th> ClearAll <input class="form-check-input" type="checkbox" id="defaultCheck1"
+          style="width: 20px; height: 20px; margin-left:10px; margin-right:auto; " (change)="clearAll()"> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of tab.slice(0, numberShow) | filter: searchKeyword" >
+      <th scope="row"> <span class="badge badge-primary" [ngStyle]="{'font-size.px':15}" (click)="open(content, item.Build )"> {{item._id}} </span></th>
+      <td>{{item.lastname}}</td>
+      <td> <a href="https://google.fr" target="_blank" class="badge badge-pill badge-light">{{item.birthname}}</a></td>
+      <td [ngClass]="{'text-danger': item.Branche === 'RELEASE'}">{{item.ssn}}</td>
+      <td>{{item.commune}}</td>
+      <td>{{item.departement}}</td>
+      <td> <span class="badge badge-light" [ngStyle]="{'font-size.px':15}"> {{item.pays}} </span> </td>
+      <td> <span class="badge badge-success" [ngStyle]="{'font-size.px':15}"> {{item.naissance}} </span> </td>
+
+
+      <td> 
+        <input class="form-check-input" type="checkbox" id="defaultCheck1"
+          style="width: 20px; height: 20px; margin-left:auto; margin-right:auto; " [checked]="item.checked"
+          (change)="showSuccess(item.Build)"> 
+      </td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+<br><form class="form-inline my-2 my-lg-0">
+
+    
+ <button type="button" class="btn btn-primary btn-sm" style=' position: relative; text-align: right;
+ left: 96.5%;' (click)="addRows()" >More</button>
+ <button type="button" class="btn btn-secondary btn-sm" style=' position: relative; text-align: right;
+ left: 89.5%;' (click)="removeRows()" >Less</button>
+</form>
+<br><br>
+
+
+
+
+
+
+
+
+
+<!--      MODAL DETAILS FAILED PUBLICATION       -->
+
+
+</div>

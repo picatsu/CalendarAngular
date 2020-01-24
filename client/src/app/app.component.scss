@@ -1,0 +1,26 @@
+@import '~@angular/material/theming';
+
+td-toolbar {
+    @include mat-elevation(10);
+    display: block;
+}
+
+.content {
+    padding: 1rem 6px;
+    display: flex;
+}
+
+aside {
+    flex: 1;
+}
+
+
+td-dashboard {
+    flex: 8;
+}
+
+@media only screen and (max-width: 800px)  {
+    aside {
+      flex: 0;
+    }
+  }

@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<div class="container-fluid">
+    
+    <pre style="overflow:scroll; max-height:400px; max-width: 1400px;" > {{couchdb | json}}</pre>
+  
+<div *ngFor="let item of couchdb | keyvalue"  style="max-height:400px; max-width: 1400px;" >
+    <div class="alert alert-primary" role="alert"  style="overflow:scroll; max-height:400px; max-width: 1400px;" > 
+        {{item.key}}:{{item.value | json}}
+       
+    
+    
+    </div> 
+</div>
+
+  
+</div>
+
