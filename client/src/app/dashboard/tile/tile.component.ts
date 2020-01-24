@@ -15,7 +15,7 @@ import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'td-tile',
   templateUrl: './tile.component.html',
   styleUrls: ['./tile.component.scss'],
-  providers: [FilterPipe,NgbModalConfig, NgbModal
+  providers: [FilterPipe, NgbModalConfig, NgbModal
 
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,108 +29,94 @@ export class TileComponent implements OnInit {
   searchKeyword: any;
   queue = [];
   tab = [];
-  showCompare: boolean = false;
+  showCompare = false;
   oldAndnewBuild: any;
   activeBuild: BuildJson;
   numberShow = 20;
-  
-  constructor(private themeService: ThemeService, private buildService: BuildServiceService, private toastr: ToastrService
-    , config: NgbModalConfig, private modalService: NgbModal, private modalService2: NgbModal) {
+  map = new Map();
+  maptext = new Map();
+  activeDB: string;
+  constructor(
+    private themeService: ThemeService,
+    private buildService: BuildServiceService,
+    private toastr: ToastrService,
+    config: NgbModalConfig,
+    private modalService: NgbModal,
+    private modalService2: NgbModal) {
 
-    this.buildService.getTab().forEach( x=> {
-      this.tab.push(x);
-    });
-    
-   
     config.backdrop = 'static';
     config.keyboard = false;
-    //this.isDarkTheme = this.themeService.getTheme();
+
+    this.map.set(1, 'MONGODB');
+    this.map.set(2, 'COUCHDB');
+    this.map.set(3, 'NEO4J');
+    this.map.set(4, 'CASSANDRA');
+    this.map.set(5, 'REDIS');
+    this.map.set(6, 'BIGTABLE');
+    this.map.set(7, 'PROJETVOLDEMORT');
+
+    this.activeDB = this.map.get(2);
+
+
+    this.maptext.set('MONGODB', 'CE TEXT VIENT DE MONGODB');
+    this.maptext.set('COUCHDB', 'CE TEXT VIENT DE COUCHDB');
+    this.maptext.set('NEO4J', 'CE TEXT VIENT DE NEO4J');
+    this.maptext.set('CASSANDRA', 'CE TEXT VIENT DE CASSANDRA');
+    this.maptext.set('REDIS', 'CE TEXT VIENT DE REDIS');
+    this.maptext.set('BIGTABLE', 'CE TEXT VIENT DE BIGTABLE');
+    this.maptext.set('PROJETVOLDEMORT', 'CE TEXT VIENT DE PROJETVOLDEMORT');
+
+
+
   }
 
-  
+
+  showText() {
+      return this.maptext.get(this.activeDB);
+  }
 
   open(content, build: any) {
     this.activeBuild = this.tab.find( element => element.Build == build);
     this.modalService.open(content, {windowClass: 'dark-modal', size: 'xl', centered: true, scrollable: true }  );
   }
 
+  showSuccess (number: number) {
+    this.toastr.success( this.map.get(number) , 'SUCCESFULLY', {
+      timeOut: 1000
+    });
+    this.activeDB = this.map.get(number);
+
+  }
+
+  isChecked(number: number) {
+    return this.map.get(number ) === this.activeDB;
+  }
 
 
   open2(content2) {
-    //this.activeBuild = this.tab.find( element => element.Build == build);
+    // this.activeBuild = this.tab.find( element => element.Build == build);
     this.modalService2.open(content2, {windowClass: 'dark-modal', size: 'xl', centered: true, scrollable: true }  );
   }
 
   ngOnInit() {
     this.toggleDarkTheme(true);
-   
+
   }
 
 
-  addRows(){
-    this.numberShow+=10;
-  }
-
-  removeRows(){
-    this.numberShow-=10;
-  }
-  
-
-  getDark() {
-    return this.themeService.isDarkTheme;
-  }
   toggleDarkTheme(isDarkTheme: boolean) {
     this.themeService.setDarkTheme(isDarkTheme);
   }
 
-  getBrancheClass(name : string) {
+  getBrancheClass(name: string) {
     return (name.includes('RELEASE'));
-    
+
   }
 
-  showSuccess(BuildNumber: string) {
 
 
-    if( this.queue[0] == BuildNumber){ //// CASE OF SAME BUILD NUMBER 
-      this.toastr.error('Bad Request', this.queue[0] +' x ' + BuildNumber, {
-        timeOut: 1500
-      });
-      this.showCompare = false;
-      this.queue.shift();
-      return;
-
-    }
-    else{
-      this.queue.push(BuildNumber);
-      this.tab.forEach( x => {
-        if(x.Build == BuildNumber ){
-          x.checked = true;
-        }
-      });
-      if(this.queue.length == 2){
-        this.tab.forEach( x => {
-          if(x.Build == BuildNumber ){
-            x.checked = true;
-          }
-        })
-        /// SERVICE FAIT REQUETE 
-          this.showCompare = true;
-        this.toastr.success('GOOD Request', this.queue[0] +' x ' + BuildNumber, {
-          timeOut: 1500
-        });
-        this.oldAndnewBuild = this.queue[0] +' and ' + BuildNumber;
-        this.queue.shift();
-        this.queue.shift();
-        
-      }else{
-        this.showCompare = false;
-
-      }
-    }
-  }
-
-  clearAll(){
-    this.tab.forEach( x =>  { ( x as BuildJson).checked = false } );
+  clearAll() {
+    this.tab.forEach( x =>  { ( x as BuildJson).checked = false; } );
     this.showCompare = false;
 
   }

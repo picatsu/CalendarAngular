@@ -1,28 +1,48 @@
 <!--      MODAL DETAILS PUBLICATION       -->
-<div class="container-fluid"> 
+<div class="container-fluid">
 
 
 
 
-<header> <h1 class="mat-display-2">Dashboard</h1>
+<header>
+  <h1 class="mat-display-2">Dashboard</h1>
+
+  <mat-slide-toggle  [checked]="isChecked(1)" (change)="showSuccess(1)">MongoDB</mat-slide-toggle>
+
+  <mat-slide-toggle [checked]="isChecked(2)"  (change)="showSuccess(2)">CouchDB</mat-slide-toggle>
+
+  <mat-slide-toggle [checked]="isChecked(3)"  (change)="showSuccess(3)">Neo4j</mat-slide-toggle>
+
+  <mat-slide-toggle [checked]="isChecked(4)"  (change)="showSuccess(4)">Cassandra</mat-slide-toggle>
+
+  <mat-slide-toggle  [checked]="isChecked(5)"  (change)="showSuccess(5)">Redis</mat-slide-toggle>
+
+  <mat-slide-toggle  [checked]="isChecked(6)"  (change)="showSuccess(6)">BigTable</mat-slide-toggle>
+
+  <mat-slide-toggle  [checked]="isChecked(7)"  (change)="showSuccess(7)">Projet-Voldemort</mat-slide-toggle>
+
+
+
+
 </header>
 
-<mat-slide-toggle [checked]="isDarkTheme | async" (change)="toggleDarkTheme($event.checked)">Dark theme </mat-slide-toggle>
-
+  <h2>Ce text vient de : {{showText()}}</h2>
 
 
 <!--      COMPARAISON OLD VS NEW BUILD       -->
 
-
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+    </div>
+  </div>
 
 <form class="form-inline my-2 my-lg-0">
   <input type="text" id="input3-group2" [(ngModel)]="searchKeyword" name="input3-group2" class="form-control mr-sm-2"
     placeholder="Rechercher">
-    
- <button type="button" class="btn btn-primary btn-sm" style=' position: relative; text-align: right;
- left: 81.5%;' (click)="addRows()" >More</button>
- <button type="button" class="btn btn-secondary btn-sm" style=' position: relative; text-align: right;
- left: 74.5%;' (click)="removeRows()" >Less</button>
+
+
 </form>
 <br>
 
@@ -41,7 +61,7 @@
       <th>Departement</th>
       <th>Pays</th>
       <th>Naissance</th>
-      
+
       <th> ClearAll <input class="form-check-input" type="checkbox" id="defaultCheck1"
           style="width: 20px; height: 20px; margin-left:10px; margin-right:auto; " (change)="clearAll()"> </th>
     </tr>
@@ -58,10 +78,10 @@
       <td> <span class="badge badge-success" [ngStyle]="{'font-size.px':15}"> {{item.naissance}} </span> </td>
 
 
-      <td> 
+      <td>
         <input class="form-check-input" type="checkbox" id="defaultCheck1"
           style="width: 20px; height: 20px; margin-left:auto; margin-right:auto; " [checked]="item.checked"
-          (change)="showSuccess(item.Build)"> 
+          (change)="showSuccess(item.Build)">
       </td>
     </tr>
 
@@ -71,11 +91,8 @@
 
 <br><form class="form-inline my-2 my-lg-0">
 
-    
- <button type="button" class="btn btn-primary btn-sm" style=' position: relative; text-align: right;
- left: 96.5%;' (click)="addRows()" >More</button>
- <button type="button" class="btn btn-secondary btn-sm" style=' position: relative; text-align: right;
- left: 89.5%;' (click)="removeRows()" >Less</button>
+
+
 </form>
 <br><br>
 

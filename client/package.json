@@ -43,7 +43,7 @@
     "ngx-filter-pipe": "^2.1.2",
     "ngx-json-viewer": "^1.0.0",
     "ngx-socket-io": "^3.0.1",
-    "ngx-toastr": "^11.3.0",
+    "ngx-toastr": "^11.3.2",
     "rxjs": "^6.5.2",
     "web-animations-js": "^2.3.2",
     "zone.js": "^0.9.1"

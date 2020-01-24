@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ThemeService } from '../dashboard/services/theme.service';
 import { Observable } from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'td-toolbar',
@@ -11,7 +12,11 @@ import { Observable } from 'rxjs';
 export class ToolbarComponent implements OnInit {
   isDarkTheme: Observable<boolean>;
 
-  constructor(private themeService: ThemeService) { }
+  constructor(private themeService: ThemeService,
+              private toastr: ToastrService) {
+
+
+  }
 
   ngOnInit() {
     this.isDarkTheme = this.themeService.isDarkTheme;
@@ -20,4 +25,6 @@ export class ToolbarComponent implements OnInit {
   toggleDarkTheme(checked: boolean) {
     this.themeService.setDarkTheme(checked);
   }
+
+
 }
