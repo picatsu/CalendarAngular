@@ -8,17 +8,6 @@ import { BuildServiceService } from '../services/build-service.service';
 })
 export class ExtractComponent implements OnInit {
 
-  cars: Car[];
-
-  selectedCar: Car;
-
-  displayDialog: boolean;
-
-  sortOptions: any[];
-
-  sortKey: string;
-
-  sortField: string;
 
   sortOrder: number;
   message: string;
@@ -35,15 +24,6 @@ export class ExtractComponent implements OnInit {
 
   ngOnInit() {
 
-    this.buildService.getJson().subscribe( response => {
-      console.log('LOL ', response);
-      this.couchdb = response as string[];
-    }) ;
-    this.sortOptions = [
-      {label: 'Newest First', value: '!year'},
-      {label: 'Oldest First', value: 'year'},
-      {label: 'Brand', value: 'brand'}
-    ];
 
   }
 
@@ -52,34 +32,6 @@ export class ExtractComponent implements OnInit {
 
 
 
-  selectCar(event: Event, car: Car) {
-    this.selectedCar = car;
-    this.displayDialog = true;
-    event.preventDefault();
-  }
-
-  onSortChange(event) {
-    const value = event.value;
-
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
-    }
-  }
-
-  onDialogHide() {
-    this.selectedCar = null;
-  }
 
 
-
-}
-export interface Car {
-  vin;
-  year;
-  brand;
-  color;
 }

@@ -1,0 +1,27 @@
+server:
+    port: 9090
+app:
+    name: tdbada
+    description: Projet bdd NoSql BADA
+
+couchdb:
+    urlcouchdb: http://localhost:5984/meulun/
+
+mongodb:
+    urlmongodb: lolo
+    passwordmongodb: lol
+
+neo4j:
+    urlneo4j: llll
+
+cassandra:
+    urlcassandra: kkkk
+
+redis:
+    urlredis: redis
+
+firebase:
+    urlfirebase: llooj
+
+projetvoldemort:
+    urlprojetvoldemort: lllok

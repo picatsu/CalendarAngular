@@ -39,6 +39,7 @@
     "jw-angular-pagination": "^1.1.0",
     "lorem-ipsum": "^2.0.3",
     "mdbootstrap": "^4.11.0",
+    "ng-json-view": "^2.2.0",
     "ng-uikit": "^0.1.6",
     "ngx-filter-pipe": "^2.1.2",
     "ngx-json-viewer": "^1.0.0",
@@ -49,7 +50,7 @@
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.802.2",
+    "@angular-devkit/build-angular": "^0.803.23",
     "@angular/cli": "^8.2.2",
     "@angular/compiler-cli": "^8.2.2",
     "@angular/language-service": "^8.2.2",

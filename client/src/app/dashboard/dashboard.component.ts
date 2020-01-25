@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter, OnInit, OnChanges, SimpleChange
 
 import { ThemeService } from './services/theme.service';
 import { FilterPipe } from './services/filter.pipe';
-import { BuildServiceService, BuildJson, Scenarii } from './services/build-service.service';
+import { BuildServiceService } from './services/build-service.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExtractComponent } from './extract/extract.component';
@@ -29,14 +29,12 @@ export class DashboardComponent implements OnInit {
   tab = [];
   showCompare: boolean = false;
   oldAndnewBuild: any;
-  activeBuild: BuildJson;
+
 
   constructor(private themeService: ThemeService, private buildService: BuildServiceService, private toastr: ToastrService
     , config: NgbModalConfig, private modalService: NgbModal, private modalService2: NgbModal) {
 
-    this.buildService.getTab().forEach( x=> {
-      this.tab.push(x);
-    });
+  
     
    
     config.backdrop = 'static';
@@ -47,7 +45,6 @@ export class DashboardComponent implements OnInit {
   
 
   open(content, build: any) {
-    this.activeBuild = this.tab.find( element => element.Build == build);
     this.modalService.open(content, {windowClass: 'dark-modal', size: 'xl', centered: true, scrollable: true }  );
   }
 
@@ -76,52 +73,6 @@ export class DashboardComponent implements OnInit {
     
   }
 
-  showSuccess(BuildNumber: string) {
-
-
-    if( this.queue[0] == BuildNumber){ //// CASE OF SAME BUILD NUMBER 
-      this.toastr.error('Bad Request', this.queue[0] +' x ' + BuildNumber, {
-        timeOut: 1500
-      });
-      this.showCompare = false;
-      this.queue.shift();
-      return;
-
-    }
-    else{
-      this.queue.push(BuildNumber);
-      this.tab.forEach( x => {
-        if(x.Build == BuildNumber ){
-          x.checked = true;
-        }
-      });
-      if(this.queue.length == 2){
-        this.tab.forEach( x => {
-          if(x.Build == BuildNumber ){
-            x.checked = true;
-          }
-        })
-        /// SERVICE FAIT REQUETE 
-          this.showCompare = true;
-        this.toastr.success('GOOD Request', this.queue[0] +' x ' + BuildNumber, {
-          timeOut: 1500
-        });
-        this.oldAndnewBuild = this.queue[0] +' and ' + BuildNumber;
-        this.queue.shift();
-        this.queue.shift();
-        
-      }else{
-        this.showCompare = false;
-
-      }
-    }
-  }
-
-  clearAll(){
-    this.tab.forEach( x =>  { ( x as BuildJson).checked = false } );
-    this.showCompare = false;
-
-  }
-
+  
 
 }

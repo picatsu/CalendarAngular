@@ -1,26 +1,31 @@
 package com.example.tdbada.controller;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
+
+
 
 @Controller("couchdb")
 @RequestMapping(value = "/api/couchdb")
+@ConfigurationProperties("couchdb")
 public class CouchDBController {
 
 // TODO https://www.ibm.com/cloud/cloudant    => FREE REPLICAT
-
+    @Value("${couchdb.urlcouchdb}")
+    private String url;
 
     @GetMapping("/getalldb")
     @CrossOrigin
     public ResponseEntity<String> getAllDb() throws Exception {
         RestTemplate a = new RestTemplate();
         String quote = a.getForObject(
-                "http://localhost:5984/meulun/FAUTFAIREUNPUT", String.class);
+                url+"FAUTFAIREUNPUT", String.class);
         return  new ResponseEntity<>(quote, HttpStatus.OK);
     }
 
@@ -28,7 +33,7 @@ public class CouchDBController {
     public ResponseEntity<String> getDocument(@RequestParam(defaultValue = "FAUTFAIREUNPUT", required = false) String id) throws IOException {
         RestTemplate a = new RestTemplate();
         String quote = a.getForObject(
-                "http://localhost:5984/meulun/FAUTFAIREUNPUT", String.class);
+                url+"FAUTFAIREUNPUT", String.class);
         return  new ResponseEntity<>(quote, HttpStatus.OK);
     }
 
@@ -37,7 +42,7 @@ public class CouchDBController {
     @ResponseBody
     public String putDoc(@RequestParam(name = "id") String id)  throws Exception  {
         RestTemplate a = new RestTemplate();
-        a.put("http://localhost:5984/meulun/"+id, String.class);
+        a.put(url+id, String.class);
 
         return "OK";
     }
