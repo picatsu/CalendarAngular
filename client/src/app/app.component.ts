@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
-import { ThemeService } from './dashboard/services/theme.service';
-
-
-
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
-  selector: 'td-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  // tslint:disable-next-line
+  selector: 'body',
+  template: '<router-outlet></router-outlet>'
 })
 export class AppComponent implements OnInit {
-  isDarkTheme: Observable<boolean>;
-
-  constructor(private themeService: ThemeService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.isDarkTheme = this.themeService.isDarkTheme;
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+        return;
+      }
+      window.scrollTo(0, 0);
+    });
   }
 }

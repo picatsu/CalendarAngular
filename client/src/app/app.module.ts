@@ -1,48 +1,73 @@
-import { NgModule } from '@angular/core';
-
-import { ToolbarModule } from './toolbar/toolbar.module';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { AppComponent } from './app.component';
-import {NgbModule, NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { WavesModule, TableModule } from 'angular-bootstrap-md';
-// MDB Angular Pro
-
-// Angular Forms
-import { NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ToastrModule } from 'ngx-toastr';
-import { JwPaginationComponent } from 'jw-angular-pagination';
+import { NgModule } from '@angular/core';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http'; 
-import {PrettyJsonModule} from 'angular2-prettyjson';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
+import { AppComponent } from './app.component';
+
+// Import containers
+import { DefaultLayoutComponent } from './containers';
+
+import { P404Component } from './views/error/404.component';
+import { P500Component } from './views/error/500.component';
+import { LoginComponent } from './views/login/login.component';
+import { RegisterComponent } from './views/register/register.component';
+
+const APP_CONTAINERS = [
+  DefaultLayoutComponent
+];
+
+import {
+  AppAsideModule,
+  AppBreadcrumbModule,
+  AppHeaderModule,
+  AppFooterModule,
+  AppSidebarModule,
+} from '@coreui/angular';
+
+// Import routing module
+import { AppRoutingModule } from './app.routing';
+
+// Import 3rd party components
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
-  declarations: [
-    AppComponent , JwPaginationComponent ],
- 
   imports: [
-    HttpClientModule,
-    ToolbarModule,
-    DashboardModule,
-    NgbModule,
-    NgbPaginationModule, 
-    NgbAlertModule,
-    WavesModule, TableModule ,
-    MDBBootstrapModule.forRoot(),
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule,
-    ToastrModule.forRoot(),
-    PrettyJsonModule       ],
-  bootstrap: [AppComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    AppAsideModule,
+    AppBreadcrumbModule.forRoot(),
+    AppFooterModule,
+    AppHeaderModule,
+    AppSidebarModule,
+    PerfectScrollbarModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ChartsModule
   ],
-  providers : [  ]
+  declarations: [
+    AppComponent,
+    ...APP_CONTAINERS,
+    P404Component,
+    P500Component,
+    LoginComponent,
+    RegisterComponent
+  ],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

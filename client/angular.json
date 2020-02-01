@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "theme-demo": {
+    "ng": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -11,31 +11,38 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../server/dist",
+            "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
-              "src/assets",
-              "src/favicon.ico"
+              "src/assets"
             ],
             "styles": [
-              "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
-              "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
-              "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
-              "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
-              "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
-              "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
-              "node_modules/animate.css/animate.css",
-              "node_modules/ngx-toastr/toastr.css",
-              "src/styles.scss"
+              "node_modules/@coreui/icons/css/coreui-icons.css",
+              "node_modules/flag-icon-css/css/flag-icon.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "src/scss/style.scss"
             ],
-            "scripts": [ "node_modules/chart.js/dist/Chart.js",
-              "node_modules/hammerjs/hammer.min.js" ]
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./node_modules"
+              ]
+            },
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js"
+            ]
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -57,19 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "theme-demo:build",
-            "proxyConfig": "src/proxy.conf.json"
+            "browserTarget": "ng:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "theme-demo:build:production"
+              "browserTarget": "ng:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "theme-demo:build"
+            "browserTarget": "ng:build"
           }
         },
         "test": {
@@ -79,10 +85,20 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              "src/styles.scss"
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.min.js"
             ],
+            "styles": [
+              "node_modules/flag-icon-css/css/flag-icon.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "src/scss/style.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "./node_modules"
+              ]
+            },
             "assets": [
               "src/assets",
               "src/favicon.ico"
@@ -103,16 +119,16 @@
         }
       }
     },
-    "theme-demo-e2e": {
+    "ng-e2e": {
       "root": "",
-      "sourceRoot": "e2e",
+      "sourceRoot": "",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "theme-demo:serve"
+            "devServerTarget": "ng:serve"
           }
         },
         "lint": {
@@ -129,14 +145,17 @@
       }
     }
   },
-  "defaultProject": "theme-demo",
+  "defaultProject": "ng",
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "td",
+      "prefix": "app",
       "styleext": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": "td"
+      "prefix": "app"
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
