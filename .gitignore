@@ -34,3 +34,4 @@ build/
 /client/.idea
 
 /couchDBNodejs/server/node_modules
+/mongoDBNodejs/node_modules
