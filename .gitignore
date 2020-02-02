@@ -33,3 +33,4 @@ build/
 /client/node_modules
 /client/.idea
 
+/couchDBNodejs/server/node_modules
