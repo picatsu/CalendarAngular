@@ -5,45 +5,64 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 ///////////////////////////////////////////////////////////////////////// PAS TOUCHE 
 
+const nano = __importDefault(require("nano"));
+let n = nano.default('http://localhost:5984');
 
-const nano_1 = __importDefault(require("nano"));
-let n = nano_1.default('http://localhost:5984');
-
-n.db.list().then((body) => {
-    // body is an array
-    if(body.includes('people')){
-        console.log(' YESS ');
-    }
-    else {
-        n.db.create('people').then((body) => {
-            console.log('database people created!');
-        });
-    }
+function getAllDBList() {
     
-  });
+    n.db.list().then((body) => {
+        // body is an array
+        if(body.includes('meulun')){
+            console.log(' DB MEULUN EXIST  ');
+        }
+        else {
+            n.db.create('meulun').then((body) => {
+                console.log('database meulun created!');
+            });
+        }
+        console.log('body DB', body);
 
+        return body;
+        
 
-///////////////////////////////////////////// CONFIGURATION 
+    });
+}
 
-'use strict';
-
+getAllDBList();
 
 const fs = require('fs'),
 request = require('request');
 
 const path = require('path');
 const directoryPath = path.join(__dirname, '../extract/');
-let listeFiles = [];
-////////////
-
-
 const meulun = n.use('meulun');
-meulun.get('LES_ZONES_DE_SALLES').then((body) => {
-   // console.log(body.LES_ZONES_DE_SALLES.UNE_ZONE_DE_SALLE);
+
+let listeFiles = [];
+
+///////////////////////////////////////////// CONFIGURATION 
+let listeeDOC = [];
+function getListeDocuments(callback) {
+meulun.list().then((body) => {
+    listeeDOC = listeeDOC.concat(body.rows);
+    callback();
+   
+  });
+}
+
+getListeDocuments(function (){
+    console.log('LISTE',listeeDOC);
+})
+
+
+meulun.get('SAUVEGARDE').then((body) => {
+  //console.log(body);
 });
 
 
 
+
+
+////////////////////// OTHER STUFF 
 
 function addAll() {
     fs.readdir(directoryPath, function (err, files) {

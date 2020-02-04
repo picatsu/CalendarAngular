@@ -29,9 +29,10 @@ build/
 
 ### VS Code ###
 .vscode/
-
+node_modules/
 /client/node_modules
 /client/.idea
 
-/couchDBNodejs/server/node_modules
+OtherAPI/couchDBNodejs/server/node_modules
+OtherAPI/couchDBNodejs/server/node_modules
 /mongoDBNodejs/node_modules
