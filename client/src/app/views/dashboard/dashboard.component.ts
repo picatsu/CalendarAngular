@@ -1,14 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
+import {  ChangeDetectionStrategy } from '@angular/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
 
 @Component({
-  templateUrl: 'dashboard.component.html'
+  templateUrl: 'dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent implements OnInit {
-
-  radioModel: string = 'Month';
-
+  options = {
+    plugins:[ dayGridPlugin, timeGridPlugin, interactionPlugin ],
+    defaultDate: '2017-02-01',
+    header: {
+        left: 'prev,next',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    editable: true
+};
+  events = [
+    {
+        "title": "All Day Event",
+        "start": "2016-01-01"
+    },
+    {
+        "title": "Long Event",
+        "start": "2016-01-07",
+        "end": "2016-01-10"
+    },
+    {
+        "title": "Repeating Event",
+        "start": "2016-01-09T16:00:00"
+    },
+    {
+        "title": "Repeating Event",
+        "start": "2016-01-16T16:00:00"
+    },
+    {
+        "title": "Conference",
+        "start": "2016-01-11",
+        "end": "2016-01-13"
+    }
+];
+ 
   // lineChart1
   public lineChart1Data: Array<any> = [
     {
