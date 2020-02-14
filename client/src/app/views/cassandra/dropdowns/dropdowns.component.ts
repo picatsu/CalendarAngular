@@ -1,36 +1,35 @@
-import {Component, OnDestroy} from '@angular/core';
+import { Component, OnDestroy } from "@angular/core";
 
 @Component({
-  templateUrl: 'dropdowns.component.html',
-  styleUrls: ['dropdowns.component.css']
+  templateUrl: "dropdowns.component.html",
+  styleUrls: ["dropdowns.component.css"]
 })
 export class DropdownsComponent implements OnDestroy {
-
   status: { isOpen: boolean } = { isOpen: false };
   disabled: boolean = false;
   isDropup: boolean = true;
   autoClose: boolean = false;
 
   items: string[] = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
+    "The first choice!",
+    "And another choice for you.",
+    "but wait! A third!"
   ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     this.status.isOpen = false;
   }
 
   onHidden(): void {
-    console.log('Dropdown is hidden');
+    console.log("Dropdown is hidden");
   }
   onShown(): void {
-    console.log('Dropdown is shown');
+    console.log("Dropdown is shown");
   }
   isOpenChange(): void {
-    console.log('Dropdown state is changed');
+    console.log("Dropdown state is changed");
   }
 
   toggleDropdown($event: MouseEvent): void {
