@@ -66,9 +66,6 @@ public class SAUVEGARDE_controller {
         return "SAUVEGARDE record for SAUVEGARDE-DATE= " + DATE + " deleted.";
     }
 
-
-
-
     @GetMapping(value= "/getbyUTILISATEUR/{SAUVEGARDE-UTILISATEUR}")
     public Optional<SAUVEGARDE> getByUTILISATEUR(@PathVariable(value= "SAUVEGARDE-UTILISATEUR") String UTILISATEUR) {
         logger.debug("Getting SAUVEGARDE with SAUVEGARDE-UTILISATEUR= {}.", UTILISATEUR);
