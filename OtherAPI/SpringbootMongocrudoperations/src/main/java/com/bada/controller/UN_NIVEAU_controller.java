@@ -44,6 +44,12 @@ public class UN_NIVEAU_controller {
         return serv.findUN_NIVEAUById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UN_NIVEAU-CODE}")
+    public Optional<UN_NIVEAU> getByCODE(@PathVariable(value= "UN_NIVEAU-CODE") String CODE) {
+        logger.debug("Getting UN_NIVEAU with UN_NIVEAU-CODE= {}.", CODE);
+        return serv.findUN_NIVEAUByCODE(CODE);
+    }
+
     @PutMapping(value= "/update/{UN_NIVEAU-id}")
     public String update(@PathVariable(value= "UN_NIVEAU-id") int id, @RequestBody UN_NIVEAU e) {
         logger.debug("Updating UN_NIVEAU with UN_NIVEAU-id= {}.", id);

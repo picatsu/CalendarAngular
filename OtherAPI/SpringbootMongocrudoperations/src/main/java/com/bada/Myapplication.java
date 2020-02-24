@@ -18,7 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Myapplication {
-// http://localhost:8100/swagger-ui.html#
+//     http://localhost:8100/swagger-ui.html#
 	// http://localhost:8100/actuator/
 	// http://localhost:8100/monitoring
 	public static void main(String[] args) {

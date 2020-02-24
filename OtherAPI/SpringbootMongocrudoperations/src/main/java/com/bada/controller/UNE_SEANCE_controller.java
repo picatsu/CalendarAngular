@@ -40,6 +40,12 @@ public class UNE_SEANCE_controller {
         return serv.findUNE_SEANCEById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UNE_SEANCE-code}")
+    public Optional<UNE_SEANCE> getByCODE(@PathVariable(value= "UNE_SEANCE-CODE") String CODE) {
+        logger.debug("Getting UNE_SEANCE with UNE_SEANCE-CODE= {}.", CODE);
+        return serv.findUNE_SEANCEByCODE(CODE);
+    }
+
     @PutMapping(value= "/update/{UNE_SEANCE-id}")
     public String update(@PathVariable(value= "UNE_SEANCE-id") int id, @RequestBody UNE_SEANCE e) {
         logger.debug("Updating UNE_SEANCE with UNE_SEANCE-id= {}.", id);

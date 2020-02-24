@@ -39,6 +39,12 @@ public class UN_ETUDIANT_controller {
         return serv.findUN_ETUDIANTById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UN_ETUDIANT-CODE}")
+    public Optional<UN_ETUDIANT> getByCODE(@PathVariable(value= "UN_ETUDIANT-CODE") String CODE) {
+        logger.debug("Getting UN_ETUDIANT with UN_ETUDIANT-id= {}.", CODE);
+        return serv.findUN_ETUDIANTByCODE(CODE);
+    }
+
     @PutMapping(value= "/update/{UN_ETUDIANT-id}")
     public String update(@PathVariable(value= "UN_ETUDIANT-id") int id, @RequestBody UN_ETUDIANT e) {
         logger.debug("Updating UN_ETUDIANT with UN_ETUDIANT-id= {}.", id);

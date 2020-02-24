@@ -1,12 +1,9 @@
 package com.bada.service.serviceIMPL;
 
-import com.bada.dao.SAUVEGARDEDAO;
 import com.bada.dao.UN_CNU_DAO;
-import com.bada.model.SAUVEGARDE;
 import com.bada.model.UN_CNU;
 import com.bada.service.UN_CNU_SERVICE;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +27,12 @@ public class UN_CNU_SERVICEIMPL implements UN_CNU_SERVICE {
     public Optional<UN_CNU> findUN_CNUById(int id) {
         return dao.findById(id);
     }
+
+    @Override
+    public Optional<UN_CNU> findUN_CNUByCODE(String CODE) {
+        return dao.findByCODE(CODE);
+    }
+
 
     @Override
     public void deleteUN_CNUById(int id) {

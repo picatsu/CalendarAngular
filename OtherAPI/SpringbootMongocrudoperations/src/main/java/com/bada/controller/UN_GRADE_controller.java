@@ -39,6 +39,12 @@ public class UN_GRADE_controller {
         return serv.findUN_GRADEById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UN_GRADE-CODE}")
+    public Optional<UN_GRADE> getByCODE(@PathVariable(value= "UN_GRADE-CODE") String CODE) {
+        logger.debug("Getting UN_GRADE with UN_GRADE-CODE= {}.", CODE);
+        return serv.findUN_GRADEByCODE(CODE);
+    }
+
     @PutMapping(value= "/update/{UN_GRADE-id}")
     public String update(@PathVariable(value= "UN_GRADE-id") int id, @RequestBody UN_GRADE e) {
         logger.debug("Updating UN_GRADE with UN_GRADE-id= {}.", id);

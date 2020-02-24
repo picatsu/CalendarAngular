@@ -30,6 +30,12 @@ public class UN_PROFESSEUR_SERVICEIMPL implements UN_PROFESSEUR_SERVICE {
         return dao.findById(id);
     }
 
+
+    @Override
+    public Optional<UN_PROFESSEUR> findUN_PROFESSEURByCODE(String CODE) {
+        return dao.findByCODE(CODE);
+    }
+
     @Override
     public void deleteUN_PROFESSEURById(int id) {
         dao.deleteById(id);

@@ -32,6 +32,13 @@ public class UN_NIVEAU_SERVICEIMPL implements UN_NIVEAU_SERVICE {
     }
 
     @Override
+    public Optional<UN_NIVEAU> findUN_NIVEAUByCODE(String CODE)
+    {
+        return dao.findByCODE(CODE);
+    }
+
+
+    @Override
     public void deleteUN_NIVEAUById(int id) {
         dao.deleteById(id);
     }

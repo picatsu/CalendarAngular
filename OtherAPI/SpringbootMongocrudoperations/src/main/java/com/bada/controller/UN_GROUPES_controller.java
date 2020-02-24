@@ -40,6 +40,12 @@ public class UN_GROUPES_controller {
         return serv.findUN_GROUPESById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UN_GROUPES-CODE}")
+    public Optional<UN_GROUPES> getByCODE(@PathVariable(value= "UN_GROUPES-CODE") String CODE) {
+        logger.debug("Getting UN_GROUPES with UN_GROUPES-CODE= {}.", CODE);
+        return serv.findUN_GROUPESByCODE(CODE);
+    }
+
     @PutMapping(value= "/update/{UN_GROUPES-id}")
     public String update(@PathVariable(value= "UN_GROUPES-id") int id, @RequestBody UN_GROUPES e) {
         logger.debug("Updating UN_GROUPES with UN_GROUPES-id= {}.", id);

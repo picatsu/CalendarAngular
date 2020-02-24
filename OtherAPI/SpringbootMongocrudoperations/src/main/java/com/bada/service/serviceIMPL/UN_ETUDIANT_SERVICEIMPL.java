@@ -29,6 +29,12 @@ public class UN_ETUDIANT_SERVICEIMPL implements UN_ETUDIANT_SERVICE {
     }
 
     @Override
+    public Optional<UN_ETUDIANT> findUN_ETUDIANTByCODE(String CODE) {
+        return dao.findByCODE(CODE);
+    }
+
+
+    @Override
     public void deleteUN_ETUDIANTById(int id) {
         dao.deleteById(id);
     }

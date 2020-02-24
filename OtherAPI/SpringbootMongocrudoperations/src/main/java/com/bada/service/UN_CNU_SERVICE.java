@@ -12,6 +12,7 @@ public interface UN_CNU_SERVICE {
     public void createUN_CNU(List<UN_CNU> un_cnu);
     public Collection<UN_CNU> getAllUN_CNU();
     public Optional<UN_CNU> findUN_CNUById(int id);
+    public Optional<UN_CNU> findUN_CNUByCODE(String CODE);
     public void deleteUN_CNUById(int id);
     public void updateUN_CNU(UN_CNU un_cnu);
     public void deleteAllUN_CNU();

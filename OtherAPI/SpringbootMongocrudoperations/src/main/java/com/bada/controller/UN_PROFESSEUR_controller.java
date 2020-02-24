@@ -40,6 +40,12 @@ public class UN_PROFESSEUR_controller {
         return serv.findUN_PROFESSEURById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UN_PROFESSEUR-CODE}")
+    public Optional<UN_PROFESSEUR> getByCODE(@PathVariable(value= "UN_PROFESSEUR-CODE") String CODE) {
+        logger.debug("Getting UN_PROFESSEUR with UN_PROFESSEUR-CODE= {}.", CODE);
+        return serv.findUN_PROFESSEURByCODE(CODE);
+    }
+
     @PutMapping(value= "/update/{UN_PROFESSEUR-id}")
     public String update(@PathVariable(value= "UN_PROFESSEUR-id") int id, @RequestBody UN_PROFESSEUR e) {
         logger.debug("Updating UN_PROFESSEUR with UN_PROFESSEUR-id= {}.", id);

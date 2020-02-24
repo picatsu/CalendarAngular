@@ -33,6 +33,12 @@ public class UN_CNU_controller {
         return serv.getAllUN_CNU();
     }
 
+    @GetMapping(value= "/getbycode/{UN_CNU-CODE}")
+    public Optional<UN_CNU> getByCODE(@PathVariable(value= "UN_CNU-CODE") String CODE) {
+        logger.debug("Getting UN_CNU with UN_CNU-CODE= {}.", CODE);
+        return serv.findUN_CNUByCODE(CODE);
+    }
+
     @GetMapping(value= "/getbyid/{UN_CNU-id}")
     public Optional<UN_CNU> getById(@PathVariable(value= "UN_CNU-id") int id) {
         logger.debug("Getting UN_CNU with UN_CNU-id= {}.", id);

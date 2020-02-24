@@ -1,5 +1,6 @@
 package com.bada.model;
 
+import com.bada.model.utils.LES_CONGES;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,7 +23,9 @@ public class UN_GROUPES {
     private String          COULEUR;
     private String          COULEUR_POLICE;
     private String          CODE_PROPRIETAIRE;
+    private String          UN_CODE_SUPER_GROUPE;
     private String[]        LES_ETUDIANTS_DU_GROUPE;
+    private LES_CONGES[]    LES_CONGES;
 
 
     public UN_GROUPES() {
@@ -33,7 +36,7 @@ public class UN_GROUPES {
     public UN_GROUPES(String CODE, String DATE_MODIFICATION, String NOM, String ALIAS, String COMMENTAIRE,
                       String COMPOSANTE, String NIVEAU, String DIPLOME, String IDENTIFIANT, String TYPE_PUBLIC,
                       String QUANTITE_MAX, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE,
-                      String[] LES_ETUDIANTS_DU_GROUPE) {
+                      String[] LES_ETUDIANTS_DU_GROUPE, String UN_CODE_SUPER_GROUPE, LES_CONGES[] LES_CONGES) {
         this.CODE = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.NOM = NOM;
@@ -49,6 +52,8 @@ public class UN_GROUPES {
         this.COULEUR_POLICE = COULEUR_POLICE;
         this.CODE_PROPRIETAIRE = CODE_PROPRIETAIRE;
         this.LES_ETUDIANTS_DU_GROUPE = LES_ETUDIANTS_DU_GROUPE;
+        this.UN_CODE_SUPER_GROUPE = UN_CODE_SUPER_GROUPE;
+        this.LES_CONGES = LES_CONGES;
     }
 
     public int getId() {
@@ -57,6 +62,22 @@ public class UN_GROUPES {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUN_CODE_SUPER_GROUPE() {
+        return UN_CODE_SUPER_GROUPE;
+    }
+
+    public com.bada.model.utils.LES_CONGES[] getLES_CONGES() {
+        return LES_CONGES;
+    }
+
+    public void setLES_CONGES(com.bada.model.utils.LES_CONGES[] LES_CONGES) {
+        this.LES_CONGES = LES_CONGES;
+    }
+
+    public void setUN_CODE_SUPER_GROUPE(String UN_CODE_SUPER_GROUPE) {
+        this.UN_CODE_SUPER_GROUPE = UN_CODE_SUPER_GROUPE;
     }
 
     public String getCODE() {

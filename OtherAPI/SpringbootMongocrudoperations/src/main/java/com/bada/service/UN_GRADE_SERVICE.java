@@ -12,6 +12,8 @@ public interface UN_GRADE_SERVICE {
     public void createUN_GRADE(List<UN_GRADE> un_grade);
     public Collection<UN_GRADE> getAllUN_GRADE();
     public Optional<UN_GRADE> findUN_GRADEById(int id);
+    public Optional<UN_GRADE> findUN_GRADEByCODE(String CODE);
+
     public void deleteUN_GRADEById(int id);
     public void updateUN_GRADE(UN_GRADE un_grade);
     public void deleteAllUN_GRADE();

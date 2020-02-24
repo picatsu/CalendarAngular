@@ -40,6 +40,12 @@ public class UNE_RESERVATION_controller {
         return serv.findUNE_RESERVATIONById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UNE_RESERVATION-CODE}")
+    public Optional<UNE_RESERVATION> getByCODE(@PathVariable(value= "UNE_RESERVATION-CODE") String CODE) {
+        logger.debug("Getting UNE_RESERVATION with UNE_RESERVATION-CODE= {}.", CODE);
+        return serv.findUNE_RESERVATIONByCODE(CODE);
+    }
+
     @PutMapping(value= "/update/{UNE_RESERVATION-id}")
     public String update(@PathVariable(value= "UNE_RESERVATION-id") int id, @RequestBody UNE_RESERVATION e) {
         logger.debug("Updating UNE_RESERVATION with UNE_RESERVATION-id= {}.", id);

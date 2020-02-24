@@ -40,6 +40,13 @@ public class UNE_ZONE_DE_SALLE_controller {
         return serv.findUNE_ZONE_DE_SALLEById(id);
     }
 
+    @GetMapping(value= "/getbycode/{UNE_ZONE_DE_SALLE-CODE}")
+    public Optional<UNE_ZONE_DE_SALLE> getByCODE(@PathVariable(value= "UNE_ZONE_DE_SALLE-CODE") String CODE) {
+        logger.debug("Getting UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-CODE= {}.", CODE);
+        return serv.findUNE_ZONE_DE_SALLEByCODE(CODE);
+    }
+
+
     @PutMapping(value= "/update/{UNE_ZONE_DE_SALLE-id}")
     public String update(@PathVariable(value= "UNE_ZONE_DE_SALLE-id") int id, @RequestBody UNE_ZONE_DE_SALLE e) {
         logger.debug("Updating UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-id= {}.", id);

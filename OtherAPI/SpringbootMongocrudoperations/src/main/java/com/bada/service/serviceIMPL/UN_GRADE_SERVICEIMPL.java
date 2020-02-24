@@ -30,6 +30,12 @@ public class UN_GRADE_SERVICEIMPL implements UN_GRADE_SERVICE {
     }
 
     @Override
+    public Optional<UN_GRADE> findUN_GRADEByCODE(String CODE) {
+        return dao.findByCODE(CODE);
+    }
+
+
+    @Override
     public void deleteUN_GRADEById(int id) {
         dao.deleteById(id);
     }

@@ -12,7 +12,6 @@ public interface SAUVEGARDEDAO extends MongoRepository<SAUVEGARDE, Integer> {
 
     Optional<SAUVEGARDE> findByUTILISATEUR(String UTILISATEUR);
     Optional<SAUVEGARDE> findByDATE(String DATE);
-
     void deleteByUTILISATEUR(String UTILISATEUR);
     void deleteByDATE(String DATE);
 }
