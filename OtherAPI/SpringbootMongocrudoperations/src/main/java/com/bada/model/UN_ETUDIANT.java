@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UN_ETUDIANT {
 
 
-    @Id
-    private int id;
+
     private String   CODE;
     private String   DATE_MODIFICATION;
     private String   NOM;
@@ -58,13 +57,7 @@ public class UN_ETUDIANT {
         return DATE_MODIFICATION;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public void setDATE_MODIFICATION(String DATE_MODIFICATION) {
         this.DATE_MODIFICATION = DATE_MODIFICATION;

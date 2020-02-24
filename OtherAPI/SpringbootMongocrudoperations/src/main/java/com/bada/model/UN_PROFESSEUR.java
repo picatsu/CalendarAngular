@@ -7,8 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection= "UN_PROFESSEUR")
 public class UN_PROFESSEUR {
 
-    @Id
-    private int id;
+
     private String CODE;
     private String DATE_MODIFICATION;
     private String NOM;
@@ -59,13 +58,6 @@ public class UN_PROFESSEUR {
         this.ADRESSE = ADRESSE;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getCODE() {
         return CODE;

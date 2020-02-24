@@ -34,11 +34,6 @@ public class UN_GROUPES_controller {
         return serv.getAllUN_GROUPES();
     }
 
-    @GetMapping(value= "/getbyid/{UN_GROUPES-id}")
-    public Optional<UN_GROUPES> getById(@PathVariable(value= "UN_GROUPES-id") int id) {
-        logger.debug("Getting UN_GROUPES with UN_GROUPES-id= {}.", id);
-        return serv.findUN_GROUPESById(id);
-    }
 
     @GetMapping(value= "/getbycode/{UN_GROUPES-CODE}")
     public Optional<UN_GROUPES> getByCODE(@PathVariable(value= "UN_GROUPES-CODE") String CODE) {
@@ -46,19 +41,20 @@ public class UN_GROUPES_controller {
         return serv.findUN_GROUPESByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UN_GROUPES-id}")
-    public String update(@PathVariable(value= "UN_GROUPES-id") int id, @RequestBody UN_GROUPES e) {
-        logger.debug("Updating UN_GROUPES with UN_GROUPES-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UN_GROUPES-CODE}")
+    public String update(@PathVariable(value= "UN_GROUPES-CODE") String CODE,
+                         @RequestBody UN_GROUPES e) {
+        logger.debug("Updating UN_GROUPES with UN_GROUPES-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUN_GROUPES(e);
-        return "UN_GROUPES record for UN_GROUPES-id= " + id + " updated.";
+        return "UN_GROUPES record for UN_GROUPES-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_GROUPES-id}")
-    public String delete(@PathVariable(value= "UN_GROUPES-id") int id) {
-        logger.debug("Deleting UN_GROUPES with UN_GROUPES-id= {}.", id);
-        serv.deleteUN_GROUPESById(id);
-        return "UN_GROUPES record for UN_GROUPES-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_GROUPES-CODE}")
+    public String delete(@PathVariable(value= "UN_GROUPES-CODE") String CODE) {
+        logger.debug("Deleting UN_GROUPES with UN_GROUPES-CODE= {}.", CODE);
+        serv.deleteUN_GROUPESByCODE(CODE);
+        return "UN_GROUPES record for UN_GROUPES-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

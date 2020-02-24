@@ -34,31 +34,25 @@ public class UNE_SEANCE_controller {
         return serv.getAllUNE_SEANCE();
     }
 
-    @GetMapping(value= "/getbyid/{UNE_SEANCE-id}")
-    public Optional<UNE_SEANCE> getById(@PathVariable(value= "UNE_SEANCE-id") int id) {
-        logger.debug("Getting UNE_SEANCE with UNE_SEANCE-id= {}.", id);
-        return serv.findUNE_SEANCEById(id);
-    }
-
     @GetMapping(value= "/getbycode/{UNE_SEANCE-code}")
     public Optional<UNE_SEANCE> getByCODE(@PathVariable(value= "UNE_SEANCE-CODE") String CODE) {
         logger.debug("Getting UNE_SEANCE with UNE_SEANCE-CODE= {}.", CODE);
         return serv.findUNE_SEANCEByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UNE_SEANCE-id}")
-    public String update(@PathVariable(value= "UNE_SEANCE-id") int id, @RequestBody UNE_SEANCE e) {
-        logger.debug("Updating UNE_SEANCE with UNE_SEANCE-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UNE_SEANCE-CODE}")
+    public String update(@PathVariable(value= "UNE_SEANCE-CODE") String CODE, @RequestBody UNE_SEANCE e) {
+        logger.debug("Updating UNE_SEANCE with UNE_SEANCE-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUNE_SEANCE(e);
-        return "UNE_SEANCE record for UNE_SEANCE-id= " + id + " updated.";
+        return "UNE_SEANCE record for UNE_SEANCE-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UNE_SEANCE-id}")
-    public String delete(@PathVariable(value= "UNE_SEANCE-id") int id) {
-        logger.debug("Deleting UNE_SEANCE with UNE_SEANCE-id= {}.", id);
-        serv.deleteUNE_SEANCEById(id);
-        return "UNE_SEANCE record for UNE_SEANCE-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UNE_SEANCE-CODE}")
+    public String delete(@PathVariable(value= "UNE_SEANCE-CODE") String CODE) {
+        logger.debug("Deleting UNE_SEANCE with UNE_SEANCE-CODE= {}.", CODE);
+        serv.deleteUNE_SEANCEByCODE(CODE);
+        return "UNE_SEANCE record for UNE_SEANCE-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

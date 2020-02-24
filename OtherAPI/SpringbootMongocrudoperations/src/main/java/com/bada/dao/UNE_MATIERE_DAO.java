@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface UNE_MATIERE_DAO extends MongoRepository<UNE_MATIERE, Integer> {
     Optional<UNE_MATIERE> findByCODE(String CODE);
-
+    void deleteByCODE(String CODE);
 }

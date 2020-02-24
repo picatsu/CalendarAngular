@@ -27,19 +27,14 @@ public class UNE_RESERVATION_SERVICEIMPL implements UNE_RESERVATION_SERVICE {
     }
 
     @Override
-    public Optional<UNE_RESERVATION> findUNE_RESERVATIONById(int id) {
-        return dao.findById(id);
-    }
-
-    @Override
     public Optional<UNE_RESERVATION> findUNE_RESERVATIONByCODE(String CODE)
     {
         return dao.findByCODE(CODE);
     }
 
     @Override
-    public void deleteUNE_RESERVATIONById(int id) {
-        dao.deleteById(id);
+    public void deleteUNE_RESERVATIONByCODE(String CODE) {
+        dao.deleteByCODE(CODE);
     }
 
     @Override

@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface UN_TYPE_ACTIVITE_DAO extends MongoRepository<UN_TYPE_ACTIVITE, Integer> {
     Optional<UN_TYPE_ACTIVITE> findByCODE(String CODE);
+    void deleteByCODE(String CODE);
 }

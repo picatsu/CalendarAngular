@@ -33,31 +33,27 @@ public class UN_ENSEIGNEMENT_controller {
         return serv.getAllUN_ENSEIGNEMENT();
     }
 
-    @GetMapping(value= "/getbyid/{UN_ENSEIGNEMENT-id}")
-    public Optional<UN_ENSEIGNEMENT> getById(@PathVariable(value= "UN_ENSEIGNEMENT-id") int id) {
-        logger.debug("Getting UN_ENSEIGNEMENT with UN_ENSEIGNEMENT-id= {}.", id);
-        return serv.findUN_ENSEIGNEMENTById(id);
-    }
 
     @GetMapping(value= "/getbycode/{UN_ENSEIGNEMENT-CODE}")
-    public Optional<UN_ENSEIGNEMENT> getByCODE(@PathVariable(value= "UN_ENSEIGNEMENT-id") String CODE) {
+    public Optional<UN_ENSEIGNEMENT> getByCODE(@PathVariable(value= "UN_ENSEIGNEMENT-CODE") String CODE) {
         logger.debug("Getting UN_ENSEIGNEMENT with UN_ENSEIGNEMENT-CODE= {}.", CODE);
         return serv.findUN_ENSEIGNEMENTByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UN_ENSEIGNEMENT-id}")
-    public String update(@PathVariable(value= "UN_ENSEIGNEMENT-id") int id, @RequestBody UN_ENSEIGNEMENT e) {
-        logger.debug("Updating UN_ENSEIGNEMENT with UN_ENSEIGNEMENT-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UN_ENSEIGNEMENT-CODE}")
+    public String update(@PathVariable(value= "UN_ENSEIGNEMENT-CODE") String CODE,
+                         @RequestBody UN_ENSEIGNEMENT e) {
+        logger.debug("Updating UN_ENSEIGNEMENT with UN_ENSEIGNEMENT-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUN_ENSEIGNEMENT(e);
-        return "UN_ENSEIGNEMENT record for UN_ENSEIGNEMENT-id= " + id + " updated.";
+        return "UN_ENSEIGNEMENT record for UN_ENSEIGNEMENT-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_ENSEIGNEMENT-id}")
-    public String delete(@PathVariable(value= "UN_ENSEIGNEMENT-id") int id) {
-        logger.debug("Deleting UN_ENSEIGNEMENT with UN_ENSEIGNEMENT-id= {}.", id);
-        serv.deleteUN_ENSEIGNEMENTById(id);
-        return "UN_ENSEIGNEMENT record for UN_ENSEIGNEMENT-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_ENSEIGNEMENT-CODE}")
+    public String delete(@PathVariable(value= "UN_ENSEIGNEMENT-CODE") String CODE) {
+        logger.debug("Deleting UN_ENSEIGNEMENT with UN_ENSEIGNEMENT-CODE= {}.", CODE);
+        serv.deleteUN_ENSEIGNEMENTByCODE(CODE);
+        return "UN_ENSEIGNEMENT record for UN_ENSEIGNEMENT-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

@@ -34,11 +34,6 @@ public class UNE_COMPOSANTE_controller {
         return serv.getAllUNE_COMPOSANTE();
     }
 
-    @GetMapping(value= "/getbyid/{UNE_COMPOSANTE-id}")
-    public Optional<UNE_COMPOSANTE> getById(@PathVariable(value= "UNE_COMPOSANTE-id") int id) {
-        logger.debug("Getting UNE_COMPOSANTE with UNE_COMPOSANTE-id= {}.", id);
-        return serv.findUNE_COMPOSANTEById(id);
-    }
 
     @GetMapping(value= "/getbycode/{UNE_COMPOSANTE-CODE}")
     public Optional<UNE_COMPOSANTE> getByCODE(@PathVariable(value= "UNE_COMPOSANTE-CODE") String CODE) {
@@ -46,19 +41,20 @@ public class UNE_COMPOSANTE_controller {
         return serv.findUNE_COMPOSANTEByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UNE_COMPOSANTE-id}")
-    public String update(@PathVariable(value= "UNE_COMPOSANTE-id") int id, @RequestBody UNE_COMPOSANTE e) {
-        logger.debug("Updating UNE_COMPOSANTE with UNE_COMPOSANTE-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UNE_COMPOSANTE-CODE}")
+    public String update(@PathVariable(value= "UNE_COMPOSANTE-CODE") String CODE,
+                         @RequestBody UNE_COMPOSANTE e) {
+        logger.debug("Updating UNE_COMPOSANTE with UNE_COMPOSANTE-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUNE_COMPOSANTE(e);
-        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-id= " + id + " updated.";
+        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UNE_COMPOSANTE-id}")
-    public String delete(@PathVariable(value= "UNE_COMPOSANTE-id") int id) {
-        logger.debug("Deleting UNE_COMPOSANTE with UNE_COMPOSANTE-id= {}.", id);
-        serv.deleteUNE_COMPOSANTEById(id);
-        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UNE_COMPOSANTE-CODE}")
+    public String delete(@PathVariable(value= "UNE_COMPOSANTE-CODE") String CODE) {
+        logger.debug("Deleting UNE_COMPOSANTE with UNE_COMPOSANTE-CODE= {}.", CODE);
+        serv.deleteUNE_COMPOSANTEByCODE(CODE);
+        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

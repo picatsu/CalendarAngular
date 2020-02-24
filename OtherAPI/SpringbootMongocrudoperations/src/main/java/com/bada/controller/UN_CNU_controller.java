@@ -39,25 +39,21 @@ public class UN_CNU_controller {
         return serv.findUN_CNUByCODE(CODE);
     }
 
-    @GetMapping(value= "/getbyid/{UN_CNU-id}")
-    public Optional<UN_CNU> getById(@PathVariable(value= "UN_CNU-id") int id) {
-        logger.debug("Getting UN_CNU with UN_CNU-id= {}.", id);
-        return serv.findUN_CNUById(id);
-    }
 
-    @PutMapping(value= "/update/{UN_CNU-id}")
-    public String update(@PathVariable(value= "UN_CNU-id") int id, @RequestBody UN_CNU e) {
-        logger.debug("Updating UN_CNU with UN_CNU-id= {}.", id);
-        e.setId(id);
+
+    @PutMapping(value= "/update/{UN_CNU-CODE}")
+    public String update(@PathVariable(value= "UN_CNU-CODE") String CODE, @RequestBody UN_CNU e) {
+        logger.debug("Updating UN_CNU with UN_CNU-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUN_CNU(e);
-        return "UN_CNU record for UN_CNU-id= " + id + " updated.";
+        return "UN_CNU record for UN_CNU-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_CNU-id}")
-    public String delete(@PathVariable(value= "UN_CNU-id") int id) {
-        logger.debug("Deleting UN_CNU with UN_CNU-id= {}.", id);
-        serv.deleteUN_CNUById(id);
-        return "UN_CNU record for UN_CNU-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_CNU-CODE}")
+    public String delete(@PathVariable(value= "UN_CNU-CODE") String CODE) {
+        logger.debug("Deleting UN_CNU with UN_CNU-CODE= {}.", CODE);
+        serv.deleteUN_CNUByCODE(CODE);
+        return "UN_CNU record for UN_CNU-id= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

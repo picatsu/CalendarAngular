@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface UN_NIVEAU_DAO extends MongoRepository<UN_NIVEAU, Integer> {
 
     Optional<UN_NIVEAU> findByCODE(String CODE);
-
+    void deleteByCODE(String CODE);
 }

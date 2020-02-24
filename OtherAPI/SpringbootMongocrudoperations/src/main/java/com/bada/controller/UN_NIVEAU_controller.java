@@ -38,31 +38,26 @@ public class UN_NIVEAU_controller {
         return serv.getAllUN_NIVEAU();
     }
 
-    @GetMapping(value= "/getbyid/{UN_NIVEAU-id}")
-    public Optional<UN_NIVEAU> getById(@PathVariable(value= "UN_NIVEAU-id") int id) {
-        logger.debug("Getting UN_NIVEAU with UN_NIVEAU-id= {}.", id);
-        return serv.findUN_NIVEAUById(id);
-    }
-
     @GetMapping(value= "/getbycode/{UN_NIVEAU-CODE}")
     public Optional<UN_NIVEAU> getByCODE(@PathVariable(value= "UN_NIVEAU-CODE") String CODE) {
         logger.debug("Getting UN_NIVEAU with UN_NIVEAU-CODE= {}.", CODE);
         return serv.findUN_NIVEAUByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UN_NIVEAU-id}")
-    public String update(@PathVariable(value= "UN_NIVEAU-id") int id, @RequestBody UN_NIVEAU e) {
-        logger.debug("Updating UN_NIVEAU with UN_NIVEAU-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UN_NIVEAU-CODE}")
+    public String update(@PathVariable(value= "UN_NIVEAU-CODE") String CODE,
+                         @RequestBody UN_NIVEAU e) {
+        logger.debug("Updating UN_NIVEAU with UN_NIVEAU-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUN_NIVEAU(e);
-        return "UN_NIVEAU record for UN_NIVEAU-id= " + id + " updated.";
+        return "UN_NIVEAU record for UN_NIVEAU-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_NIVEAU-id}")
-    public String delete(@PathVariable(value= "UN_NIVEAU-id") int id) {
-        logger.debug("Deleting UN_NIVEAU with UN_NIVEAU-id= {}.", id);
-        serv.deleteUN_NIVEAUById(id);
-        return "UN_NIVEAU record for UN_NIVEAU-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_NIVEAU-CODE}")
+    public String delete(@PathVariable(value= "UN_NIVEAU-CODE") String CODE) {
+        logger.debug("Deleting UN_NIVEAU with UN_NIVEAU-CODE= {}.", CODE);
+        serv.deleteUN_NIVEAUByCODE(CODE);
+        return "UN_NIVEAU record for UN_NIVEAU-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

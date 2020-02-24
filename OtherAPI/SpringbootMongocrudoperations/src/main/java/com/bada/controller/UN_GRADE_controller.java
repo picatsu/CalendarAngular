@@ -33,11 +33,6 @@ public class UN_GRADE_controller {
         return serv.getAllUN_GRADE();
     }
 
-    @GetMapping(value= "/getbyid/{UN_GRADE-id}")
-    public Optional<UN_GRADE> getById(@PathVariable(value= "UN_GRADE-id") int id) {
-        logger.debug("Getting UN_GRADE with UN_GRADE-id= {}.", id);
-        return serv.findUN_GRADEById(id);
-    }
 
     @GetMapping(value= "/getbycode/{UN_GRADE-CODE}")
     public Optional<UN_GRADE> getByCODE(@PathVariable(value= "UN_GRADE-CODE") String CODE) {
@@ -45,19 +40,20 @@ public class UN_GRADE_controller {
         return serv.findUN_GRADEByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UN_GRADE-id}")
-    public String update(@PathVariable(value= "UN_GRADE-id") int id, @RequestBody UN_GRADE e) {
-        logger.debug("Updating UN_GRADE with UN_GRADE-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UN_GRADE-CODE}")
+    public String update(@PathVariable(value= "UN_GRADE-CODE") String CODE,
+                         @RequestBody UN_GRADE e) {
+        logger.debug("Updating UN_GRADE with UN_GRADE-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUN_GRADE(e);
-        return "UN_GRADE record for UN_GRADE-id= " + id + " updated.";
+        return "UN_GRADE record for UN_GRADE-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_GRADE-id}")
-    public String delete(@PathVariable(value= "UN_GRADE-id") int id) {
-        logger.debug("Deleting UN_GRADE with UN_GRADE-id= {}.", id);
-        serv.deleteUN_GRADEById(id);
-        return "UN_GRADE record for UN_GRADE-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_GRADE-CODE}")
+    public String delete(@PathVariable(value= "UN_GRADE-CODE") String CODE) {
+        logger.debug("Deleting UN_GRADE with UN_GRADE-CODE= {}.", CODE);
+        serv.deleteUN_GRADEByCODE(CODE);
+        return "UN_GRADE record for UN_GRADE-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

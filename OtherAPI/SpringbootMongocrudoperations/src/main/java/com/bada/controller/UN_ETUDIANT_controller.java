@@ -33,31 +33,28 @@ public class UN_ETUDIANT_controller {
         return serv.getAllUN_ETUDIANT();
     }
 
-    @GetMapping(value= "/getbyid/{UN_ETUDIANT-id}")
-    public Optional<UN_ETUDIANT> getById(@PathVariable(value= "UN_ETUDIANT-id") int id) {
-        logger.debug("Getting UN_ETUDIANT with UN_ETUDIANT-id= {}.", id);
-        return serv.findUN_ETUDIANTById(id);
-    }
+
 
     @GetMapping(value= "/getbycode/{UN_ETUDIANT-CODE}")
     public Optional<UN_ETUDIANT> getByCODE(@PathVariable(value= "UN_ETUDIANT-CODE") String CODE) {
-        logger.debug("Getting UN_ETUDIANT with UN_ETUDIANT-id= {}.", CODE);
+        logger.debug("Getting UN_ETUDIANT with UN_ETUDIANT-CODE= {}.", CODE);
         return serv.findUN_ETUDIANTByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UN_ETUDIANT-id}")
-    public String update(@PathVariable(value= "UN_ETUDIANT-id") int id, @RequestBody UN_ETUDIANT e) {
-        logger.debug("Updating UN_ETUDIANT with UN_ETUDIANT-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UN_ETUDIANT-CODE}")
+    public String update(@PathVariable(value= "UN_ETUDIANT-id") String CODE,
+                         @RequestBody UN_ETUDIANT e) {
+        logger.debug("Updating UN_ETUDIANT with UN_ETUDIANT-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUN_ETUDIANT(e);
-        return "UN_ETUDIANT record for UN_ETUDIANT-id= " + id + " updated.";
+        return "UN_ETUDIANT record for UN_ETUDIANT-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_ETUDIANT-id}")
-    public String delete(@PathVariable(value= "UN_ETUDIANT-id") int id) {
-        logger.debug("Deleting UN_ETUDIANT with UN_ETUDIANT-id= {}.", id);
-        serv.deleteUN_ETUDIANTById(id);
-        return "UN_ETUDIANT record for UN_ETUDIANT-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_ETUDIANT-CODE}")
+    public String delete(@PathVariable(value= "UN_ETUDIANT-CODE") String CODE) {
+        logger.debug("Deleting UN_ETUDIANT with UN_ETUDIANT-CODE= {}.", CODE);
+        serv.deleteUN_ETUDIANTByCODE(CODE);
+        return "UN_ETUDIANT record for UN_ETUDIANT-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

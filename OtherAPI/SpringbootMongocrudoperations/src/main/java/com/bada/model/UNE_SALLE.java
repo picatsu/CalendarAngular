@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UNE_SALLE {
 
 
-    @Id
-    private int id;
+
     private String CODE;
     private String DATE_MODIFICATION;
     private String NOM;
@@ -47,13 +46,8 @@ public class UNE_SALLE {
         this.TYPES_DE_LA_SALLE = TYPES_DE_LA_SALLE;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public String getCODE() {
         return CODE;

@@ -8,8 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection= "UNE_RESERVATION")
 public class UNE_RESERVATION {
 
-    @Id
-    private int id;
+
+
+
 
     private String CODE;
     private String DATE_MODIFICATION;
@@ -35,13 +36,8 @@ public class UNE_RESERVATION {
         this.RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES = RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public String getCODE() {
         return CODE;

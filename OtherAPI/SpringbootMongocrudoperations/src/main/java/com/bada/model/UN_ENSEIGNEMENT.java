@@ -7,8 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection= "UN_ENSEIGNEMENT")
 public class UN_ENSEIGNEMENT {
-    @Id
-    private int                    id;
+
+
+
     private String                 CODE;
     private String                 DATE_MODIFICATION;
     private String                 NOM;
@@ -98,13 +99,7 @@ public class UN_ENSEIGNEMENT {
         this.NOM = NOM;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getALIAS() {
         return ALIAS;

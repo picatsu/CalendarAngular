@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection= "UN_NIVEAU")
 public class UN_NIVEAU {
 
-    @Id
-    private int id;
+
+
     private String CODE;
     private String DATE_MODIFICATION;
     private String NOM;
@@ -38,13 +38,7 @@ public class UN_NIVEAU {
         this.TYPE_ELEMENT = TYPE_ELEMENT;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getCODE() {
         return CODE;

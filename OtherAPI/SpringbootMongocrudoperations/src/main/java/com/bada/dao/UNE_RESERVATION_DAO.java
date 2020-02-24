@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface UNE_RESERVATION_DAO extends MongoRepository<UNE_RESERVATION, Integer> {
 
     Optional<UNE_RESERVATION> findByCODE(String CODE);
-
+    void deleteByCODE(String CODE);
 }

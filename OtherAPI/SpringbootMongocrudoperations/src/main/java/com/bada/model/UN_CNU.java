@@ -6,8 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection= "UN_CNU")
 public class UN_CNU {
 
-    @Id
-    private int id;
+
     private String CODE;
     private String SECTION;
     private String NOM;
@@ -15,8 +14,7 @@ public class UN_CNU {
     private String DATE_MODIFICATION;
 
 
-    public UN_CNU(int id, String CODE, String SECTION, String NOM, String CODE_PROPRIETAIRE, String DATE_MODIFICATION) {
-        this.id = id;
+    public UN_CNU( String CODE, String SECTION, String NOM, String CODE_PROPRIETAIRE, String DATE_MODIFICATION) {
         this.CODE = CODE;
         this.SECTION = SECTION;
         this.NOM = NOM;
@@ -25,13 +23,6 @@ public class UN_CNU {
     }
 
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getCODE() {
         return CODE;

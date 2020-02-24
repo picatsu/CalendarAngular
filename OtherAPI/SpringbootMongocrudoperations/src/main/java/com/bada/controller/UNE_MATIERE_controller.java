@@ -34,11 +34,6 @@ public class UNE_MATIERE_controller {
         return serv.getAllUNE_MATIERE();
     }
 
-    @GetMapping(value= "/getbyid/{UNE_MATIERE-id}")
-    public Optional<UNE_MATIERE> getById(@PathVariable(value= "UNE_MATIERE-id") int id) {
-        logger.debug("Getting UNE_MATIERE with UNE_MATIERE-id= {}.", id);
-        return serv.findUNE_MATIEREById(id);
-    }
 
     @GetMapping(value= "/getbycode/{UNE_MATIERE-CODE}")
     public Optional<UNE_MATIERE> getByCODE(@PathVariable(value= "UNE_MATIERE-id") String CODE) {
@@ -46,19 +41,19 @@ public class UNE_MATIERE_controller {
         return serv.findUNE_MATIEREByCODE(CODE);
     }
 
-    @PutMapping(value= "/update/{UNE_MATIERE-id}")
-    public String update(@PathVariable(value= "UNE_MATIERE-id") int id, @RequestBody UNE_MATIERE e) {
-        logger.debug("Updating UNE_MATIERE with UNE_MATIERE-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UNE_MATIERE-CODE}")
+    public String update(@PathVariable(value= "UNE_MATIERE-CODE") String CODE, @RequestBody UNE_MATIERE e) {
+        logger.debug("Updating UNE_MATIERE with UNE_MATIERE-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUNE_MATIERE(e);
-        return "UNE_MATIERE record for UNE_MATIERE-id= " + id + " updated.";
+        return "UNE_MATIERE record for UNE_MATIERE-id= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UNE_MATIERE-id}")
-    public String delete(@PathVariable(value= "UNE_MATIERE-id") int id) {
-        logger.debug("Deleting UNE_MATIERE with UNE_MATIERE-id= {}.", id);
-        serv.deleteUNE_MATIEREById(id);
-        return "UNE_MATIERE record for UNE_MATIERE-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UNE_MATIERE-CODE}")
+    public String delete(@PathVariable(value= "UNE_MATIERE-CODE") String CODE) {
+        logger.debug("Deleting UNE_MATIERE with UNE_MATIERE-CODE= {}.", CODE);
+        serv.deleteUNE_MATIEREByCODE(CODE);
+        return "UNE_MATIERE record for UNE_MATIERE-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

@@ -25,10 +25,6 @@ public class UN_PROFESSEUR_SERVICEIMPL implements UN_PROFESSEUR_SERVICE {
         return dao.findAll();
     }
 
-    @Override
-    public Optional<UN_PROFESSEUR> findUN_PROFESSEURById(int id) {
-        return dao.findById(id);
-    }
 
 
     @Override
@@ -37,8 +33,8 @@ public class UN_PROFESSEUR_SERVICEIMPL implements UN_PROFESSEUR_SERVICE {
     }
 
     @Override
-    public void deleteUN_PROFESSEURById(int id) {
-        dao.deleteById(id);
+    public void deleteUN_PROFESSEURByCODE(String  CODE) {
+        dao.deleteByCODE(CODE);
     }
 
     @Override

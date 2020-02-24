@@ -7,8 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection= "UN_GROUPES")
 public class UN_GROUPES {
 
-    @Id
-    private int id;
+
+
     private String          CODE;
     private String          DATE_MODIFICATION;
     private String          NOM;
@@ -56,13 +56,7 @@ public class UN_GROUPES {
         this.LES_CONGES = LES_CONGES;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUN_CODE_SUPER_GROUPE() {
         return UN_CODE_SUPER_GROUPE;

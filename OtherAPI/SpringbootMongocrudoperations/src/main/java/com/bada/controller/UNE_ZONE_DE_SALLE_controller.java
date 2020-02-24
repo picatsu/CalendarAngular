@@ -34,12 +34,6 @@ public class UNE_ZONE_DE_SALLE_controller {
         return serv.getAllUNE_ZONE_DE_SALLE();
     }
 
-    @GetMapping(value= "/getbyid/{UNE_ZONE_DE_SALLE-id}")
-    public Optional<UNE_ZONE_DE_SALLE> getById(@PathVariable(value= "UNE_ZONE_DE_SALLE-id") int id) {
-        logger.debug("Getting UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-id= {}.", id);
-        return serv.findUNE_ZONE_DE_SALLEById(id);
-    }
-
     @GetMapping(value= "/getbycode/{UNE_ZONE_DE_SALLE-CODE}")
     public Optional<UNE_ZONE_DE_SALLE> getByCODE(@PathVariable(value= "UNE_ZONE_DE_SALLE-CODE") String CODE) {
         logger.debug("Getting UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-CODE= {}.", CODE);
@@ -47,19 +41,19 @@ public class UNE_ZONE_DE_SALLE_controller {
     }
 
 
-    @PutMapping(value= "/update/{UNE_ZONE_DE_SALLE-id}")
-    public String update(@PathVariable(value= "UNE_ZONE_DE_SALLE-id") int id, @RequestBody UNE_ZONE_DE_SALLE e) {
-        logger.debug("Updating UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-id= {}.", id);
-        e.setId(id);
+    @PutMapping(value= "/update/{UNE_ZONE_DE_SALLE-CODE}")
+    public String update(@PathVariable(value= "UNE_ZONE_DE_SALLE-CODE") String CODE, @RequestBody UNE_ZONE_DE_SALLE e) {
+        logger.debug("Updating UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-CODE= {}.", CODE);
+        e.setCODE(CODE);
         serv.updateUNE_ZONE_DE_SALLE(e);
-        return "UNE_ZONE_DE_SALLE record for UNE_ZONE_DE_SALLE-id= " + id + " updated.";
+        return "UNE_ZONE_DE_SALLE record for UNE_ZONE_DE_SALLE-CODE= " + CODE + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UNE_ZONE_DE_SALLE-id}")
-    public String delete(@PathVariable(value= "UNE_ZONE_DE_SALLE-id") int id) {
-        logger.debug("Deleting UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-id= {}.", id);
-        serv.deleteUNE_ZONE_DE_SALLEById(id);
-        return "UNE_ZONE_DE_SALLE record for UNE_ZONE_DE_SALLE-id= " + id + " deleted.";
+    @DeleteMapping(value= "/delete/{UNE_ZONE_DE_SALLE-CODE}")
+    public String delete(@PathVariable(value= "UNE_ZONE_DE_SALLE-CODE") String CODE) {
+        logger.debug("Deleting UNE_ZONE_DE_SALLE with UNE_ZONE_DE_SALLE-CODE= {}.", CODE);
+        serv.deleteUNE_ZONE_DE_SALLEByCODE(CODE);
+        return "UNE_ZONE_DE_SALLE record for UNE_ZONE_DE_SALLE-CODE= " + CODE + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

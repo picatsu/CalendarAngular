@@ -23,10 +23,6 @@ public class UN_ETUDIANT_SERVICEIMPL implements UN_ETUDIANT_SERVICE {
         return dao.findAll();
     }
 
-    @Override
-    public Optional<UN_ETUDIANT> findUN_ETUDIANTById(int id) {
-        return dao.findById(id);
-    }
 
     @Override
     public Optional<UN_ETUDIANT> findUN_ETUDIANTByCODE(String CODE) {
@@ -35,8 +31,8 @@ public class UN_ETUDIANT_SERVICEIMPL implements UN_ETUDIANT_SERVICE {
 
 
     @Override
-    public void deleteUN_ETUDIANTById(int id) {
-        dao.deleteById(id);
+    public void deleteUN_ETUDIANTByCODE(String CODE) {
+        dao.deleteByCODE(CODE);
     }
 
     @Override

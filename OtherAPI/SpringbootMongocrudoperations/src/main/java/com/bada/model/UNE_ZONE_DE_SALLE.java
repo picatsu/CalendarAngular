@@ -7,8 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UNE_ZONE_DE_SALLE {
 
 
-    @Id
-    private int id;
+
     private String CODE;
     private String DATE_MODIFICATION;
     private String NOM;
@@ -35,13 +34,8 @@ public class UNE_ZONE_DE_SALLE {
         this.COULEUR_POLICE = COULEUR_POLICE;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+
 
     public String getCODE() {
         return CODE;

@@ -23,10 +23,6 @@ public class UNE_MATIERE_SERVICEIMPL implements UNE_MATIERE_SERVICE {
         return dao.findAll();
     }
 
-    @Override
-    public Optional<UNE_MATIERE> findUNE_MATIEREById(int id) {
-        return dao.findById(id);
-    }
 
     @Override
     public Optional<UNE_MATIERE> findUNE_MATIEREByCODE(String CODE) {
@@ -36,8 +32,8 @@ public class UNE_MATIERE_SERVICEIMPL implements UNE_MATIERE_SERVICE {
 
 
     @Override
-    public void deleteUNE_MATIEREById(int id) {
-        dao.deleteById(id);
+    public void deleteUNE_MATIEREByCODE(String CODE) {
+        dao.deleteByCODE(CODE);
     }
 
     @Override

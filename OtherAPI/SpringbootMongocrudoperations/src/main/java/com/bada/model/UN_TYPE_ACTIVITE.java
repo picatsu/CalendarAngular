@@ -5,8 +5,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection= "UN_TYPE_ACTIVITE")
 public class UN_TYPE_ACTIVITE {
-    @Id
-    private int id;
+
+
+
     private String    CODE;
     private String    NOM;
     private String    ALIAS;
