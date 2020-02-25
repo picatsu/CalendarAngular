@@ -1,48 +1,40 @@
 // Angular
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { NgModule } from "@angular/core";
 
 // Tabs Component
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { TabsModule } from "ngx-bootstrap/tabs";
 
 // Carousel Component
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselModule } from "ngx-bootstrap/carousel";
 
 // Collapse Component
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { CollapseModule } from "ngx-bootstrap/collapse";
 
 // Dropdowns Component
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 
 // Pagination Component
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PaginationModule } from "ngx-bootstrap/pagination";
 
 // Popover Component
-import { PopoverModule } from 'ngx-bootstrap/popover';
+import { PopoverModule } from "ngx-bootstrap/popover";
 
 // Progress Component
-import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { ProgressbarModule } from "ngx-bootstrap/progressbar";
 
 // Tooltip Component
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TooltipModule } from "ngx-bootstrap/tooltip";
 
 // navbars
-import { NavbarsComponent } from './navbars/navbars.component';
 
 // Components Routing
-import { CouchdbRoutingModule } from './couchdb-routing.module';
-import {CardsComponent} from './cards/cards.component';
-import {FormsComponent} from './forms/forms.component';
-import {SwitchesComponent} from './switches/switches.component';
-import {TablesComponent} from './tables/tables.component';
-import {TabsComponent} from './tabs/tabs.component';
-import {CarouselsComponent} from './carousels/carousels.component';
-import {CollapsesComponent} from './collapses/collapses.component';
-import {PaginationsComponent} from './pagination/paginations.component';
-import {PopoversComponent} from './popovers/popovers.component';
-import {ProgressComponent} from './progress/progress.component';
-import {TooltipsComponent} from './tooltips/tooltips.component';
+import { CouchdbRoutingModule } from "./couchdb-routing.module";
+import { FormsComponent } from "./forms/forms.component";
+import { TabsComponent } from "./tabs/tabs.component";
+import { TooltipsComponent } from "./tooltips/tooltips.component";
+import { SwitchesComponent } from "./switches/switches.component";
 
 @NgModule({
   imports: [
@@ -59,18 +51,10 @@ import {TooltipsComponent} from './tooltips/tooltips.component';
     TooltipModule.forRoot()
   ],
   declarations: [
-    CardsComponent,
     FormsComponent,
     SwitchesComponent,
-    TablesComponent,
     TabsComponent,
-    CarouselsComponent,
-    CollapsesComponent,
-    PaginationsComponent,
-    PopoversComponent,
-    ProgressComponent,
-    TooltipsComponent,
-    NavbarsComponent
+    TooltipsComponent
   ]
 })
-export class CouchDBModule { }
+export class CouchDBModule {}

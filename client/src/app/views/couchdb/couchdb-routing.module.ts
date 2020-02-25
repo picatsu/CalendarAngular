@@ -1,114 +1,52 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-
-
-import { NavbarsComponent } from './navbars/navbars.component';
-import {CardsComponent} from './cards/cards.component';
-import {FormsComponent} from './forms/forms.component';
-import {SwitchesComponent} from './switches/switches.component';
-import {TablesComponent} from './tables/tables.component';
-import {TabsComponent} from './tabs/tabs.component';
-import {CarouselsComponent} from './carousels/carousels.component';
-import {CollapsesComponent} from './collapses/collapses.component';
-import {PaginationsComponent} from './pagination/paginations.component';
-import {PopoversComponent} from './popovers/popovers.component';
-import {ProgressComponent} from './progress/progress.component';
-import {TooltipsComponent} from './tooltips/tooltips.component';
+import { FormsComponent } from "./forms/forms.component";
+import { TabsComponent } from "./tabs/tabs.component";
+import { TooltipsComponent } from "./tooltips/tooltips.component";
+import { SwitchesComponent } from "./switches/switches.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'couchdb'
+      title: "couchdb"
     },
     children: [
       {
-        path: '',
-        redirectTo: 'cards'
+        path: "",
+        redirectTo: "cards"
       },
+
       {
-        path: 'cards',
-        component: CardsComponent,
-        data: {
-          title: 'Cards'
-        }
-      },
-      {
-        path: 'forms',
+        path: "forms",
         component: FormsComponent,
         data: {
-          title: 'Forms'
+          title: "Forms"
         }
       },
+
       {
-        path: 'switches',
-        component: SwitchesComponent,
-        data: {
-          title: 'Switches'
-        }
-      },
-      {
-        path: 'tables',
-        component: TablesComponent,
-        data: {
-          title: 'Tables'
-        }
-      },
-      {
-        path: 'tabs',
+        path: "tabs",
         component: TabsComponent,
         data: {
-          title: 'Tabs'
+          title: "Tabs"
         }
       },
+
       {
-        path: 'carousels',
-        component: CarouselsComponent,
+        path: "switches",
+        component: SwitchesComponent,
         data: {
-          title: 'Carousels'
+          title: "Switches"
         }
       },
+
       {
-        path: 'collapses',
-        component: CollapsesComponent,
-        data: {
-          title: 'Collapses'
-        }
-      },
-      {
-        path: 'paginations',
-        component: PaginationsComponent,
-        data: {
-          title: 'Pagination'
-        }
-      },
-      {
-        path: 'popovers',
-        component: PopoversComponent,
-        data: {
-          title: 'Popover'
-        }
-      },
-      {
-        path: 'progress',
-        component: ProgressComponent,
-        data: {
-          title: 'Progress'
-        }
-      },
-      {
-        path: 'tooltips',
+        path: "tooltips",
         component: TooltipsComponent,
         data: {
-          title: 'Tooltips'
-        }
-      },
-      {
-        path: 'navbars',
-        component: NavbarsComponent,
-        data: {
-          title: 'Navbars'
+          title: "Tooltips"
         }
       }
     ]
