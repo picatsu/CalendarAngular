@@ -29,13 +29,13 @@ public class UN_TYPE_ACTIVITE_SERVICEIMPL implements UN_TYPE_ACTIVITE_SERVICE {
     }
 
     @Override
-    public Optional<UN_TYPE_ACTIVITE> findUN_TYPE_ACTIVITEByCODE(String CODE) {
-        return dao.findByCODE(CODE);
+    public Optional<UN_TYPE_ACTIVITE> findUN_TYPE_ACTIVITEById(String id) {
+        return dao.findById(id);
     }
 
     @Override
-    public void deleteUN_TYPE_ACTIVITEByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUN_TYPE_ACTIVITEById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

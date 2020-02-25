@@ -9,7 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UN_ENSEIGNEMENT {
 
 
-
+    @Id
+    private String                 id;
     private String                 CODE;
     private String                 DATE_MODIFICATION;
     private String                 NOM;
@@ -45,6 +46,7 @@ public class UN_ENSEIGNEMENT {
                            String NB_SEANCES_HEBDO,
                            String CODE_TYPE_SALLE, String CODE_ZONE_SALLE, UNE_RESSOURCE[] LES_RESSOURCES) {
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.NOM = NOM;
         this.ALIAS = ALIAS;
@@ -73,6 +75,14 @@ public class UN_ENSEIGNEMENT {
     }
 
     public UN_ENSEIGNEMENT() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCODE() {

@@ -24,6 +24,7 @@ public class UNE_RESERVATION_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UNE_RESERVATION> UNE_RESERVATION) {
         logger.debug("Saving UNE_RESERVATION.");
+        UNE_RESERVATION.get(0).setId(UNE_RESERVATION.get(0).getCODE());
         serv.createUNE_RESERVATION(UNE_RESERVATION);
         return "UNE_RESERVATION records created.";
     }
@@ -34,26 +35,26 @@ public class UNE_RESERVATION_controller {
         return serv.getAllUNE_RESERVATION();
     }
 
-    @GetMapping(value= "/getbycode/{UNE_RESERVATION-CODE}")
-    public Optional<UNE_RESERVATION> getByCODE(@PathVariable(value= "UNE_RESERVATION-CODE") String CODE) {
-        logger.debug("Getting UNE_RESERVATION with UNE_RESERVATION-CODE= {}.", CODE);
-        return serv.findUNE_RESERVATIONByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UNE_RESERVATION-Id}")
+    public Optional<UNE_RESERVATION> getById(@PathVariable(value= "UNE_RESERVATION-Id") String Id) {
+        logger.debug("Getting UNE_RESERVATION with UNE_RESERVATION-Id= {}.", Id);
+        return serv.findUNE_RESERVATIONById(Id);
     }
 
-    @PutMapping(value= "/update/{UNE_RESERVATION-CODE}")
-    public String update(@PathVariable(value= "UNE_RESERVATION-CODE") String CODE,
+    @PutMapping(value= "/update/{UNE_RESERVATION-Id}")
+    public String update(@PathVariable(value= "UNE_RESERVATION-Id") String Id,
                          @RequestBody UNE_RESERVATION e) {
-        logger.debug("Updating UNE_RESERVATION with UNE_RESERVATION-CODE= {}.", CODE);
-        e.setCODE(CODE);
+        logger.debug("Updating UNE_RESERVATION with UNE_RESERVATION-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUNE_RESERVATION(e);
-        return "UNE_RESERVATION record for UNE_RESERVATION-CODE= " + CODE + " updated.";
+        return "UNE_RESERVATION record for UNE_RESERVATION-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UNE_RESERVATION-CODE}")
-    public String delete(@PathVariable(value= "UNE_RESERVATION-CODE") String CODE) {
-        logger.debug("Deleting UNE_RESERVATION with UNE_RESERVATION-CODE= {}.", CODE);
-        serv.deleteUNE_RESERVATIONByCODE(CODE);
-        return "UNE_RESERVATION record for UNE_RESERVATION-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UNE_RESERVATION-Id}")
+    public String delete(@PathVariable(value= "UNE_RESERVATION-Id") String Id) {
+        logger.debug("Deleting UNE_RESERVATION with UNE_RESERVATION-Id= {}.", Id);
+        serv.deleteUNE_RESERVATIONById(Id);
+        return "UNE_RESERVATION record for UNE_RESERVATION-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

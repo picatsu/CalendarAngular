@@ -24,13 +24,13 @@ public class UN_ENSEIGNEMENT_SERVICEIMPL implements UN_ENSEIGNEMENT_SERVICE {
     }
 
     @Override
-    public Optional<UN_ENSEIGNEMENT> findUN_ENSEIGNEMENTByCODE(String CODE) {
-        return dao.findByCODE(CODE);
+    public Optional<UN_ENSEIGNEMENT> findUN_ENSEIGNEMENTById(String id) {
+        return dao.findById(id);
     }
 
     @Override
-    public void deleteUN_ENSEIGNEMENTByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUN_ENSEIGNEMENTById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

@@ -24,6 +24,7 @@ public class UN_PROFESSEUR_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UN_PROFESSEUR> UN_PROFESSEUR) {
         logger.debug("Saving UN_PROFESSEUR.");
+        UN_PROFESSEUR.get(0).setId(UN_PROFESSEUR.get(0).getCODE());
         serv.createUN_PROFESSEUR(UN_PROFESSEUR);
         return "UN_PROFESSEUR records created.";
     }
@@ -34,26 +35,26 @@ public class UN_PROFESSEUR_controller {
         return serv.getAllUN_PROFESSEUR();
     }
 
-    @GetMapping(value= "/getbycode/{UN_PROFESSEUR-CODE}")
-    public Optional<UN_PROFESSEUR> getByCODE(@PathVariable(value= "UN_PROFESSEUR-CODE") String CODE) {
-        logger.debug("Getting UN_PROFESSEUR with UN_PROFESSEUR-CODE= {}.", CODE);
-        return serv.findUN_PROFESSEURByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UN_PROFESSEUR-Id}")
+    public Optional<UN_PROFESSEUR> getById(@PathVariable(value= "UN_PROFESSEUR-Id") String Id) {
+        logger.debug("Getting UN_PROFESSEUR with UN_PROFESSEUR-Id= {}.", Id);
+        return serv.findUN_PROFESSEURById(Id);
     }
 
-    @PutMapping(value= "/update/{UN_PROFESSEUR-CODE}")
-    public String update(@PathVariable(value= "UN_PROFESSEUR-CODE") String CODE,
+    @PutMapping(value= "/update/{UN_PROFESSEUR-Id}")
+    public String update(@PathVariable(value= "UN_PROFESSEUR-Id") String Id,
                          @RequestBody UN_PROFESSEUR e) {
-        logger.debug("Updating UN_PROFESSEUR with UN_PROFESSEUR-CODE= {}.", CODE);
-        e.setCODE(CODE);
+        logger.debug("Updating UN_PROFESSEUR with UN_PROFESSEUR-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUN_PROFESSEUR(e);
-        return "UN_PROFESSEUR record for UN_PROFESSEUR-CODE= " + CODE + " updated.";
+        return "UN_PROFESSEUR record for UN_PROFESSEUR-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_PROFESSEUR-CODE}")
-    public String delete(@PathVariable(value= "UN_PROFESSEUR-CODE") String CODE) {
-        logger.debug("Deleting UN_PROFESSEUR with UN_PROFESSEUR-CODE= {}.", CODE);
-        serv.deleteUN_PROFESSEURByCODE(CODE);
-        return "UN_PROFESSEUR record for UN_PROFESSEUR-CODE= " +CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_PROFESSEUR-Id}")
+    public String delete(@PathVariable(value= "UN_PROFESSEUR-Id") String Id) {
+        logger.debug("Deleting UN_PROFESSEUR with UN_PROFESSEUR-Id= {}.", Id);
+        serv.deleteUN_PROFESSEURById(Id);
+        return "UN_PROFESSEUR record for UN_PROFESSEUR-Id= " +Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

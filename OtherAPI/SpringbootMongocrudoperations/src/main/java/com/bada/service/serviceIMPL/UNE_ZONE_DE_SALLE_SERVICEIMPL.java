@@ -25,13 +25,13 @@ public class UNE_ZONE_DE_SALLE_SERVICEIMPL implements UNE_ZONE_DE_SALLE_SERVICE 
 
 
     @Override
-    public Optional<UNE_ZONE_DE_SALLE> findUNE_ZONE_DE_SALLEByCODE(String CODE) {
-        return dao.findByCODE(CODE);
+    public Optional<UNE_ZONE_DE_SALLE> findUNE_ZONE_DE_SALLEById(String id) {
+        return dao.findById(id);
     }
 
     @Override
-    public void deleteUNE_ZONE_DE_SALLEByCODE(String code) {
-        dao.deleteByCODE(code);
+    public void deleteUNE_ZONE_DE_SALLEById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

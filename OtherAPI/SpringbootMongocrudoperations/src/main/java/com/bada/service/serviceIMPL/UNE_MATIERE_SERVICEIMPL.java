@@ -25,15 +25,14 @@ public class UNE_MATIERE_SERVICEIMPL implements UNE_MATIERE_SERVICE {
 
 
     @Override
-    public Optional<UNE_MATIERE> findUNE_MATIEREByCODE(String CODE) {
+    public Optional<UNE_MATIERE> findUNE_MATIEREById(String id) {
 
-        return dao.findByCODE(CODE);
+        return dao.findById(id);
     }
 
-
     @Override
-    public void deleteUNE_MATIEREByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUNE_MATIEREById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

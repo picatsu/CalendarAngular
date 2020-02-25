@@ -7,7 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UNE_ZONE_DE_SALLE {
 
 
-
+    @Id
+    private String id;
     private String CODE;
     private String DATE_MODIFICATION;
     private String NOM;
@@ -24,6 +25,7 @@ public class UNE_ZONE_DE_SALLE {
     public UNE_ZONE_DE_SALLE(String CODE, String DATE_MODIFICATION, String NOM, String ALIAS, String COMMENTAIRE,
                              String IDENTIFIANT, String CODE_PROPRIETAIRE, String COULEUR, String COULEUR_POLICE) {
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.NOM = NOM;
         this.ALIAS = ALIAS;
@@ -35,7 +37,13 @@ public class UNE_ZONE_DE_SALLE {
     }
 
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCODE() {
         return CODE;

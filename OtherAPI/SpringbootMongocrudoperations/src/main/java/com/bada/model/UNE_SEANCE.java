@@ -10,7 +10,8 @@ public class UNE_SEANCE {
 
 
 
-
+    @Id
+    private String id;
     private String CODE;
     private String DATE_MODIFICATION;
     private String ENSEIGNEMENT;
@@ -23,6 +24,7 @@ public class UNE_SEANCE {
     public UNE_SEANCE(String CODE, String DATE_MODIFICATION, String ENSEIGNEMENT, String DATE,
                       String HEURE, String DUREE, String CODE_PROPRIETAIRE, UNE_RESSOURCE[] LES_RESSOURCES) {
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.ENSEIGNEMENT = ENSEIGNEMENT;
         this.DATE = DATE;
@@ -36,7 +38,13 @@ public class UNE_SEANCE {
     }
 
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCODE() {
         return CODE;

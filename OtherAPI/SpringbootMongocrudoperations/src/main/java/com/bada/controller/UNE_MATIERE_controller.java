@@ -24,6 +24,7 @@ public class UNE_MATIERE_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UNE_MATIERE> UNE_MATIERE) {
         logger.debug("Saving UNE_MATIERE.");
+        UNE_MATIERE.get(0).setId(UNE_MATIERE.get(0).getCODE());
         serv.createUNE_MATIERE(UNE_MATIERE);
         return "UNE_MATIERE records created.";
     }
@@ -35,25 +36,25 @@ public class UNE_MATIERE_controller {
     }
 
 
-    @GetMapping(value= "/getbycode/{UNE_MATIERE-CODE}")
-    public Optional<UNE_MATIERE> getByCODE(@PathVariable(value= "UNE_MATIERE-id") String CODE) {
-        logger.debug("Getting UNE_MATIERE with UNE_MATIERE-CODE= {}.", CODE);
-        return serv.findUNE_MATIEREByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UNE_MATIERE-Id}")
+    public Optional<UNE_MATIERE> getById(@PathVariable(value= "UNE_MATIERE-id") String Id) {
+        logger.debug("Getting UNE_MATIERE with UNE_MATIERE-Id= {}.", Id);
+        return serv.findUNE_MATIEREById(Id);
     }
 
-    @PutMapping(value= "/update/{UNE_MATIERE-CODE}")
-    public String update(@PathVariable(value= "UNE_MATIERE-CODE") String CODE, @RequestBody UNE_MATIERE e) {
-        logger.debug("Updating UNE_MATIERE with UNE_MATIERE-CODE= {}.", CODE);
-        e.setCODE(CODE);
+    @PutMapping(value= "/update/{UNE_MATIERE-Id}")
+    public String update(@PathVariable(value= "UNE_MATIERE-Id") String Id, @RequestBody UNE_MATIERE e) {
+        logger.debug("Updating UNE_MATIERE with UNE_MATIERE-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUNE_MATIERE(e);
-        return "UNE_MATIERE record for UNE_MATIERE-id= " + CODE + " updated.";
+        return "UNE_MATIERE record for UNE_MATIERE-id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UNE_MATIERE-CODE}")
-    public String delete(@PathVariable(value= "UNE_MATIERE-CODE") String CODE) {
-        logger.debug("Deleting UNE_MATIERE with UNE_MATIERE-CODE= {}.", CODE);
-        serv.deleteUNE_MATIEREByCODE(CODE);
-        return "UNE_MATIERE record for UNE_MATIERE-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UNE_MATIERE-Id}")
+    public String delete(@PathVariable(value= "UNE_MATIERE-Id") String Id) {
+        logger.debug("Deleting UNE_MATIERE with UNE_MATIERE-Id= {}.", Id);
+        serv.deleteUNE_MATIEREById(Id);
+        return "UNE_MATIERE record for UNE_MATIERE-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

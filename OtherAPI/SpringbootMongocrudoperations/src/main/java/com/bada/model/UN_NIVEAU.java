@@ -8,7 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UN_NIVEAU {
 
 
-
+    @Id
+    private String id;
     private String CODE;
     private String DATE_MODIFICATION;
     private String NOM;
@@ -27,6 +28,7 @@ public class UN_NIVEAU {
                      String IDENTIFIANT, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE,
                      String TYPE_ELEMENT) {
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.NOM = NOM;
         this.ALIAS = ALIAS;
@@ -39,6 +41,13 @@ public class UN_NIVEAU {
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCODE() {
         return CODE;

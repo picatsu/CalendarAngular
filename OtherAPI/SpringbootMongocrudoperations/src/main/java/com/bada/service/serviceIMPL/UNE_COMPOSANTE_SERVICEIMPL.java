@@ -27,13 +27,13 @@ public class UNE_COMPOSANTE_SERVICEIMPL implements UNE_COMPOSANTE_SERVICE {
     }
 
     @Override
-    public Optional<UNE_COMPOSANTE> findUNE_COMPOSANTEByCODE(String CODE) {
-        return dao.findByCODE(CODE);
+    public Optional<UNE_COMPOSANTE> findUNE_COMPOSANTEById(String id) {
+        return dao.findById(id);
     }
 
     @Override
-    public void deleteUNE_COMPOSANTEByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUNE_COMPOSANTEById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

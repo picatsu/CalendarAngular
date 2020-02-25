@@ -24,6 +24,7 @@ public class UN_GROUPES_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UN_GROUPES> UN_GROUPES) {
         logger.debug("Saving UN_GROUPES.");
+        UN_GROUPES.get(0).setId(UN_GROUPES.get(0).getCODE());
         serv.createUN_GROUPES(UN_GROUPES);
         return "UN_GROUPES records created.";
     }
@@ -35,26 +36,26 @@ public class UN_GROUPES_controller {
     }
 
 
-    @GetMapping(value= "/getbycode/{UN_GROUPES-CODE}")
-    public Optional<UN_GROUPES> getByCODE(@PathVariable(value= "UN_GROUPES-CODE") String CODE) {
-        logger.debug("Getting UN_GROUPES with UN_GROUPES-CODE= {}.", CODE);
-        return serv.findUN_GROUPESByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UN_GROUPES-Id}")
+    public Optional<UN_GROUPES> getById(@PathVariable(value= "UN_GROUPES-Id") String Id) {
+        logger.debug("Getting UN_GROUPES with UN_GROUPES-Id= {}.", Id);
+        return serv.findUN_GROUPESById(Id);
     }
 
-    @PutMapping(value= "/update/{UN_GROUPES-CODE}")
-    public String update(@PathVariable(value= "UN_GROUPES-CODE") String CODE,
+    @PutMapping(value= "/update/{UN_GROUPES-Id}")
+    public String update(@PathVariable(value= "UN_GROUPES-Id") String Id,
                          @RequestBody UN_GROUPES e) {
-        logger.debug("Updating UN_GROUPES with UN_GROUPES-CODE= {}.", CODE);
-        e.setCODE(CODE);
+        logger.debug("Updating UN_GROUPES with UN_GROUPES-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUN_GROUPES(e);
-        return "UN_GROUPES record for UN_GROUPES-CODE= " + CODE + " updated.";
+        return "UN_GROUPES record for UN_GROUPES-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_GROUPES-CODE}")
-    public String delete(@PathVariable(value= "UN_GROUPES-CODE") String CODE) {
-        logger.debug("Deleting UN_GROUPES with UN_GROUPES-CODE= {}.", CODE);
-        serv.deleteUN_GROUPESByCODE(CODE);
-        return "UN_GROUPES record for UN_GROUPES-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_GROUPES-Id}")
+    public String delete(@PathVariable(value= "UN_GROUPES-Id") String Id) {
+        logger.debug("Deleting UN_GROUPES with UN_GROUPES-Id= {}.", Id);
+        serv.deleteUN_GROUPESById(Id);
+        return "UN_GROUPES record for UN_GROUPES-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

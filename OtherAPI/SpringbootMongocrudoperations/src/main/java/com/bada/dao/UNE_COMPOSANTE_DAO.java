@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface UNE_COMPOSANTE_DAO extends MongoRepository<UNE_COMPOSANTE, Integer> {
-    Optional<UNE_COMPOSANTE> findByCODE(String CODE);
-    void deleteByCODE(String CODE);
+    Optional<UNE_COMPOSANTE> findById(String id);
+    void deleteById(String id);
 }

@@ -26,14 +26,14 @@ public class UN_GROUPES_SERVICEIMPL implements UN_GROUPES_SERVICE {
     }
 
     @Override
-    public Optional<UN_GROUPES> findUN_GROUPESByCODE(String CODE) {
+    public Optional<UN_GROUPES> findUN_GROUPESById(String id) {
 
-        return dao.findByCODE(CODE);
+        return dao.findById(id);
     }
 
     @Override
-    public void deleteUN_GROUPESByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUN_GROUPESById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

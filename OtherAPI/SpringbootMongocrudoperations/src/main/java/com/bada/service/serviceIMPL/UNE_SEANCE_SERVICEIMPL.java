@@ -23,15 +23,15 @@ public class UNE_SEANCE_SERVICEIMPL implements UNE_SEANCE_SERVICE {
     }
 
     @Override
-    public Optional<UNE_SEANCE> findUNE_SEANCEByCODE(String CODE)
+    public Optional<UNE_SEANCE> findUNE_SEANCEById(String id)
     {
-        return dao.findByCODE(CODE);
+        return dao.findById(id);
     }
 
 
     @Override
-    public void deleteUNE_SEANCEByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUNE_SEANCEById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

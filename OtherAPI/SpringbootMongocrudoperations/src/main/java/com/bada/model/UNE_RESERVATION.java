@@ -5,13 +5,16 @@ import com.bada.model.utils.UNE_RESSOURCE;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Arrays;
+
 @Document(collection= "UNE_RESERVATION")
 public class UNE_RESERVATION {
 
 
 
 
-
+    @Id
+    private String id;
     private String CODE;
     private String DATE_MODIFICATION;
     private String DATE;
@@ -27,6 +30,7 @@ public class UNE_RESERVATION {
     public UNE_RESERVATION(String CODE, String DATE_MODIFICATION, String DATE, String HEURE, String DUREE,
                            String COMMENTAIRE, String CODE_PROPRIETAIRE, UNE_RESSOURCE[] RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES) {
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.DATE = DATE;
         this.HEURE = HEURE;
@@ -37,7 +41,13 @@ public class UNE_RESERVATION {
     }
 
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCODE() {
         return CODE;
@@ -101,5 +111,20 @@ public class UNE_RESERVATION {
 
     public void setRESSOURCES_OU_ENSEIGNEMENTS_CONCERNES(UNE_RESSOURCE[] RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES) {
         this.RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES = RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES;
+    }
+
+    @Override
+    public String toString() {
+        return "UNE_RESERVATION{" +
+                "id='" + id + '\'' +
+                ", CODE='" + CODE + '\'' +
+                ", DATE_MODIFICATION='" + DATE_MODIFICATION + '\'' +
+                ", DATE='" + DATE + '\'' +
+                ", HEURE='" + HEURE + '\'' +
+                ", DUREE='" + DUREE + '\'' +
+                ", COMMENTAIRE='" + COMMENTAIRE + '\'' +
+                ", CODE_PROPRIETAIRE='" + CODE_PROPRIETAIRE + '\'' +
+                ", RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES=" + Arrays.toString(RESSOURCES_OU_ENSEIGNEMENTS_CONCERNES) +
+                '}';
     }
 }

@@ -7,7 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UN_TYPE_ACTIVITE {
 
 
-
+    @Id
+    private String    id;
     private String    CODE;
     private String    NOM;
     private String    ALIAS;
@@ -24,6 +25,7 @@ public class UN_TYPE_ACTIVITE {
     public UN_TYPE_ACTIVITE(String CODE, String NOM, String ALIAS, String IDENTIFIANT, String DATE_MODIFICATION,
                             String COMMENTAIRE, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE) {
         this.CODE = CODE;
+        this.id = CODE;
         this.NOM = NOM;
         this.ALIAS = ALIAS;
         this.IDENTIFIANT = IDENTIFIANT;
@@ -32,6 +34,14 @@ public class UN_TYPE_ACTIVITE {
         this.COULEUR = COULEUR;
         this.COULEUR_POLICE = COULEUR_POLICE;
         this.CODE_PROPRIETAIRE = CODE_PROPRIETAIRE;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getCODE() {

@@ -3,10 +3,12 @@ package com.bada.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Document(collection= "UN_CNU")
 public class UN_CNU {
 
-
+    @Id
+    private String id;
     private String CODE;
     private String SECTION;
     private String NOM;
@@ -16,13 +18,20 @@ public class UN_CNU {
 
     public UN_CNU( String CODE, String SECTION, String NOM, String CODE_PROPRIETAIRE, String DATE_MODIFICATION) {
         this.CODE = CODE;
+        this.id = CODE;
         this.SECTION = SECTION;
         this.NOM = NOM;
         this.CODE_PROPRIETAIRE = CODE_PROPRIETAIRE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCODE() {
         return CODE;

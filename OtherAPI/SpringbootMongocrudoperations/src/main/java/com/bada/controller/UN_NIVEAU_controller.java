@@ -28,6 +28,7 @@ public class UN_NIVEAU_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UN_NIVEAU> UN_NIVEAU) {
         logger.debug("Saving UN_NIVEAU.");
+        UN_NIVEAU.get(0).setId(UN_NIVEAU.get(0).getCODE());
         serv.createUN_NIVEAU(UN_NIVEAU);
         return "UN_NIVEAU records created.";
     }
@@ -38,26 +39,26 @@ public class UN_NIVEAU_controller {
         return serv.getAllUN_NIVEAU();
     }
 
-    @GetMapping(value= "/getbycode/{UN_NIVEAU-CODE}")
-    public Optional<UN_NIVEAU> getByCODE(@PathVariable(value= "UN_NIVEAU-CODE") String CODE) {
-        logger.debug("Getting UN_NIVEAU with UN_NIVEAU-CODE= {}.", CODE);
-        return serv.findUN_NIVEAUByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UN_NIVEAU-Id}")
+    public Optional<UN_NIVEAU> getById(@PathVariable(value= "UN_NIVEAU-Id") String Id) {
+        logger.debug("Getting UN_NIVEAU with UN_NIVEAU-Id= {}.", Id);
+        return serv.findUN_NIVEAUById(Id);
     }
 
-    @PutMapping(value= "/update/{UN_NIVEAU-CODE}")
-    public String update(@PathVariable(value= "UN_NIVEAU-CODE") String CODE,
+    @PutMapping(value= "/update/{UN_NIVEAU-Id}")
+    public String update(@PathVariable(value= "UN_NIVEAU-Id") String Id,
                          @RequestBody UN_NIVEAU e) {
-        logger.debug("Updating UN_NIVEAU with UN_NIVEAU-CODE= {}.", CODE);
-        e.setCODE(CODE);
+        logger.debug("Updating UN_NIVEAU with UN_NIVEAU-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUN_NIVEAU(e);
-        return "UN_NIVEAU record for UN_NIVEAU-CODE= " + CODE + " updated.";
+        return "UN_NIVEAU record for UN_NIVEAU-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_NIVEAU-CODE}")
-    public String delete(@PathVariable(value= "UN_NIVEAU-CODE") String CODE) {
-        logger.debug("Deleting UN_NIVEAU with UN_NIVEAU-CODE= {}.", CODE);
-        serv.deleteUN_NIVEAUByCODE(CODE);
-        return "UN_NIVEAU record for UN_NIVEAU-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_NIVEAU-Id}")
+    public String delete(@PathVariable(value= "UN_NIVEAU-Id") String Id) {
+        logger.debug("Deleting UN_NIVEAU with UN_NIVEAU-Id= {}.", Id);
+        serv.deleteUN_NIVEAUById(Id);
+        return "UN_NIVEAU record for UN_NIVEAU-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

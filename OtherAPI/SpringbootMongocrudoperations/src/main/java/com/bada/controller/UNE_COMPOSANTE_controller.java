@@ -24,6 +24,7 @@ public class UNE_COMPOSANTE_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UNE_COMPOSANTE> UNE_COMPOSANTE) {
         logger.debug("Saving UNE_COMPOSANTE.");
+        UNE_COMPOSANTE.get(0).setId(UNE_COMPOSANTE.get(0).getCODE());
         serv.createUNE_COMPOSANTE(UNE_COMPOSANTE);
         return "UNE_COMPOSANTE records created.";
     }
@@ -35,26 +36,26 @@ public class UNE_COMPOSANTE_controller {
     }
 
 
-    @GetMapping(value= "/getbycode/{UNE_COMPOSANTE-CODE}")
-    public Optional<UNE_COMPOSANTE> getByCODE(@PathVariable(value= "UNE_COMPOSANTE-CODE") String CODE) {
-        logger.debug("Getting UNE_COMPOSANTE with UNE_COMPOSANTE-CODE= {}.", CODE);
-        return serv.findUNE_COMPOSANTEByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UNE_COMPOSANTE-Id}")
+    public Optional<UNE_COMPOSANTE> getById(@PathVariable(value= "UNE_COMPOSANTE-Id") String Id) {
+        logger.debug("Getting UNE_COMPOSANTE with UNE_COMPOSANTE-Id= {}.", Id);
+        return serv.findUNE_COMPOSANTEById(Id);
     }
 
-    @PutMapping(value= "/update/{UNE_COMPOSANTE-CODE}")
-    public String update(@PathVariable(value= "UNE_COMPOSANTE-CODE") String CODE,
+    @PutMapping(value= "/update/{UNE_COMPOSANTE-Id}")
+    public String update(@PathVariable(value= "UNE_COMPOSANTE-Id") String Id,
                          @RequestBody UNE_COMPOSANTE e) {
-        logger.debug("Updating UNE_COMPOSANTE with UNE_COMPOSANTE-CODE= {}.", CODE);
-        e.setCODE(CODE);
+        logger.debug("Updating UNE_COMPOSANTE with UNE_COMPOSANTE-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUNE_COMPOSANTE(e);
-        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-CODE= " + CODE + " updated.";
+        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UNE_COMPOSANTE-CODE}")
-    public String delete(@PathVariable(value= "UNE_COMPOSANTE-CODE") String CODE) {
-        logger.debug("Deleting UNE_COMPOSANTE with UNE_COMPOSANTE-CODE= {}.", CODE);
-        serv.deleteUNE_COMPOSANTEByCODE(CODE);
-        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UNE_COMPOSANTE-Id}")
+    public String delete(@PathVariable(value= "UNE_COMPOSANTE-Id") String Id) {
+        logger.debug("Deleting UNE_COMPOSANTE with UNE_COMPOSANTE-CODE= {}.", Id);
+        serv.deleteUNE_COMPOSANTEById(Id);
+        return "UNE_COMPOSANTE record for UNE_COMPOSANTE-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

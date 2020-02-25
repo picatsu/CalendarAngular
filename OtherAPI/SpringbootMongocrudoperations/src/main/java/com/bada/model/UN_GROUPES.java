@@ -1,6 +1,7 @@
 package com.bada.model;
 
 import com.bada.model.utils.LES_CONGES;
+import com.bada.model.utils.UN_CODE_ETUDIANT;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,7 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UN_GROUPES {
 
 
-
+    @Id
+    private String          id;
     private String          CODE;
     private String          DATE_MODIFICATION;
     private String          NOM;
@@ -24,20 +26,46 @@ public class UN_GROUPES {
     private String          COULEUR_POLICE;
     private String          CODE_PROPRIETAIRE;
     private String          UN_CODE_SUPER_GROUPE;
-    private String[]        LES_ETUDIANTS_DU_GROUPE;
+    private UN_CODE_ETUDIANT  LES_ETUDIANTS_DU_GROUPE;
     private LES_CONGES[]    LES_CONGES;
+    private LES_CONGES[]    LES_EXAMENS;
 
 
     public UN_GROUPES() {
     }
 
-
+    public UN_GROUPES(String id, String CODE, String DATE_MODIFICATION, String NOM, String ALIAS, String COMMENTAIRE,
+                      String COMPOSANTE, String NIVEAU, String DIPLOME, String IDENTIFIANT, String TYPE_PUBLIC,
+                      String QUANTITE_MAX, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE,
+                      String UN_CODE_SUPER_GROUPE, UN_CODE_ETUDIANT LES_ETUDIANTS_DU_GROUPE,
+                      com.bada.model.utils.LES_CONGES[] LES_CONGES) {
+        this.id = id;
+        this.CODE = CODE;
+        this.DATE_MODIFICATION = DATE_MODIFICATION;
+        this.NOM = NOM;
+        this.ALIAS = ALIAS;
+        this.COMMENTAIRE = COMMENTAIRE;
+        this.COMPOSANTE = COMPOSANTE;
+        this.NIVEAU = NIVEAU;
+        this.DIPLOME = DIPLOME;
+        this.IDENTIFIANT = IDENTIFIANT;
+        this.TYPE_PUBLIC = TYPE_PUBLIC;
+        this.QUANTITE_MAX = QUANTITE_MAX;
+        this.COULEUR = COULEUR;
+        this.COULEUR_POLICE = COULEUR_POLICE;
+        this.CODE_PROPRIETAIRE = CODE_PROPRIETAIRE;
+        this.UN_CODE_SUPER_GROUPE = UN_CODE_SUPER_GROUPE;
+        this.LES_ETUDIANTS_DU_GROUPE = LES_ETUDIANTS_DU_GROUPE;
+        this.LES_CONGES = LES_CONGES;
+    }
 
     public UN_GROUPES(String CODE, String DATE_MODIFICATION, String NOM, String ALIAS, String COMMENTAIRE,
                       String COMPOSANTE, String NIVEAU, String DIPLOME, String IDENTIFIANT, String TYPE_PUBLIC,
                       String QUANTITE_MAX, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE,
-                      String[] LES_ETUDIANTS_DU_GROUPE, String UN_CODE_SUPER_GROUPE, LES_CONGES[] LES_CONGES) {
+                      UN_CODE_ETUDIANT LES_ETUDIANTS_DU_GROUPE, String UN_CODE_SUPER_GROUPE, LES_CONGES[] LES_CONGES,
+                      LES_CONGES[]    LES_EXAMENS) {
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.NOM = NOM;
         this.ALIAS = ALIAS;
@@ -54,9 +82,17 @@ public class UN_GROUPES {
         this.LES_ETUDIANTS_DU_GROUPE = LES_ETUDIANTS_DU_GROUPE;
         this.UN_CODE_SUPER_GROUPE = UN_CODE_SUPER_GROUPE;
         this.LES_CONGES = LES_CONGES;
+        this.LES_EXAMENS = LES_EXAMENS;
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUN_CODE_SUPER_GROUPE() {
         return UN_CODE_SUPER_GROUPE;
@@ -72,6 +108,14 @@ public class UN_GROUPES {
 
     public void setUN_CODE_SUPER_GROUPE(String UN_CODE_SUPER_GROUPE) {
         this.UN_CODE_SUPER_GROUPE = UN_CODE_SUPER_GROUPE;
+    }
+
+    public com.bada.model.utils.LES_CONGES[] getLES_EXAMENS() {
+        return LES_EXAMENS;
+    }
+
+    public void setLES_EXAMENS(com.bada.model.utils.LES_CONGES[] LES_EXAMENS) {
+        this.LES_EXAMENS = LES_EXAMENS;
     }
 
     public String getCODE() {
@@ -186,11 +230,11 @@ public class UN_GROUPES {
         this.CODE_PROPRIETAIRE = CODE_PROPRIETAIRE;
     }
 
-    public String[] getLES_ETUDIANTS_DU_GROUPE() {
+    public UN_CODE_ETUDIANT getLES_ETUDIANTS_DU_GROUPE() {
         return LES_ETUDIANTS_DU_GROUPE;
     }
 
-    public void setLES_ETUDIANTS_DU_GROUPE(String[] LES_ETUDIANTS_DU_GROUPE) {
+    public void setLES_ETUDIANTS_DU_GROUPE(UN_CODE_ETUDIANT LES_ETUDIANTS_DU_GROUPE) {
         this.LES_ETUDIANTS_DU_GROUPE = LES_ETUDIANTS_DU_GROUPE;
     }
 }

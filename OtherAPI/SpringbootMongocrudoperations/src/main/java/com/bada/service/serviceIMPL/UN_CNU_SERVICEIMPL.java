@@ -24,15 +24,15 @@ public class UN_CNU_SERVICEIMPL implements UN_CNU_SERVICE {
     }
 
 
+
     @Override
-    public Optional<UN_CNU> findUN_CNUByCODE(String CODE) {
-        return dao.findByCODE(CODE);
+    public Optional<UN_CNU> findUN_CNUById(String id) {
+        return dao.findById(id);
     }
 
-
     @Override
-    public void deleteUN_CNUByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUN_CNUById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

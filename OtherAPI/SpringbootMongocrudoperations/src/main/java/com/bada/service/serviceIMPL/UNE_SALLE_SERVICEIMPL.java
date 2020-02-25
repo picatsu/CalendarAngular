@@ -24,13 +24,13 @@ public class UNE_SALLE_SERVICEIMPL implements UNE_SALLE_SERVICE {
     }
 
     @Override
-    public Optional<UNE_SALLE> findUNE_SALLEByCODE(String CODE) {
-        return dao.findByCODE(CODE);
+    public Optional<UNE_SALLE> findUNE_SALLEById(String id) {
+        return dao.findById(id);
     }
 
     @Override
-    public void deleteUNE_SALLEByCODE(String CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUNE_SALLEById(String id) {
+        dao.deleteById(id);
     }
 
     @Override

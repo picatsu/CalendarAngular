@@ -12,8 +12,8 @@ public interface UN_ETUDIANT_SERVICE {
 
     public void createUN_ETUDIANT(List<UN_ETUDIANT> une_etudiant);
     public Collection<UN_ETUDIANT> getAllUN_ETUDIANT();
-    public Optional<UN_ETUDIANT> findUN_ETUDIANTByCODE(String CODE);
-    public void deleteUN_ETUDIANTByCODE(String CODE);
+    public Optional<UN_ETUDIANT> findUN_ETUDIANTById(String id);
+    public void deleteUN_ETUDIANTById(String id);
     public void updateUN_ETUDIANT(UN_ETUDIANT un_etudiant);
     public void deleteAllUN_ETUDIANT();
 }

@@ -7,7 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection= "UN_GRADE")
 public class UN_GRADE {
 
-
+    @Id
+    private String            id;
     private String            CODE;
     private String            DATE_MODIFICATION;
     private String            NOM;
@@ -23,6 +24,7 @@ public class UN_GRADE {
     public UN_GRADE(String CODE, String DATE_MODIFICATION, String NOM, String IDENTIFIANT, String COMMENTAIRE,
                     String HEURES_STATUTAIRES, String HEURES_COMPLEMENTAIRES, UNE_PONDERATION[] LES_PONDERATIONS) {
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.NOM = NOM;
         this.IDENTIFIANT = IDENTIFIANT;
@@ -33,6 +35,13 @@ public class UN_GRADE {
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCODE() {
         return CODE;

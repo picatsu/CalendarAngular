@@ -28,13 +28,13 @@ public class UN_PROFESSEUR_SERVICEIMPL implements UN_PROFESSEUR_SERVICE {
 
 
     @Override
-    public Optional<UN_PROFESSEUR> findUN_PROFESSEURByCODE(String CODE) {
-        return dao.findByCODE(CODE);
+    public Optional<UN_PROFESSEUR> findUN_PROFESSEURById(String id) {
+        return dao.findById(id);
     }
 
     @Override
-    public void deleteUN_PROFESSEURByCODE(String  CODE) {
-        dao.deleteByCODE(CODE);
+    public void deleteUN_PROFESSEURById(String  id) {
+        dao.deleteById(id);
     }
 
     @Override

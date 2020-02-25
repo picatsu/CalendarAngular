@@ -23,6 +23,7 @@ public class UN_GRADE_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UN_GRADE> UN_GRADE) {
         logger.debug("Saving UN_GRADE.");
+        UN_GRADE.get(0).setId(UN_GRADE.get(0).getCODE());
         serv.createUN_GRADE(UN_GRADE);
         return "UN_GRADE records created.";
     }
@@ -34,26 +35,26 @@ public class UN_GRADE_controller {
     }
 
 
-    @GetMapping(value= "/getbycode/{UN_GRADE-CODE}")
-    public Optional<UN_GRADE> getByCODE(@PathVariable(value= "UN_GRADE-CODE") String CODE) {
-        logger.debug("Getting UN_GRADE with UN_GRADE-CODE= {}.", CODE);
-        return serv.findUN_GRADEByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UN_GRADE-Id}")
+    public Optional<UN_GRADE> getById(@PathVariable(value= "UN_GRADE-Id") String Id) {
+        logger.debug("Getting UN_GRADE with UN_GRADE-Id= {}.", Id);
+        return serv.findUN_GRADEById(Id);
     }
 
-    @PutMapping(value= "/update/{UN_GRADE-CODE}")
-    public String update(@PathVariable(value= "UN_GRADE-CODE") String CODE,
+    @PutMapping(value= "/update/{UN_GRADE-Id}")
+    public String update(@PathVariable(value= "UN_GRADE-Id") String Id,
                          @RequestBody UN_GRADE e) {
-        logger.debug("Updating UN_GRADE with UN_GRADE-CODE= {}.", CODE);
-        e.setCODE(CODE);
+        logger.debug("Updating UN_GRADE with UN_GRADE-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUN_GRADE(e);
-        return "UN_GRADE record for UN_GRADE-CODE= " + CODE + " updated.";
+        return "UN_GRADE record for UN_GRADE-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_GRADE-CODE}")
-    public String delete(@PathVariable(value= "UN_GRADE-CODE") String CODE) {
-        logger.debug("Deleting UN_GRADE with UN_GRADE-CODE= {}.", CODE);
-        serv.deleteUN_GRADEByCODE(CODE);
-        return "UN_GRADE record for UN_GRADE-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_GRADE-Id}")
+    public String delete(@PathVariable(value= "UN_GRADE-Id") String Id) {
+        logger.debug("Deleting UN_GRADE with UN_GRADE-Id= {}.", Id);
+        serv.deleteUN_GRADEById(Id);
+        return "UN_GRADE record for UN_GRADE-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

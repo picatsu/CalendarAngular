@@ -13,8 +13,8 @@ public interface UNE_SALLE_SERVICE {
 
     public void createUNE_SALLE(List<UNE_SALLE> une_salle);
     public Collection<UNE_SALLE> getAllUNE_SALLE();
-    public Optional<UNE_SALLE> findUNE_SALLEByCODE(String CODE);
-    public void deleteUNE_SALLEByCODE(String CODE);
+    public Optional<UNE_SALLE> findUNE_SALLEById(String id);
+    public void deleteUNE_SALLEById(String id);
     public void updateUNE_SALLE(UNE_SALLE une_salle);
     public void deleteAllUNE_SALLE();
 }

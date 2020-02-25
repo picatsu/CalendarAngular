@@ -6,7 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection= "UNe_COMPOSANTE")
 public class UNE_COMPOSANTE {
-
+    @Id
+    private String id;
     private String CODE;
     private String DATE_MODIFICATION;
     private String NOM;
@@ -26,6 +27,7 @@ public class UNE_COMPOSANTE {
                           String TYPE_DE_COMPOSANTE, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE) {
 
         this.CODE = CODE;
+        this.id = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
         this.NOM = NOM;
         this.ALIAS = ALIAS;
@@ -38,6 +40,13 @@ public class UNE_COMPOSANTE {
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getCODE() {
         return CODE;

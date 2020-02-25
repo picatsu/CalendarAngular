@@ -15,8 +15,8 @@ public interface UNE_SEANCE_SERVICE {
 
     public void createUNE_SEANCE(List<UNE_SEANCE> une_seance);
     public Collection<UNE_SEANCE> getAllUNE_SEANCE();
-    public Optional<UNE_SEANCE> findUNE_SEANCEByCODE(String CODE);
-    public void deleteUNE_SEANCEByCODE(String CODE);
+    public Optional<UNE_SEANCE> findUNE_SEANCEById(String id);
+    public void deleteUNE_SEANCEById(String id);
     public void updateUNE_SEANCE(UNE_SEANCE une_seance);
     public void deleteAllUNE_SEANCE();
 }

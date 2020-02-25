@@ -1,5 +1,6 @@
 package com.bada.controller;
 
+import com.bada.model.UN_ENSEIGNEMENT;
 import com.bada.model.UN_ETUDIANT;
 import com.bada.service.UN_ETUDIANT_SERVICE;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ public class UN_ETUDIANT_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UN_ETUDIANT> UN_ETUDIANT) {
         logger.debug("Saving UN_ETUDIANT.");
+        UN_ETUDIANT.get(0).setId(UN_ETUDIANT.get(0).getCODE());
         serv.createUN_ETUDIANT(UN_ETUDIANT);
         return "UN_ETUDIANT records created.";
     }
@@ -35,26 +37,26 @@ public class UN_ETUDIANT_controller {
 
 
 
-    @GetMapping(value= "/getbycode/{UN_ETUDIANT-CODE}")
-    public Optional<UN_ETUDIANT> getByCODE(@PathVariable(value= "UN_ETUDIANT-CODE") String CODE) {
-        logger.debug("Getting UN_ETUDIANT with UN_ETUDIANT-CODE= {}.", CODE);
-        return serv.findUN_ETUDIANTByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UN_ETUDIANT-Id}")
+    public Optional<UN_ETUDIANT> getById(@PathVariable(value= "UN_ETUDIANT-Id") String Id) {
+        logger.debug("Getting UN_ETUDIANT with UN_ETUDIANT-Id= {}.", Id);
+        return serv.findUN_ETUDIANTById(Id);
     }
 
-    @PutMapping(value= "/update/{UN_ETUDIANT-CODE}")
-    public String update(@PathVariable(value= "UN_ETUDIANT-id") String CODE,
+    @PutMapping(value= "/update/{UN_ETUDIANT-Id}")
+    public String update(@PathVariable(value= "UN_ETUDIANT-id") String Id,
                          @RequestBody UN_ETUDIANT e) {
-        logger.debug("Updating UN_ETUDIANT with UN_ETUDIANT-CODE= {}.", CODE);
-        e.setCODE(CODE);
+        logger.debug("Updating UN_ETUDIANT with UN_ETUDIANT-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUN_ETUDIANT(e);
-        return "UN_ETUDIANT record for UN_ETUDIANT-CODE= " + CODE + " updated.";
+        return "UN_ETUDIANT record for UN_ETUDIANT-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_ETUDIANT-CODE}")
-    public String delete(@PathVariable(value= "UN_ETUDIANT-CODE") String CODE) {
-        logger.debug("Deleting UN_ETUDIANT with UN_ETUDIANT-CODE= {}.", CODE);
-        serv.deleteUN_ETUDIANTByCODE(CODE);
-        return "UN_ETUDIANT record for UN_ETUDIANT-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_ETUDIANT-Id}")
+    public String delete(@PathVariable(value= "UN_ETUDIANT-Id") String Id) {
+        logger.debug("Deleting UN_ETUDIANT with UN_ETUDIANT-Id= {}.", Id);
+        serv.deleteUN_ETUDIANTById(Id);
+        return "UN_ETUDIANT record for UN_ETUDIANT-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

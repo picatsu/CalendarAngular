@@ -26,6 +26,7 @@ public class UN_TYPE_ACTIVITE_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UN_TYPE_ACTIVITE> UN_TYPE_ACTIVITE) {
         logger.debug("Saving UN_TYPE_ACTIVITE.");
+        UN_TYPE_ACTIVITE.get(0).setId(UN_TYPE_ACTIVITE.get(0).getCODE());
         serv.createUN_TYPE_ACTIVITE(UN_TYPE_ACTIVITE);
         return "UNE_ZONE_DE_SALLE records created.";
     }
@@ -36,26 +37,26 @@ public class UN_TYPE_ACTIVITE_controller {
         return serv.getAllUN_TYPE_ACTIVITE();
     }
 
-    @GetMapping(value= "/getbycode/{UN_TYPE_ACTIVITE-CODE}")
-    public Optional<UN_TYPE_ACTIVITE> getByCODE(@PathVariable(value= "UN_TYPE_ACTIVITE-CODE") String CODE) {
-        logger.debug("Getting UN_TYPE_ACTIVITE with UN_TYPE_ACTIVITE-CODE= {}.", CODE);
-        return serv.findUN_TYPE_ACTIVITEByCODE(CODE);
+    @GetMapping(value= "/getbyid/{UN_TYPE_ACTIVITE-Id}")
+    public Optional<UN_TYPE_ACTIVITE> getById(@PathVariable(value= "UN_TYPE_ACTIVITE-Id") String Id) {
+        logger.debug("Getting UN_TYPE_ACTIVITE with UN_TYPE_ACTIVITE-Id= {}.", Id);
+        return serv.findUN_TYPE_ACTIVITEById(Id);
     }
 
 
-    @PutMapping(value= "/update/{UN_TYPE_ACTIVITE-CODE}")
-    public String update(@PathVariable(value= "UN_TYPE_ACTIVITE-CODE") String CODE, @RequestBody UN_TYPE_ACTIVITE e) {
-        logger.debug("Updating UN_TYPE_ACTIVITE with UN_TYPE_ACTIVITE-CODE= {}.", CODE);
-        e.setCODE(CODE);
+    @PutMapping(value= "/update/{UN_TYPE_ACTIVITE-Id}")
+    public String update(@PathVariable(value= "UN_TYPE_ACTIVITE-Id") String Id, @RequestBody UN_TYPE_ACTIVITE e) {
+        logger.debug("Updating UN_TYPE_ACTIVITE with UN_TYPE_ACTIVITE-Id= {}.", Id);
+        e.setId(Id);
         serv.updateUN_TYPE_ACTIVITE(e);
-        return "UN_TYPE_ACTIVITE record for UN_TYPE_ACTIVITE-CODE= " + CODE + " updated.";
+        return "UN_TYPE_ACTIVITE record for UN_TYPE_ACTIVITE-Id= " + Id + " updated.";
     }
 
-    @DeleteMapping(value= "/delete/{UN_TYPE_ACTIVITE-CODE}")
-    public String delete(@PathVariable(value= "UN_TYPE_ACTIVITE-CODE") String CODE) {
-        logger.debug("Deleting UN_TYPE_ACTIVITE with UN_TYPE_ACTIVITE-CODE= {}.", CODE);
-        serv.deleteUN_TYPE_ACTIVITEByCODE(CODE);
-        return "UNE_ZONE_DE_SALLE record for UN_TYPE_ACTIVITE-CODE= " + CODE + " deleted.";
+    @DeleteMapping(value= "/delete/{UN_TYPE_ACTIVITE-Id}")
+    public String delete(@PathVariable(value= "UN_TYPE_ACTIVITE-Id") String Id) {
+        logger.debug("Deleting UN_TYPE_ACTIVITE with UN_TYPE_ACTIVITE-Id= {}.", Id);
+        serv.deleteUN_TYPE_ACTIVITEById(Id);
+        return "UNE_ZONE_DE_SALLE record for UN_TYPE_ACTIVITE-Id= " + Id + " deleted.";
     }
 
     @DeleteMapping(value= "/deleteall")

@@ -10,6 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface UN_GROUPES_DAO extends MongoRepository<UN_GROUPES, Integer> {
-    Optional<UN_GROUPES> findByCODE(String CODE);
-    void deleteByCODE(String CODE);
+
+    void deleteById(String id);
+    Optional<UN_GROUPES> findById(String id);
+
 }
