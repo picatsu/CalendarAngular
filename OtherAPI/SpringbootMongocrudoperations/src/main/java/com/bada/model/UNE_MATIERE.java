@@ -129,4 +129,21 @@ public class UNE_MATIERE {
     public void setCODE_CNU(String CODE_CNU) {
         this.CODE_CNU = CODE_CNU;
     }
+
+    @Override
+    public String toString() {
+        return "UNE_MATIERE{" +
+                "id='" + id + '\'' +
+                ", CODE='" + CODE + '\'' +
+                ", DATE_MODIFICATION='" + DATE_MODIFICATION + '\'' +
+                ", NOM='" + NOM + '\'' +
+                ", ALIAS='" + ALIAS + '\'' +
+                ", COMMENTAIRE='" + COMMENTAIRE + '\'' +
+                ", IDENTIFIANT='" + IDENTIFIANT + '\'' +
+                ", COULEUR='" + COULEUR + '\'' +
+                ", COULEUR_POLICE='" + COULEUR_POLICE + '\'' +
+                ", CODE_PROPRIETAIRE='" + CODE_PROPRIETAIRE + '\'' +
+                ", CODE_CNU='" + CODE_CNU + '\'' +
+                '}';
+    }
 }

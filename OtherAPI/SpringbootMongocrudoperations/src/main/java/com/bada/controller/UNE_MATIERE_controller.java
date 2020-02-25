@@ -24,6 +24,7 @@ public class UNE_MATIERE_controller {
     @PostMapping(value= "/create")
     public String create(@RequestBody List<UNE_MATIERE> UNE_MATIERE) {
         logger.debug("Saving UNE_MATIERE.");
+        System.out.println("g recu "+UNE_MATIERE.get(0).toString());
         UNE_MATIERE.get(0).setId(UNE_MATIERE.get(0).getCODE());
         serv.createUNE_MATIERE(UNE_MATIERE);
         return "UNE_MATIERE records created.";
