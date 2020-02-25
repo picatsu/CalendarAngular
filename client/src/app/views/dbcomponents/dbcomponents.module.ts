@@ -30,17 +30,17 @@ import { TooltipModule } from "ngx-bootstrap/tooltip";
 // navbars
 
 // Components Routing
-import { CouchdbRoutingModule } from "./couchdb-routing.module";
-import { FormsComponent } from "./forms/forms.component";
-import { TabsComponent } from "./tabs/tabs.component";
-import { TooltipsComponent } from "./tooltips/tooltips.component";
-import { SwitchesComponent } from "./switches/switches.component";
+import { DbComponentsRoutingModule } from "./dbcomponents-routing.module";
+import { PostComponent } from "./post/post.component";
+import { UpdateComponent } from "./update/update.component";
+import { DeleteComponent } from "./delete/delete.component";
+import { GetComponent } from "./get/get.component";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    CouchdbRoutingModule,
+    DbComponentsRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule,
     CarouselModule.forRoot(),
@@ -50,11 +50,6 @@ import { SwitchesComponent } from "./switches/switches.component";
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot()
   ],
-  declarations: [
-    FormsComponent,
-    SwitchesComponent,
-    TabsComponent,
-    TooltipsComponent
-  ]
+  declarations: [PostComponent, GetComponent, UpdateComponent, DeleteComponent]
 })
-export class CouchDBModule {}
+export class DbComponentsModule {}
