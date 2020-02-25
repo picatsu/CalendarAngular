@@ -1,6 +1,7 @@
 package com.bada.config;
 
 
+import com.bada.model.UN_TYPE_ACTIVITE;
 import com.bada.service.*;
 import com.bada.service.serviceIMPL.*;
 import org.springframework.context.annotation.Bean;
@@ -80,5 +81,7 @@ public class AppConfig {
     public UNE_ZONE_DE_SALLE_SERVICE UNE_ZONE_DE_SALLE_SERVICEService() {
         return new UNE_ZONE_DE_SALLE_SERVICEIMPL();
     }
+
+
 
 }
