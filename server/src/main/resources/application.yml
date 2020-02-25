@@ -2,26 +2,26 @@ server:
     port: 9090
 app:
     name: tdbada
-    description: Projet bdd NoSql BADA
+    description: Projet bdd NoSql BADA by Achraf the big boss and FUTUR CADRE
 
-couchdb:
-    urlcouchdb: http://localhost:5984/meulun/
+couch:
+    url: http://localhost:5984/meulun/
 
-mongodb:
-    urlmongodb: lolo
-    passwordmongodb: lol
+mongo:
+    url: http://localhost:8100/
+
 
 neo4j:
-    urlneo4j: llll
+    url: llll
 
 cassandra:
-    urlcassandra: kkkk
+    url: kkkk
 
 redis:
-    urlredis: redis
+    url: redis
 
 firebase:
-    urlfirebase: llooj
+    url: llooj
 
 projetvoldemort:
-    urlprojetvoldemort: lllok
+    url: lllok

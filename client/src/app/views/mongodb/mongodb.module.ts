@@ -6,9 +6,10 @@ import { FontAwesomeComponent } from './font-awesome/font-awesome.component';
 import { SimpleLineIconsComponent } from './simple-line-icons/simple-line-icons.component';
 
 import { MongodbRoutingModule } from './mongodb-routing.module';
+import {AppModule} from '../../app.module';
 
 @NgModule({
-  imports: [ MongodbRoutingModule ],
+  imports: [MongodbRoutingModule, AppModule],
   declarations: [
     CoreUIIconsComponent,
     FlagsComponent,
