@@ -14,7 +14,15 @@
   href="https://unpkg.com/flatpickr@4.6.3/dist/flatpickr.css"
   rel="stylesheet"
 />
-
+<div
+  class="form-group col-sm-4"
+  style="margin: 0 auto; align-self: center; width: 30%; margin-top: auto;"
+>
+  <label for="ccyear">Year</label>
+  <select class="form-control" id="power" required>
+    <option *ngFor="let pow of listclass" [value]="pow">{{pow}}</option>
+  </select>
+</div>
 <div class="row text-center">
   <div class="col-md-4">
     <div class="btn-group">
@@ -79,7 +87,7 @@
   <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="events2"
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
@@ -90,7 +98,7 @@
   <mwl-calendar-week-view
     *ngSwitchCase="CalendarView.Week"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="events2"
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
@@ -99,7 +107,7 @@
   <mwl-calendar-day-view
     *ngSwitchCase="CalendarView.Day"
     [viewDate]="viewDate"
-    [events]="events"
+    [events]="events2"
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
@@ -133,7 +141,7 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let event of events">
+      <tr *ngFor="let event of events2">
         <td>
           <input
             type="text"

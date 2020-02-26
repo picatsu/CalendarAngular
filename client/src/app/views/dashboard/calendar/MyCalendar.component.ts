@@ -12,7 +12,8 @@ import {
   endOfMonth,
   isSameDay,
   isSameMonth,
-  addHours
+  addHours,
+  addMinutes
 } from "date-fns";
 import { Subject } from "rxjs";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
@@ -22,6 +23,8 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView
 } from "angular-calendar";
+import { DashboardService } from "../service/dashboard.service";
+import { formatDate } from "@angular/common";
 
 const colors: any = {
   red: {
@@ -47,17 +50,10 @@ const colors: any = {
 export class MyCalendarComponent {
   @ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
 
-  view: CalendarView = CalendarView.Month;
-
-  CalendarView = CalendarView;
-
-  viewDate: Date = new Date();
-
   modalData: {
     action: string;
     event: CalendarEvent;
   };
-
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
@@ -75,9 +71,6 @@ export class MyCalendarComponent {
       }
     }
   ];
-
-  refresh: Subject<any> = new Subject();
-
   events: CalendarEvent[] = [
     {
       start: subDays(startOfDay(new Date()), 1),
@@ -119,9 +112,69 @@ export class MyCalendarComponent {
     }
   ];
 
+  events2: CalendarEvent[] = [
+    {
+      start: new Date("2020-02-27T08:30:00"),
+      end: new Date("2020-02-27T10:00:00"),
+      title:
+        "<center> <Strong> Matiere </Strong> <br />    Professeur <br />  Salle: IBGI afbaf </center> ",
+      color: colors.yellow
+    },
+    {
+      start: new Date("2020-02-27T10:30:00"),
+      end: new Date("2020-02-27T12:00:00"),
+      title:
+        "<center> <Strong> Matiere </Strong> <br />    Professeur <br />  Salle: IBGI afbaf </center> ",
+      color: colors.blue
+    }
+  ];
+
+  listclass = [
+    "l1",
+    "l1_gr1",
+    "l1_gr2",
+    "l1_gr3",
+    "l1_gr4",
+    "l1_gr5",
+    "l1_gr6",
+    "l1_gr7",
+    "l1_gr8",
+    "l2",
+    "l3_bcp",
+    "l3_bpc",
+    "l3_gbi",
+    "l3baia",
+    "l3_bcp g1",
+    "l3_bcp g2",
+    "l3_bcp g2_",
+    "l3_bpc g2_",
+    "m1",
+    "m1_gp1",
+    "m1_gp2",
+    "m2bss",
+    "m2btcg",
+    "m2ttt",
+    "m2bss_angl",
+    "m2gbi",
+    "m2ggs",
+    "m2bss_fran",
+    "m2ggs_pro",
+    "m2ggs_rec",
+    "m2bss_bio",
+    "m2bss_math"
+  ];
+
+  testElement = {};
+  view: CalendarView = CalendarView.Week;
+  CalendarView = CalendarView;
+  viewDate: Date = new Date();
+  refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal, private dashService: DashboardService) {
+    dashService.getD().subscribe(val => console.log(val));
+    console.log(this.events2);
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

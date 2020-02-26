@@ -13,6 +13,8 @@ import { FlatpickrModule } from "angularx-flatpickr";
 import { CalendarModule, DateAdapter } from "angular-calendar";
 import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { MyCalendarComponent } from "./calendar/MyCalendar.component";
+import { HttpClientModule } from "@angular/common/http";
+import { DashboardService } from "./service/dashboard.service";
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import { MyCalendarComponent } from "./calendar/MyCalendar.component";
     BsDropdownModule,
     FullCalendarModule,
     ButtonsModule.forRoot(),
-
+    HttpClientModule,
     CommonModule,
     NgbModalModule,
     FlatpickrModule.forRoot(),
@@ -33,6 +35,7 @@ import { MyCalendarComponent } from "./calendar/MyCalendar.component";
   ],
   declarations: [DashboardComponent, MyCalendarComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, MyCalendarComponent],
-  exports: [MyCalendarComponent]
+  exports: [MyCalendarComponent],
+  providers: [DashboardService]
 })
 export class DashboardModule {}
