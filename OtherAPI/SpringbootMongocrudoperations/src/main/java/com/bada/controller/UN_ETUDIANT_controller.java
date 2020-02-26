@@ -44,7 +44,7 @@ public class UN_ETUDIANT_controller {
     }
 
     @PutMapping(value= "/update/{UN_ETUDIANT-Id}")
-    public String update(@PathVariable(value= "UN_ETUDIANT-id") String Id,
+    public String update(@PathVariable(value= "UN_ETUDIANT-Id") String Id,
                          @RequestBody UN_ETUDIANT e) {
         logger.debug("Updating UN_ETUDIANT with UN_ETUDIANT-Id= {}.", Id);
         e.setId(Id);

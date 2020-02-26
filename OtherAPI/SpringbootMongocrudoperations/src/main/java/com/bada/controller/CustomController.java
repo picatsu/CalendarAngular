@@ -30,7 +30,6 @@ public class CustomController {
 
     @GetMapping("/getelodie")
     @CrossOrigin
-    // http://localhost:8100/api/mongo/customcontroller/getelodie?value=L3
     public List<UNE_SEANCE> getAllDb(@RequestParam(required = false) String value) throws Exception {
 
      List<UN_GROUPES> finalGroup = new ArrayList<>();
@@ -49,6 +48,18 @@ public class CustomController {
          }
      }
 
+
+     //
+        List<String> testing = new ArrayList<>();
+        for(UN_GROUPES aaaa: groupServ.getAllUN_GROUPES() ){
+            if( !testing.contains(aaaa.getALIAS())){
+                testing.add(aaaa.getALIAS());
+                System.out.println(aaaa.getALIAS());
+
+            }
+        }
+        System.out.println("afgaegva"+testing);
+        //
      return finalSeance;
     }
 }

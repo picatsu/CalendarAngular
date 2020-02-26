@@ -38,8 +38,9 @@ public class UNE_MATIERE_controller {
 
 
     @GetMapping(value= "/getbyid/{UNE_MATIERE-Id}")
-    public Optional<UNE_MATIERE> getById(@PathVariable(value= "UNE_MATIERE-id") String Id) {
+    public Optional<UNE_MATIERE> getById(@PathVariable(value= "UNE_MATIERE-Id") String Id) {
         logger.debug("Getting UNE_MATIERE with UNE_MATIERE-Id= {}.", Id);
+        System.out.println(serv.findUNE_MATIEREById(Id));
         return serv.findUNE_MATIEREById(Id);
     }
 
