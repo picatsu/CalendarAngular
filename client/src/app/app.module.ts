@@ -46,6 +46,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 
 import {FormsModule} from '@angular/forms';
+import { MeteoComponent } from './views/meteo/meteo.component';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import {FormsModule} from '@angular/forms';
     P404Component,
     P500Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MeteoComponent
   ],
   providers: [{
     provide: LocationStrategy,

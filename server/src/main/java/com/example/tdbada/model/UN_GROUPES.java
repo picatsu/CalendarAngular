@@ -1,17 +1,13 @@
-package com.bada.model;
+package com.example.tdbada.model;
 
-import com.bada.model.utils.LES_CONGES;
-import com.bada.model.utils.UN_CODE_ETUDIANT;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Arrays;
+import com.example.tdbada.model.utils.LES_CONGES;
+import com.example.tdbada.model.utils.UN_CODE_ETUDIANT;
 
-@Document(collection= "UN_GROUPES")
 public class UN_GROUPES {
 
 
-    @Id
+
     private String          id;
     private String          CODE;
     private String          DATE_MODIFICATION;
@@ -28,7 +24,7 @@ public class UN_GROUPES {
     private String          COULEUR_POLICE;
     private String          CODE_PROPRIETAIRE;
     private String          UN_CODE_SUPER_GROUPE;
-    private String[]        LES_ETUDIANTS_DU_GROUPE;
+    private UN_CODE_ETUDIANT LES_ETUDIANTS_DU_GROUPE;
     private LES_CONGES[]    LES_CONGES;
     private LES_CONGES[]    LES_EXAMENS;
 
@@ -39,8 +35,8 @@ public class UN_GROUPES {
     public UN_GROUPES(String id, String CODE, String DATE_MODIFICATION, String NOM, String ALIAS, String COMMENTAIRE,
                       String COMPOSANTE, String NIVEAU, String DIPLOME, String IDENTIFIANT, String TYPE_PUBLIC,
                       String QUANTITE_MAX, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE,
-                      String UN_CODE_SUPER_GROUPE, String[] LES_ETUDIANTS_DU_GROUPE,
-                      com.bada.model.utils.LES_CONGES[] LES_CONGES) {
+                      String UN_CODE_SUPER_GROUPE, UN_CODE_ETUDIANT LES_ETUDIANTS_DU_GROUPE,
+                      LES_CONGES[] LES_CONGES) {
         this.id = id;
         this.CODE = CODE;
         this.DATE_MODIFICATION = DATE_MODIFICATION;
@@ -64,7 +60,7 @@ public class UN_GROUPES {
     public UN_GROUPES(String CODE, String DATE_MODIFICATION, String NOM, String ALIAS, String COMMENTAIRE,
                       String COMPOSANTE, String NIVEAU, String DIPLOME, String IDENTIFIANT, String TYPE_PUBLIC,
                       String QUANTITE_MAX, String COULEUR, String COULEUR_POLICE, String CODE_PROPRIETAIRE,
-                      String[] LES_ETUDIANTS_DU_GROUPE, String UN_CODE_SUPER_GROUPE, LES_CONGES[] LES_CONGES,
+                      UN_CODE_ETUDIANT LES_ETUDIANTS_DU_GROUPE, String UN_CODE_SUPER_GROUPE, LES_CONGES[] LES_CONGES,
                       LES_CONGES[]    LES_EXAMENS) {
         this.CODE = CODE;
         this.id = CODE;
@@ -100,11 +96,11 @@ public class UN_GROUPES {
         return UN_CODE_SUPER_GROUPE;
     }
 
-    public com.bada.model.utils.LES_CONGES[] getLES_CONGES() {
+    public LES_CONGES[] getLES_CONGES() {
         return LES_CONGES;
     }
 
-    public void setLES_CONGES(com.bada.model.utils.LES_CONGES[] LES_CONGES) {
+    public void setLES_CONGES(LES_CONGES[] LES_CONGES) {
         this.LES_CONGES = LES_CONGES;
     }
 
@@ -112,11 +108,11 @@ public class UN_GROUPES {
         this.UN_CODE_SUPER_GROUPE = UN_CODE_SUPER_GROUPE;
     }
 
-    public com.bada.model.utils.LES_CONGES[] getLES_EXAMENS() {
+    public LES_CONGES[] getLES_EXAMENS() {
         return LES_EXAMENS;
     }
 
-    public void setLES_EXAMENS(com.bada.model.utils.LES_CONGES[] LES_EXAMENS) {
+    public void setLES_EXAMENS(LES_CONGES[] LES_EXAMENS) {
         this.LES_EXAMENS = LES_EXAMENS;
     }
 
@@ -232,36 +228,12 @@ public class UN_GROUPES {
         this.CODE_PROPRIETAIRE = CODE_PROPRIETAIRE;
     }
 
-    public String[] getLES_ETUDIANTS_DU_GROUPE() {
+    public UN_CODE_ETUDIANT getLES_ETUDIANTS_DU_GROUPE() {
         return LES_ETUDIANTS_DU_GROUPE;
     }
 
-    public void setLES_ETUDIANTS_DU_GROUPE(String[] LES_ETUDIANTS_DU_GROUPE) {
+    public void setLES_ETUDIANTS_DU_GROUPE(UN_CODE_ETUDIANT LES_ETUDIANTS_DU_GROUPE) {
         this.LES_ETUDIANTS_DU_GROUPE = LES_ETUDIANTS_DU_GROUPE;
     }
-
-    @Override
-    public String toString() {
-        return "UN_GROUPES{" +
-                "id='" + id + '\'' +
-                ", CODE='" + CODE + '\'' +
-                ", DATE_MODIFICATION='" + DATE_MODIFICATION + '\'' +
-                ", NOM='" + NOM + '\'' +
-                ", ALIAS='" + ALIAS + '\'' +
-                ", COMMENTAIRE='" + COMMENTAIRE + '\'' +
-                ", COMPOSANTE='" + COMPOSANTE + '\'' +
-                ", NIVEAU='" + NIVEAU + '\'' +
-                ", DIPLOME='" + DIPLOME + '\'' +
-                ", IDENTIFIANT='" + IDENTIFIANT + '\'' +
-                ", TYPE_PUBLIC='" + TYPE_PUBLIC + '\'' +
-                ", QUANTITE_MAX='" + QUANTITE_MAX + '\'' +
-                ", COULEUR='" + COULEUR + '\'' +
-                ", COULEUR_POLICE='" + COULEUR_POLICE + '\'' +
-                ", CODE_PROPRIETAIRE='" + CODE_PROPRIETAIRE + '\'' +
-                ", UN_CODE_SUPER_GROUPE='" + UN_CODE_SUPER_GROUPE + '\'' +
-                ", LES_ETUDIANTS_DU_GROUPE=" + Arrays.toString(LES_ETUDIANTS_DU_GROUPE) +
-                ", LES_CONGES=" + Arrays.toString(LES_CONGES) +
-                ", LES_EXAMENS=" + Arrays.toString(LES_EXAMENS) +
-                '}';
-    }
 }
+

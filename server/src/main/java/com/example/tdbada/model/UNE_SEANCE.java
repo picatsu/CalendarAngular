@@ -1,16 +1,11 @@
-package com.bada.model;
+package com.example.tdbada.model;
 
 
-import com.bada.model.utils.UNE_RESSOURCE;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.example.tdbada.model.utils.UNE_RESSOURCE;
 
-@Document(collection= "UNE_SEANCE")
 public class UNE_SEANCE {
 
 
-
-    @Id
     private String id;
     private String CODE;
     private String DATE_MODIFICATION;

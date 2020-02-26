@@ -51,9 +51,11 @@ export const routes: Routes = [
     },
     children: [
       {
-        path: "couchdb",
+        path: "dbcomponents",
         loadChildren: () =>
-          import("./views/couchdb/couchdb.module").then(m => m.CouchDBModule)
+          import("./views/dbcomponents/dbcomponents.module").then(
+            m => m.DbComponentsModule
+          )
       },
 
       {

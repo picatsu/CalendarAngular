@@ -17,29 +17,29 @@ export const navItems: INavData[] = [
   },
   {
     name: "Operations",
-    url: "/couchdb",
+    url: "/dbcomponents",
     icon: "icon-puzzle",
     children: [
       {
         name: "Post",
-        url: "/couchdb/forms",
+        url: "/dbcomponents/post",
         icon: "icon-puzzle"
       },
 
       {
         name: "Get",
-        url: "/couchdb/switches",
+        url: "/dbcomponents/get",
         icon: "icon-puzzle"
       },
 
       {
         name: "Update",
-        url: "/couchdb/tabs",
+        url: "/dbcomponents/update",
         icon: "icon-puzzle"
       },
       {
         name: "Delete",
-        url: "/couchdb/tooltips",
+        url: "/dbcomponents/delete",
         icon: "icon-puzzle"
       }
     ]
