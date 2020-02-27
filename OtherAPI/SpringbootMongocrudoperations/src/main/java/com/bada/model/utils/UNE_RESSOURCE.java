@@ -33,4 +33,12 @@ public class UNE_RESSOURCE {
     public void setCODE_RESSOURCE(String CODE_RESSOURCE) {
         this.CODE_RESSOURCE = CODE_RESSOURCE;
     }
+
+    @Override
+    public String toString() {
+        return "UNE_RESSOURCE{" +
+                "TYPE='" + TYPE + '\'' +
+                ", CODE_RESSOURCE='" + CODE_RESSOURCE + '\'' +
+                '}';
+    }
 }
