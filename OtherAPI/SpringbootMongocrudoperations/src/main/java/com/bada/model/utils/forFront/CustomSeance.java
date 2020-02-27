@@ -17,7 +17,7 @@ public class CustomSeance {
     private String nomprof;
     private String prenomprof;
     private String prenom2prof;
-    private List<String> listeEtudiant = new ArrayList<>();
+    private List<String> listeEtudiant = new LinkedList<>();
 
     private UNE_RESSOURCE salle = new UNE_RESSOURCE();
     private UNE_RESSOURCE groupe = new UNE_RESSOURCE();
@@ -41,8 +41,9 @@ public class CustomSeance {
         }
         int heureAajouter  = 0;
         int minuteAajouter = 0;
-
         char[] dureee = this.duree.toCharArray();
+        System.out.println("date debut : "+ formatedDate );
+
         if(dureee.length > 3) {
            heureAajouter =
                    Integer.parseInt(String.valueOf(datedebut[cpt+1])+String.valueOf(datedebut[cpt+2]))
@@ -55,8 +56,13 @@ public class CustomSeance {
         else{
             heureAajouter = Integer.parseInt(String.valueOf(datedebut[cpt+1])+String.valueOf(datedebut[cpt+2]))
                     + Integer.parseInt("0"+String.valueOf(dureee[0]));
-            minuteAajouter = Integer.parseInt(String.valueOf(datedebut[cpt+4])+String.valueOf(datedebut[cpt+5]))
-                    + Integer.parseInt(String.valueOf(dureee[1])+String.valueOf(dureee[2]));
+            System.out.println("dddd "+ duree) ;
+            minuteAajouter = Integer.parseInt(
+                    String.valueOf(datedebut[cpt+4])
+                            +String.valueOf(datedebut[cpt+5]))
+                    + Integer.parseInt(
+                            String.valueOf(dureee[1])+
+                                    String.valueOf(dureee[2]));
         }
 
         if(minuteAajouter >=60){

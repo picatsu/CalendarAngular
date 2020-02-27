@@ -1,0 +1,32 @@
+Projet BADA :
+	Extraire infos ->
+		Profs
+		Enseignements
+		Séances (en lien avec les autres infos)
+		Salles
+		Grp Etudiant
+		
+Fichier entrée format NOSQL
+
+
+_________	________________
+Anglais :
+	I/ Company	
+		a. Short timeline/history (main point)
+		b. Key figures
+			turnover
+			staff/employes
+			sites/locations (map)
+			market -> postion
+		           ->main competitor
+		c. Missions + values of the company
+			Business ? B2B ? B2C ? both ?
+			Goods ? services ? both ?
+			
+	II/ You in the company
+		a. location (environnement)
+			work atsmosphere 
+			organisation chart (where are you)
+		b. Mission/Tasks/Work (work)
+			daily? weakly? monthly? project.
+		c. feedbacks (experience)

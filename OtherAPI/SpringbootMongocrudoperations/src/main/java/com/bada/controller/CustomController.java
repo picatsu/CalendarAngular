@@ -6,6 +6,7 @@ import com.bada.model.utils.UNE_RESSOURCE;
 import com.bada.model.utils.forFront.CustomSeance;
 import com.bada.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,8 @@ public class CustomController {
     @Autowired
     UN_PROFESSEUR_SERVICE professeur_service;
 
-
+    @Autowired
+    MongoTemplate mongoTemplate;
 
 
     @GetMapping("/getelodie")
@@ -58,9 +60,9 @@ public class CustomController {
      return finalSeance;
     }
 
-    @GetMapping("/getseance")
+    @GetMapping("/loadseance")
     @CrossOrigin
-    public List<CustomSeance> getSeance(@RequestParam(required = false) String value) throws Exception {
+    public List<CustomSeance> getLoadSeance(@RequestParam(required = false) String value) throws Exception {
 
 
 
@@ -68,7 +70,7 @@ public class CustomController {
         Collection<UN_ENSEIGNEMENT> colEnsei = enseignement_service.getAllUN_ENSEIGNEMENT();
 
         List<CustomSeance> customseance = new ArrayList<>();
-
+        long debut = System.currentTimeMillis();
         for(UNE_SEANCE seance: seance_service.getAllUNE_SEANCE()){
 
             CustomSeance q = new CustomSeance(seance.getDATE(), seance.getHEURE(), seance.getDUREE());
@@ -81,35 +83,35 @@ public class CustomController {
 
             customseance.add(q);
         }
-            //// G RECUPERER SEANCE => GO CHERCHER LES SALLES
+        System.out.println(" 1  "+ (System.currentTimeMillis()-debut));
+
+        //// G RECUPERER SEANCE => GO CHERCHER LES SALLES
             for(CustomSeance seance: customseance){
 
-                if(seance.
-                        getSalle().
-                        getTYPE().
-                        equals("emptytype")) {
                     for(UNE_SALLE salle : salle_service.getAllUNE_SALLE()){
                         if(salle.getCODE().equals(seance.getSalle().getCODE_RESSOURCE())){
                             seance.getSalle().setTYPE(salle.getALIAS());
                             // NOM SALLES  from  SEANCE
                         }
                     }
-                }
 
-                if(seance.getGroupe().getTYPE().equals("emptytype")){
+                System.out.println(" 2  "+ (System.currentTimeMillis()-debut));
+
+
                     for(UN_GROUPES grp:  groupes_service.getAllUN_GROUPES()){
                         if(grp.getCODE().equals(seance.getGroupe().getCODE_RESSOURCE())){
                             seance.getGroupe().setTYPE( grp.getALIAS()  );
                             if( grp.getLES_ETUDIANTS_DU_GROUPE() != null  ){
-                                seance.setListeEtudiant(this.transfom(grp.getLES_ETUDIANTS_DU_GROUPE()) );
+                                // seance.setListeEtudiant(this.transfom(grp.getLES_ETUDIANTS_DU_GROUPE()) );
                             }
 
                             // Alias group from POUR SEANCE.liste etudiants
                         }
                     }
-                }
 
-                if(seance.getProf().getTYPE().equals("emptytype")){
+                System.out.println(" 3  "+ (System.currentTimeMillis()-debut));
+
+
                     for(UN_PROFESSEUR grp: professeur_service.getAllUN_PROFESSEUR()){
                         if(grp.getCODE().equals(seance.getProf().getCODE_RESSOURCE())){
                             seance.getProf().setTYPE("validprof");
@@ -119,9 +121,11 @@ public class CustomController {
                             //  infos prof POUR CHAQUE SEANCE from UN_PROFESSEUR
                         }
                     }
-                }
+
+
 
             }
+        System.out.println(" 4  "+ (System.currentTimeMillis()-debut));
 
         List<CustomSeance> customseanceRES = new ArrayList<>();
 
@@ -131,16 +135,22 @@ public class CustomController {
                 }
             }
 
+        mongoTemplate.insert(customseance, CustomSeance.class);
         return customseanceRES;
     }
 
+    @GetMapping("/getseance")
+    @CrossOrigin
+    public List<CustomSeance> getseance(@RequestParam(required = false) String value) throws Exception {
+
+        return mongoTemplate.findAll(CustomSeance.class);
+    }
 
     private List<String> transfom(String[] old){
         List<String> aa = new ArrayList<>();
         System.out.println("old : "+old.length);
 
-        for(int i=0; i<old.length; i++){
-            System.out.println("old : "+old[i]);
+        for(int i=0; i < old.length; i++){
             aa.add( old[i] );
         }
         return aa;

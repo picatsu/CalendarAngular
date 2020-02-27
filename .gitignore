@@ -36,3 +36,4 @@ node_modules/
 OtherAPI/couchDBNodejs/server/node_modules
 OtherAPI/couchDBNodejs/server/node_modules
 /mongoDBNodejs/node_modules
+OtherAPI/script_export/node_modules

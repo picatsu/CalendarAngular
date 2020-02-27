@@ -1,0 +1,122 @@
+module.exports = [ 
+    {
+        "code": "27785297",
+        "date_MODIFICATION": "41296,4659143519",
+        "nom": "SEMESTRE 1",
+        "alias": "SEM1",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "16777088",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "2"
+      },
+      {
+        "code": "27785298",
+        "date_MODIFICATION": "41296,4660069444",
+        "nom": "SEMESTRE 2",
+        "alias": "SEM2",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "4227327",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "2"
+      },
+      {
+        "code": "27785299",
+        "date_MODIFICATION": "41296,4658333333",
+        "nom": "ANNUEL",
+        "alias": "ANNUEL",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "8421376",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "2"
+      },
+      {
+        "code": "27785300",
+        "date_MODIFICATION": "41299,5677199074",
+        "nom": "L1",
+        "alias": "L1",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "16777215",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "1"
+      },
+      {
+        "code": "27785301",
+        "date_MODIFICATION": "41299,5678356482",
+        "nom": "L2",
+        "alias": "L2",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "16777215",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "1"
+      },
+      {
+        "code": "27785302",
+        "date_MODIFICATION": "41299,5679398148",
+        "nom": "L3",
+        "alias": "L3",
+        "commentaire": "",
+        "identifiant": "L3",
+        "couleur": "16777215",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "1"
+      },
+      {
+        "code": "27785303",
+        "date_MODIFICATION": "41299,5680208333",
+        "nom": "M1",
+        "alias": "M1",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "16777215",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "1"
+      },
+      {
+        "code": "27785304",
+        "date_MODIFICATION": "41299,5680902778",
+        "nom": "M2",
+        "alias": "M2",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "16777215",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "1"
+      },
+      {
+        "code": "27785305",
+        "date_MODIFICATION": "41299,5681712963",
+        "nom": "M3",
+        "alias": "M3",
+        "commentaire": "",
+        "identifiant": "",
+        "couleur": "16777215",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "1"
+      },
+      {
+        "code": "27785306",
+        "date_MODIFICATION": "41299,5746527778",
+        "nom": "LP",
+        "alias": "LP",
+        "commentaire": "Licence Pro",
+        "identifiant": "",
+        "couleur": "16777215",
+        "couleur_POLICE": "0",
+        "code_PROPRIETAIRE": "2",
+        "type_ELEMENT": "1"
+      }		
+];

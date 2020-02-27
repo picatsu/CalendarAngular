@@ -1,0 +1,43 @@
+{
+  "name": "api_socketio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "typings install --save",
+    "dev": "npm run clean && tsc && node build/app",
+    "start": "node index.js",
+    "clean": "rm -rf build"
+  },
+  "author": "achraf lahkiky",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^13.5.0",
+    "@types/node-fetch": "^2.5.4",
+    "async": "^3.1.0",
+    "express": "^4.16.4",
+    "fs": "0.0.1-security",
+    "nano": "^8.1.0",
+    "node-couchdb": "^1.3.0",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "rimraf": "^3.0.0",
+    "shelljs": "^0.8.3",
+    "socket.io": "^2.2.0",
+    "sync": "^0.2.5",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3",
+    "mongoose": "^5.6.4",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.2",
+    "typings": "latest"
+  }
+}

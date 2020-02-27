@@ -4,8 +4,10 @@ package com.bada.config;
 import com.bada.model.UN_TYPE_ACTIVITE;
 import com.bada.service.*;
 import com.bada.service.serviceIMPL.*;
+import com.mongodb.MongoClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
 @Configuration
 public class AppConfig {
@@ -80,6 +82,15 @@ public class AppConfig {
     @Bean
     public UNE_ZONE_DE_SALLE_SERVICE UNE_ZONE_DE_SALLE_SERVICEService() {
         return new UNE_ZONE_DE_SALLE_SERVICEIMPL();
+    }
+
+    public @Bean
+    MongoTemplate mongoTemplate() throws Exception {
+
+        MongoTemplate mongoTemplate =
+                new MongoTemplate(new MongoClient("127.0.0.1"),"bada");
+        return mongoTemplate;
+
     }
 
 
