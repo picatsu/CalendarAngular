@@ -35,11 +35,13 @@ import { PostComponent } from "./post/post.component";
 import { UpdateComponent } from "./update/update.component";
 import { DeleteComponent } from "./delete/delete.component";
 import { GetComponent } from "./get/get.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     DbComponentsRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule,

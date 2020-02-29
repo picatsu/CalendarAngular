@@ -18,16 +18,53 @@
   class="form-group col-sm-4"
   style="margin: 0 auto; align-self: center; width: 30%; margin-top: auto;"
 >
+  <div class="row" style="width: 200%;">
+    <div class="block">
+      <label class="switch switch-3d switch-primary">
+        <input type="checkbox" class="switch-input" checked />mongo
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+
+    <div class="block">
+      <label class="switch switch-3d switch-primary">
+        <input type="checkbox" class="switch-input" />couchdb
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+
+    <div class="block">
+      <label class="switch switch-3d switch-primary">
+        <input type="checkbox" class="switch-input" />cassandra
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+
+    <div class="block">
+      <label class="switch switch-3d switch-primary">
+        <input type="checkbox" class="switch-input" />neo4j
+        <span class="switch-slider"></span>
+      </label>
+    </div>
+  </div>
+  <br />
+  <br />
   <label for="ccyear">Year</label>
-  <select class="form-control" id="power" [(value)]="defaultclass" required>
-    <option *ngFor="let pow of listclass">{{pow}}</option>
-  </select>
-  <button
-    class="btn btn-primary pull-right"
-    (click)="setDefaultListClass(defaultclass)"
-  >
-    Search
-  </button>
+  <div class="row">
+    <div class="block">
+      <select
+        class="form-control"
+        #mySelect
+        (change)="setDefaultListClass(mySelect.value)"
+      >
+        <option class="option" *ngFor="let option of listclass" [value]="option"
+          >{{option}}</option
+        >
+      </select>
+    </div>
+  </div>
+
+  <br />
 </div>
 <div class="row text-center">
   <div class="col-md-4">
@@ -93,7 +130,7 @@
   <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"
     [viewDate]="viewDate"
-    [events]="events3"
+    [events]="events2"
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
@@ -102,9 +139,10 @@
   >
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
+    #month
     *ngSwitchCase="CalendarView.Week"
     [viewDate]="viewDate"
-    [events]="events3"
+    [events]="events2"
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
@@ -113,7 +151,7 @@
   <mwl-calendar-day-view
     *ngSwitchCase="CalendarView.Day"
     [viewDate]="viewDate"
-    [events]="events3"
+    [events]="events2"
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"

@@ -2,7 +2,9 @@ import {
   Component,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  ElementRef,
+  Input
 } from "@angular/core";
 import {
   startOfDay,
@@ -17,6 +19,7 @@ import {
 } from "date-fns";
 import { Subject } from "rxjs";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -26,6 +29,7 @@ import {
 import { DashboardService } from "../service/dashboard.service";
 import { formatDate } from "@angular/common";
 import { CustomSeance } from "../model/customSeance";
+import { Un_Etudiant } from "../model/un_etudiant";
 
 const colors: any = {
   red: {
@@ -39,6 +43,14 @@ const colors: any = {
   yellow: {
     primary: "#e3bc08",
     secondary: "#FDF1BA"
+  },
+  violet: {
+    primary: "#d4e308",
+    secondary: "#DAA520"
+  },
+  green: {
+    primary: "#8be308",
+    secondary: "#90EE90"
   }
 };
 
@@ -50,6 +62,8 @@ const colors: any = {
 })
 export class MyCalendarComponent {
   @ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
+  @ViewChild("month") myId: ElementRef;
+  @Input() dayEndHour: number = 9;
 
   modalData: {
     action: string;
@@ -164,7 +178,6 @@ export class MyCalendarComponent {
     "m2bss_bio",
     "m2bss_math"
   ];
-  events3 = this.events2;
   defaultclass = this.listclass[0];
   testElement = {};
   view: CalendarView = CalendarView.Week;
@@ -172,37 +185,67 @@ export class MyCalendarComponent {
   viewDate: Date = new Date("2013-11-04T09:15:00.000Z");
   refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = true;
+  public loading = false;
 
   constructor(private modal: NgbModal, private dashService: DashboardService) {
     this.loadData();
   }
 
   loadData() {
+    this.events2 = [];
+    this.loading = true;
     this.dashService
       .getCustomSeance(this.defaultclass)
       .subscribe((val: CustomSeance[]) => {
         console.log("raw", val);
         val.forEach(x => {
-          this.events3.push({
+          this.events2.push({
             start: new Date(x.formatedDate),
             end: new Date(x.formatedDateEnd),
             title:
               "<center> <Strong>" +
               x.nomMatiere +
               "</Strong> <br />" +
-              x.nomProf +
-              "<br />Salle: " +
-              x.nomSalle +
+              this.hideIfNull("", x.nomProf) +
+              "<br />  " +
+              this.hideIfNull("Salle: ", x.nomSalle) +
               " </center> ",
-            color: colors.yellow
+            color: this.selectColor(x.nomMatiere)
           });
         });
-        console.log(this.events3);
+        this.loading = false;
+        console.log(this.events2);
       });
+  }
+  hideIfNull(element: string, value: string) {
+    if (value == "null" || value == null) {
+      return "";
+    }
+    return element + value;
+  }
+
+  selectColor(value: string) {
+    if (value.includes("CM")) {
+      return colors.blue;
+    }
+    if (value.includes("DS") || value.includes("EXAMEN")) {
+      return colors.red;
+    }
+    if (value.includes("CM")) {
+      return colors.blue;
+    }
+    if (value.includes("TP")) {
+      return colors.violet;
+    }
+    if (value.includes("TD")) {
+      return colors.green;
+    }
+    return colors.yellow;
   }
   public setDefaultListClass(value: string) {
     console.log("default", value);
     this.defaultclass = value;
+    this.events2 = [];
     this.loadData();
   }
 

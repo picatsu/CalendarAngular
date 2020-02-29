@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.*;
 
 
@@ -135,7 +136,8 @@ public class GeneralController {
                             @RequestParam(required = false) String value  ) throws Exception {
         String lien = urlMap.get(dbName)+"api/"+dbName+"/customcontroller/getseance?value="+value;
         System.out.println(lien);
-        return  new ResponseEntity<>( rest.getForObject(lien, Object.class), HttpStatus.OK);
+        URL myURL = new URL( lien);
+        return  new ResponseEntity<>( rest.getForObject( myURL.toURI()  , Object.class), HttpStatus.OK);
     }
 
 
