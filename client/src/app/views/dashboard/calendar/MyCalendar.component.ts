@@ -25,6 +25,7 @@ import {
 } from "angular-calendar";
 import { DashboardService } from "../service/dashboard.service";
 import { formatDate } from "@angular/common";
+import { CustomSeance } from "../model/customSeance";
 
 const colors: any = {
   red: {
@@ -163,17 +164,46 @@ export class MyCalendarComponent {
     "m2bss_bio",
     "m2bss_math"
   ];
-
+  events3 = this.events2;
+  defaultclass = this.listclass[0];
   testElement = {};
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
-  viewDate: Date = new Date();
+  viewDate: Date = new Date("2013-11-04T09:15:00.000Z");
   refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = true;
 
   constructor(private modal: NgbModal, private dashService: DashboardService) {
-    dashService.getD().subscribe(val => console.log(val));
-    console.log(this.events2);
+    this.loadData();
+  }
+
+  loadData() {
+    this.dashService
+      .getCustomSeance(this.defaultclass)
+      .subscribe((val: CustomSeance[]) => {
+        console.log("raw", val);
+        val.forEach(x => {
+          this.events3.push({
+            start: new Date(x.formatedDate),
+            end: new Date(x.formatedDateEnd),
+            title:
+              "<center> <Strong>" +
+              x.nomMatiere +
+              "</Strong> <br />" +
+              x.nomProf +
+              "<br />Salle: " +
+              x.nomSalle +
+              " </center> ",
+            color: colors.yellow
+          });
+        });
+        console.log(this.events3);
+      });
+  }
+  public setDefaultListClass(value: string) {
+    console.log("default", value);
+    this.defaultclass = value;
+    this.loadData();
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

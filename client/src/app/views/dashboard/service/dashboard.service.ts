@@ -12,4 +12,10 @@ export class DashboardService {
       "http://localhost:9090/api/getelodie?dbName=mongo&value=l1_gr7"
     );
   }
+
+  getCustomSeance(value: string) {
+    return this.http.get(
+      "http://localhost:9090/api/getseance?dbName=mongo&value=" + value
+    );
+  }
 }

@@ -19,9 +19,15 @@
   style="margin: 0 auto; align-self: center; width: 30%; margin-top: auto;"
 >
   <label for="ccyear">Year</label>
-  <select class="form-control" id="power" required>
-    <option *ngFor="let pow of listclass" [value]="pow">{{pow}}</option>
+  <select class="form-control" id="power" [(value)]="defaultclass" required>
+    <option *ngFor="let pow of listclass">{{pow}}</option>
   </select>
+  <button
+    class="btn btn-primary pull-right"
+    (click)="setDefaultListClass(defaultclass)"
+  >
+    Search
+  </button>
 </div>
 <div class="row text-center">
   <div class="col-md-4">
@@ -87,7 +93,7 @@
   <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"
     [viewDate]="viewDate"
-    [events]="events2"
+    [events]="events3"
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
@@ -98,7 +104,7 @@
   <mwl-calendar-week-view
     *ngSwitchCase="CalendarView.Week"
     [viewDate]="viewDate"
-    [events]="events2"
+    [events]="events3"
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
@@ -107,7 +113,7 @@
   <mwl-calendar-day-view
     *ngSwitchCase="CalendarView.Day"
     [viewDate]="viewDate"
-    [events]="events2"
+    [events]="events3"
     [refresh]="refresh"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"

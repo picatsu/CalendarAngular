@@ -117,7 +117,26 @@ public class GeneralController {
 
     }
 
+    @GetMapping("/loadseance")
+    @CrossOrigin
+    public Object getLoadSeance(@RequestParam(required = false) String dbName,
+                                @RequestParam(required = false) String value ) throws Exception {
 
+        String lien = urlMap.get(dbName)+"/api/"+dbName+"/customcontroller/loadseance";
+        System.out.println(lien);
+        return  new ResponseEntity<>( rest.getForObject(lien, Object.class), HttpStatus.OK);
+
+
+    }
+
+    @GetMapping("/getseance")
+    @CrossOrigin
+    public Object getseance(@RequestParam(required = false) String dbName,
+                            @RequestParam(required = false) String value  ) throws Exception {
+        String lien = urlMap.get(dbName)+"api/"+dbName+"/customcontroller/getseance?value="+value;
+        System.out.println(lien);
+        return  new ResponseEntity<>( rest.getForObject(lien, Object.class), HttpStatus.OK);
+    }
 
 
     <T>List<T> toArrayList(T[] Tableau){

@@ -34,6 +34,7 @@ public class CustomSeance {
     public CustomSeance() {
 
     }
+
     private String formatedendDate(String date, String heure, String duree){
         char[] datedebut = this.formatedDate.toCharArray();
         int cpt = 0;
@@ -68,6 +69,12 @@ public class CustomSeance {
         String formatedheureaAjouter = "";
         String formatedminuteaAjouter = "";
 
+        if(minuteAajouter >=60){
+            minuteAajouter -= 60;
+            heureAajouter += 1;
+        }
+
+
         if(heureAajouter < 10 ){
             formatedheureaAjouter = "0"+ Integer.toString(heureAajouter);
         } if(heureAajouter >= 10 ){
@@ -83,10 +90,6 @@ public class CustomSeance {
         System.out.println("date arrive : "+ formatedheureaAjouter + " minutes " +formatedminuteaAjouter );
 
 
-        if(minuteAajouter >=60){
-            minuteAajouter -= 60;
-            heureAajouter += 1;
-        }
 
         String newdate = "";
         for(int i = 0; i<cpt; i++){
@@ -101,6 +104,22 @@ public class CustomSeance {
     private String formateDate(String date, String heure, String duree){
         char[] depart = heure.toCharArray();
         String annee;
+        // "2013-9-9T08:30:00"  =>   "2013-09-09T08:30:00"
+
+        String[] newdate = date.split("-");
+        String anneNumber = newdate[0];
+        String moisNumber = newdate[1];
+        String jourNumber = newdate[2];
+
+
+        if(Integer.parseInt(moisNumber) < 10 ){
+            moisNumber = "0"+moisNumber;
+        }
+        if(Integer.parseInt(jourNumber) < 10 ){
+            jourNumber = "0"+jourNumber;
+        }
+        date = anneNumber+"-"+moisNumber+"-"+jourNumber;
+
         if(depart.length > 3 ) {
             annee = date + "T"+depart[0]+depart[1]+":"+depart[2]+depart[3]+":00";
         }
