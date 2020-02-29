@@ -23,7 +23,7 @@ public class UN_NIVEAU_SERVICEIMPL implements UN_NIVEAU_SERVICE {
 
     @Override
     public Collection<UN_NIVEAU> getAllUN_NIVEAU() {
-        return dao.findAll();
+        return (Collection<UN_NIVEAU>) dao.findAll();
     }
 
 

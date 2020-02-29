@@ -20,7 +20,7 @@ public class UNE_ZONE_DE_SALLE_SERVICEIMPL implements UNE_ZONE_DE_SALLE_SERVICE 
 
     @Override
     public Collection<UNE_ZONE_DE_SALLE> getAllUNE_ZONE_DE_SALLE() {
-        return dao.findAll();
+        return (Collection<UNE_ZONE_DE_SALLE>) dao.findAll();
     }
 
 

@@ -20,7 +20,7 @@ public class UN_CNU_SERVICEIMPL implements UN_CNU_SERVICE {
 
     @Override
     public Collection<UN_CNU> getAllUN_CNU() {
-        return dao.findAll();
+        return (Collection<UN_CNU>) dao.findAll();
     }
 
 

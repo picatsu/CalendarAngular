@@ -5,12 +5,40 @@ import com.bada.model.UN_TYPE_ACTIVITE;
 import com.bada.service.*;
 import com.bada.service.serviceIMPL.*;
 import com.mongodb.MongoClient;
+import org.neo4j.ogm.config.Configuration.Builder;
+import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.neo4j.repository.config.EnableNeo4jRepositories;
+import org.springframework.data.neo4j.transaction.Neo4jTransactionManager;
 
 @Configuration
+@EnableNeo4jRepositories(basePackages = "com.bada.dao")
 public class AppConfig {
+
+    public static final String URL =
+            System.getenv("NEO4J_URL") != null ?
+                    System.getenv("NEO4J_URL") : "http://neo4j:movies@localhost:7474";
+
+    @Bean
+    public org.neo4j.ogm.config.Configuration getConfiguration() {
+        org.neo4j.ogm.config.Configuration config = new Builder().uri(URL).build();
+        return config;
+    }
+
+    @Bean
+    public SessionFactory getSessionFactory() {
+        return new SessionFactory(getConfiguration(),
+                "com.bada.model");
+    }
+
+    @Bean
+    public Neo4jTransactionManager transactionManager() {
+        return new Neo4jTransactionManager(getSessionFactory());
+    }
+
+/////////////////////////
 
 
     @Bean
@@ -83,6 +111,8 @@ public class AppConfig {
     public UNE_ZONE_DE_SALLE_SERVICE UNE_ZONE_DE_SALLE_SERVICEService() {
         return new UNE_ZONE_DE_SALLE_SERVICEIMPL();
     }
+
+
 
     public @Bean
     MongoTemplate mongoTemplate() throws Exception {

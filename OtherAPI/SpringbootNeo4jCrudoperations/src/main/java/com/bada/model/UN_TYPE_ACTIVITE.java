@@ -1,9 +1,10 @@
 package com.bada.model;
 
+import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection= "UN_TYPE_ACTIVITE")
+@NodeEntity
 public class UN_TYPE_ACTIVITE {
 
 

@@ -19,7 +19,7 @@ public class UNE_SEANCE_SERVICEIMPL implements UNE_SEANCE_SERVICE {
 
     @Override
     public Collection<UNE_SEANCE> getAllUNE_SEANCE() {
-        return dao.findAll();
+        return (Collection<UNE_SEANCE>) dao.findAll();
     }
 
     @Override

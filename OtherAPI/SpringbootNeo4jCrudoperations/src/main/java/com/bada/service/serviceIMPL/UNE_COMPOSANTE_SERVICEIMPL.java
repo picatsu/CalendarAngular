@@ -23,7 +23,7 @@ public class UNE_COMPOSANTE_SERVICEIMPL implements UNE_COMPOSANTE_SERVICE {
 
     @Override
     public Collection<UNE_COMPOSANTE> getAllUNE_COMPOSANTE() {
-        return dao.findAll();
+        return (Collection<UNE_COMPOSANTE>) dao.findAll();
     }
 
     @Override

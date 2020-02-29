@@ -20,7 +20,8 @@ public class UN_ETUDIANT_SERVICEIMPL implements UN_ETUDIANT_SERVICE {
 
     @Override
     public Collection<UN_ETUDIANT> getAllUN_ETUDIANT() {
-        return dao.findAll();
+
+        return (Collection<UN_ETUDIANT>) dao.findAll();
     }
 
 

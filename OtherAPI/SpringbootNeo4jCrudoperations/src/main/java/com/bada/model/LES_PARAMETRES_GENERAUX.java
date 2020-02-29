@@ -1,10 +1,11 @@
 package com.bada.model;
 
 import com.bada.model.utils.LES_CONGES;
+import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection= "LES_PARAMETRES_GENERAUX")
+@NodeEntity
 public class LES_PARAMETRES_GENERAUX {
     @Id
     private int id;

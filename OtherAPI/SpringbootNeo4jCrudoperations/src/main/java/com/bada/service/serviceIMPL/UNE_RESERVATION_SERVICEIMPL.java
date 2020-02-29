@@ -23,7 +23,7 @@ public class UNE_RESERVATION_SERVICEIMPL implements UNE_RESERVATION_SERVICE {
 
     @Override
     public Collection<UNE_RESERVATION> getAllUNE_RESERVATION() {
-        return dao.findAll();
+        return (Collection<UNE_RESERVATION>) dao.findAll();
     }
 
     @Override

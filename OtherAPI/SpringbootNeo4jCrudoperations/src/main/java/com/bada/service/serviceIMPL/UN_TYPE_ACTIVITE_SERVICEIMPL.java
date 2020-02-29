@@ -25,7 +25,8 @@ public class UN_TYPE_ACTIVITE_SERVICEIMPL implements UN_TYPE_ACTIVITE_SERVICE {
 
     @Override
     public Collection<UN_TYPE_ACTIVITE> getAllUN_TYPE_ACTIVITE() {
-        return dao.findAll();
+
+        return (Collection<UN_TYPE_ACTIVITE>) dao.findAll();
     }
 
     @Override

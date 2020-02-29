@@ -24,7 +24,8 @@ public class LES_PARAMETRES_GENERAUX_SERVICEIMPL implements LES_PARAMETRES_GENER
 
     @Override
     public Collection<LES_PARAMETRES_GENERAUX> getAllLES_PARAMETRES_GENERAUX() {
-        return dao.findAll();
+
+        return (Collection<LES_PARAMETRES_GENERAUX>) dao.findAll();
     }
 
     @Override

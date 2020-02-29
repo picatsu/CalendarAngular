@@ -21,7 +21,7 @@ public class UN_GRADE_SERVICEIMPL implements UN_GRADE_SERVICE {
 
     @Override
     public Collection<UN_GRADE> getAllUN_GRADE() {
-        return dao.findAll();
+        return (Collection<UN_GRADE>) dao.findAll();
     }
 
 

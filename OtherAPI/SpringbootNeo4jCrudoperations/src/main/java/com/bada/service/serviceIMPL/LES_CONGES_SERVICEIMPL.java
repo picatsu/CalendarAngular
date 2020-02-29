@@ -19,7 +19,7 @@ public class LES_CONGES_SERVICEIMPL implements LES_CONGES_SERVICE {
 
     @Override
     public Collection<LES_CONGES> getAllLES_CONGES() {
-        return dao.findAll();
+        return (Collection<LES_CONGES>) dao.findAll();
     }
 
     @Override

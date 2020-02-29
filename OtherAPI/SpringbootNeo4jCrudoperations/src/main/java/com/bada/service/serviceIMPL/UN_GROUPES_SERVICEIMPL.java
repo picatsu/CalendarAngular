@@ -22,7 +22,8 @@ public class UN_GROUPES_SERVICEIMPL implements UN_GROUPES_SERVICE {
 
     @Override
     public Collection<UN_GROUPES> getAllUN_GROUPES() {
-        return dao.findAll();
+
+        return (Collection<UN_GROUPES>) dao.findAll();
     }
 
     @Override

@@ -20,7 +20,8 @@ public class UN_ENSEIGNEMENT_SERVICEIMPL implements UN_ENSEIGNEMENT_SERVICE {
 
     @Override
     public Collection<UN_ENSEIGNEMENT> getAllUN_ENSEIGNEMENT() {
-        return dao.findAll();
+
+        return (Collection<UN_ENSEIGNEMENT>) dao.findAll();
     }
 
     @Override

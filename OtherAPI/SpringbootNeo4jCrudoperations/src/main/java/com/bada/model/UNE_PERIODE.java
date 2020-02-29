@@ -2,10 +2,11 @@ package com.bada.model;
 
 
 import com.bada.model.utils.UNE_PERIODE_CONGES;
+import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection= "UNE_PERIODE")
+@NodeEntity
 public class UNE_PERIODE {
 
     @Id

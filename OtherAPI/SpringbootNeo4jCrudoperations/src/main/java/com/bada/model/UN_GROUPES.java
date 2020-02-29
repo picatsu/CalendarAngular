@@ -2,12 +2,13 @@ package com.bada.model;
 
 import com.bada.model.utils.LES_CONGES;
 import com.bada.model.utils.UN_CODE_ETUDIANT;
+import org.neo4j.ogm.annotation.NodeEntity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Arrays;
 
-@Document(collection= "UN_GROUPES")
+@NodeEntity
 public class UN_GROUPES {
 
 

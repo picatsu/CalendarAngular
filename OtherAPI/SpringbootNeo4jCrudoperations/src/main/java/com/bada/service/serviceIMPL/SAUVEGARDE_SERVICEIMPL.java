@@ -21,7 +21,8 @@ public class SAUVEGARDE_SERVICEIMPL implements SAUVEGARDE_SERVICE {
 
     @Override
     public Collection<SAUVEGARDE> getAllSAUVEGARDE() {
-        return dao.findAll();
+        return
+                (Collection<SAUVEGARDE>) dao.findAll();
     }
 
     @Override

@@ -20,7 +20,7 @@ public class UNE_MATIERE_SERVICEIMPL implements UNE_MATIERE_SERVICE {
 
     @Override
     public Collection<UNE_MATIERE> getAllUNE_MATIERE() {
-        return dao.findAll();
+        return (Collection<UNE_MATIERE>) dao.findAll();
     }
 
 

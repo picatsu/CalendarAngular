@@ -23,7 +23,7 @@ public class UNE_JOURNEE_SERVICEIMPL implements UNE_JOURNEE_SERVICE {
 
     @Override
     public Collection<UNE_JOURNEE> getAllUNE_JOURNEE() {
-        return dao.findAll();
+        return (Collection<UNE_JOURNEE>) dao.findAll();
     }
 
     @Override

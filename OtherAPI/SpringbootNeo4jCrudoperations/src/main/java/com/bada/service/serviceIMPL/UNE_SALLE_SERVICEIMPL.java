@@ -20,7 +20,7 @@ public class UNE_SALLE_SERVICEIMPL implements UNE_SALLE_SERVICE {
 
     @Override
     public Collection<UNE_SALLE> getAllUNE_SALLE() {
-        return dao.findAll();
+        return (Collection<UNE_SALLE>) dao.findAll();
     }
 
     @Override

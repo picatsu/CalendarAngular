@@ -22,7 +22,7 @@ public class UN_PROFESSEUR_SERVICEIMPL implements UN_PROFESSEUR_SERVICE {
 
     @Override
     public Collection<UN_PROFESSEUR> getAllUN_PROFESSEUR() {
-        return dao.findAll();
+        return (Collection<UN_PROFESSEUR>) dao.findAll();
     }
 
 

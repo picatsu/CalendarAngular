@@ -19,7 +19,7 @@ public class UNE_PERIODE_SERVICEIMPL implements UNE_PERIODE_SERVICE {
 
     @Override
     public Collection<UNE_PERIODE> getAllUNE_PERIODE() {
-        return dao.findAll();
+        return (Collection<UNE_PERIODE>) dao.findAll();
     }
 
     @Override
