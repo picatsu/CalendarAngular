@@ -1,37 +1,40 @@
 package com.bada.model.utils.forFront;
 
+import com.bada.model.UNE_SALLE;
+import com.bada.model.UN_GROUPES;
+import com.bada.model.UN_PROFESSEUR;
 import com.bada.model.utils.UNE_RESSOURCE;
-import org.springframework.data.util.Pair;
 
 import java.util.*;
 
 public class CustomSeance {
 
-    private String date;
-    private String heure;
-    private String duree;
+
     private String nomFiliere;
     private String nomMatiere;
     private String formatedDate;
     private String formatedDateEnd;
-    private String nomprof;
-    private String prenomprof;
-    private String prenom2prof;
-    private List<String> listeEtudiant = new LinkedList<>();
+    private String nomProf;
+    private String prenomProf;
+    private String prenomProf2;
+    private String nomSalle;
+    private String[] listEtudiants;
+    private String idSalle;
+    private String idGroupe;
+    private String idProf;
+    private String idEnseignement;
 
-    private UNE_RESSOURCE salle = new UNE_RESSOURCE();
-    private UNE_RESSOURCE groupe = new UNE_RESSOURCE();
-    private UNE_RESSOURCE prof = new UNE_RESSOURCE();
+
 
     public CustomSeance(String date, String heure, String duree) {
-        this.date = date;
-        this.heure = heure;
-        this.duree = duree;
-        this.formatedDate = this.formateDate();
-        this.formatedDateEnd = this.formatedendDate();
-    }
 
-    private String formatedendDate(){
+        this.formatedDate = this.formateDate( date,  heure,  duree);
+        this.formatedDateEnd = this.formatedendDate( date,  heure,  duree);
+    }
+    public CustomSeance() {
+
+    }
+    private String formatedendDate(String date, String heure, String duree){
         char[] datedebut = this.formatedDate.toCharArray();
         int cpt = 0;
         for(int i=0; i<datedebut.length; i++){
@@ -41,8 +44,7 @@ public class CustomSeance {
         }
         int heureAajouter  = 0;
         int minuteAajouter = 0;
-        char[] dureee = this.duree.toCharArray();
-        System.out.println("date debut : "+ formatedDate );
+        char[] dureee = duree.toCharArray();
 
         if(dureee.length > 3) {
            heureAajouter =
@@ -56,7 +58,6 @@ public class CustomSeance {
         else{
             heureAajouter = Integer.parseInt(String.valueOf(datedebut[cpt+1])+String.valueOf(datedebut[cpt+2]))
                     + Integer.parseInt("0"+String.valueOf(dureee[0]));
-            System.out.println("dddd "+ duree) ;
             minuteAajouter = Integer.parseInt(
                     String.valueOf(datedebut[cpt+4])
                             +String.valueOf(datedebut[cpt+5]))
@@ -64,6 +65,23 @@ public class CustomSeance {
                             String.valueOf(dureee[1])+
                                     String.valueOf(dureee[2]));
         }
+        String formatedheureaAjouter = "";
+        String formatedminuteaAjouter = "";
+
+        if(heureAajouter < 10 ){
+            formatedheureaAjouter = "0"+ Integer.toString(heureAajouter);
+        } if(heureAajouter >= 10 ){
+            formatedheureaAjouter = Integer.toString(heureAajouter);
+        }
+
+        if(minuteAajouter < 10 ){
+            formatedminuteaAjouter = "0"+ Integer.toString(minuteAajouter);
+        }if(minuteAajouter >= 10){
+            formatedminuteaAjouter = Integer.toString(minuteAajouter);
+        }
+
+        System.out.println("date arrive : "+ formatedheureaAjouter + " minutes " +formatedminuteaAjouter );
+
 
         if(minuteAajouter >=60){
             minuteAajouter -= 60;
@@ -74,82 +92,100 @@ public class CustomSeance {
         for(int i = 0; i<cpt; i++){
             newdate+=datedebut[i];
         }
-        newdate +="T"+ Integer.toString(heureAajouter)+":"+Integer.toString(minuteAajouter);
+        newdate +="T"+ formatedheureaAjouter +":"+formatedminuteaAjouter;
 
         return newdate+":00";
 
     }
 
-    private String formateDate(){
+    private String formateDate(String date, String heure, String duree){
         char[] depart = heure.toCharArray();
         String annee;
         if(depart.length > 3 ) {
-            annee = this.date + "T"+depart[0]+depart[1]+":"+depart[2]+depart[3]+":00";
+            annee = date + "T"+depart[0]+depart[1]+":"+depart[2]+depart[3]+":00";
         }
         else{
-            annee = this.date + "T0"+depart[0]+":"+depart[1]+depart[2]+":00";
+            annee = date + "T0"+depart[0]+":"+depart[1]+depart[2]+":00";
         }
 
         return annee;
 
     }
 
-    public String getNomprof() {
-        return nomprof;
+    public String getNomProf() {
+        return nomProf;
     }
 
-    public void setNomprof(String nomprof) {
-        this.nomprof = nomprof;
+    public void setNomProf(String nomProf) {
+        this.nomProf = nomProf;
     }
 
-    public String getPrenomprof() {
-        return prenomprof;
+    public String getPrenomProf() {
+        return prenomProf;
     }
 
-    public void setPrenomprof(String prenomprof) {
-        this.prenomprof = prenomprof;
+    public void setPrenomProf(String prenomProf) {
+        this.prenomProf = prenomProf;
     }
 
-    public String getPrenom2prof() {
-        return prenom2prof;
+    public String getPrenomProf2() {
+        return prenomProf2;
     }
 
-    public void setPrenom2prof(String prenom2prof) {
-        this.prenom2prof = prenom2prof;
+    public void setPrenomProf2(String prenomProf2) {
+        this.prenomProf2 = prenomProf2;
     }
 
-    public List<String> getListeEtudiant() {
-        return listeEtudiant;
+    public String getNomSalle() {
+        return nomSalle;
+    }
+
+    public void setNomSalle(String nomSalle) {
+        this.nomSalle = nomSalle;
+    }
+
+    public String[] getListEtudiants() {
+        return listEtudiants;
+    }
+
+    public void setListEtudiants(String[] listEtudiants) {
+        this.listEtudiants = listEtudiants;
+    }
+
+    public String getIdEnseignement() {
+        return idEnseignement;
+    }
+
+    public void setIdEnseignement(String idEnseignement) {
+        this.idEnseignement = idEnseignement;
     }
 
 
-    public void setListeEtudiant(List<String> listeEtudiant) {
-        this.listeEtudiant = listeEtudiant;
+
+    public String getIdSalle() {
+        return idSalle;
     }
 
-    public UNE_RESSOURCE getProf() {
-        return prof;
+    public void setIdSalle(String idSalle) {
+        this.idSalle = idSalle;
     }
 
-    public void setProf(UNE_RESSOURCE prof) {
-        this.prof =prof;
+    public String getIdGroupe() {
+        return idGroupe;
     }
 
-    public UNE_RESSOURCE getSalle() {
-        return salle;
+    public void setIdGroupe(String idGroupe) {
+        this.idGroupe = idGroupe;
     }
 
-    public void setSalle(UNE_RESSOURCE salle) {
-        this.salle = salle;
+    public String getIdProf() {
+        return idProf;
     }
 
-    public UNE_RESSOURCE getGroupe() {
-        return groupe;
+    public void setIdProf(String idProf) {
+        this.idProf = idProf;
     }
 
-    public void setGroupe(UNE_RESSOURCE groupe) {
-        this.groupe = groupe;
-    }
 
     public String getFormatedDate() {
         return formatedDate;
@@ -159,29 +195,6 @@ public class CustomSeance {
         this.formatedDate = formatedDate;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getHeure() {
-        return heure;
-    }
-
-    public void setHeure(String heure) {
-        this.heure = heure;
-    }
-
-    public String getDuree() {
-        return duree;
-    }
-
-    public void setDuree(String duree) {
-        this.duree = duree;
-    }
 
     public String getNomFiliere() {
         return nomFiliere;
@@ -210,20 +223,15 @@ public class CustomSeance {
     @Override
     public String toString() {
         return "CustomSeance{" +
-                "date='" + date + '\'' +
-                ", heure='" + heure + '\'' +
-                ", duree='" + duree + '\'' +
-                ", nomFiliere='" + nomFiliere + '\'' +
+                "nomFiliere='" + nomFiliere + '\'' +
                 ", nomMatiere='" + nomMatiere + '\'' +
                 ", formatedDate='" + formatedDate + '\'' +
                 ", formatedDateEnd='" + formatedDateEnd + '\'' +
-                ", nomprof='" + nomprof + '\'' +
-                ", prenomprof='" + prenomprof + '\'' +
-                ", prenom2prof='" + prenom2prof + '\'' +
-                ", listeEtudiant=" + listeEtudiant +
-                ", salle=" + salle +
-                ", groupe=" + groupe +
-                ", prof=" + prof +
+
+                ", idSalle='" + idSalle + '\'' +
+                ", idGroupe='" + idGroupe + '\'' +
+                ", idProf='" + idProf + '\'' +
+
                 '}';
     }
 }

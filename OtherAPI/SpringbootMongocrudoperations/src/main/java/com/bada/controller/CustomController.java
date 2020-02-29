@@ -7,11 +7,15 @@ import com.bada.model.utils.forFront.CustomSeance;
 import com.bada.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/customcontroller")
@@ -62,88 +66,108 @@ public class CustomController {
 
     @GetMapping("/loadseance")
     @CrossOrigin
-    public List<CustomSeance> getLoadSeance(@RequestParam(required = false) String value) throws Exception {
-
-
+    public List<CustomSeance> getLoadSeance() throws Exception {
 
         Collection<UN_GROUPES> colGroupe = groupes_service.getAllUN_GROUPES();
         Collection<UN_ENSEIGNEMENT> colEnsei = enseignement_service.getAllUN_ENSEIGNEMENT();
 
         List<CustomSeance> customseance = new ArrayList<>();
         long debut = System.currentTimeMillis();
+
         for(UNE_SEANCE seance: seance_service.getAllUNE_SEANCE()){
 
             CustomSeance q = new CustomSeance(seance.getDATE(), seance.getHEURE(), seance.getDUREE());
             for(UNE_RESSOURCE uneressource: seance.getLES_RESSOURCES()){
 
-                    q.setSalle(new UNE_RESSOURCE("emptytype",uneressource.getCODE_RESSOURCE()));
-                    q.setGroupe( new UNE_RESSOURCE("emptytype", uneressource.getCODE_RESSOURCE()) );
-                    q.setProf( new UNE_RESSOURCE("emptytype", uneressource.getCODE_RESSOURCE()) );
+                try{
+                    if(uneressource.getTYPE().equals("SALLE")) {
+                        q.setIdSalle(uneressource.getCODE_RESSOURCE());
+                    }
+                }catch( Exception e ){
+
+                }
+                try{
+                    if( uneressource.getTYPE().equals("GROUPE")) {
+                        q.setIdGroupe(uneressource.getCODE_RESSOURCE());
+                    }
+                }catch( Exception e ){
+
+                }
+                try{
+                    if( uneressource.getTYPE().equals("PROF")){
+                        q.setIdProf(uneressource.getCODE_RESSOURCE());
+                    }
+                }catch( Exception e ){
+
+                }
+
+
+
+                q.setIdEnseignement( seance.getENSEIGNEMENT()  );
             }
 
             customseance.add(q);
         }
-        System.out.println(" 1  "+ (System.currentTimeMillis()-debut));
+        System.out.println( "groupe trouve "+
+                mongoTemplate.findOne(new Query(where("CODE").is(
+                "15824245"
+        )), UN_GROUPES.class) ) ;
 
         //// G RECUPERER SEANCE => GO CHERCHER LES SALLES
             for(CustomSeance seance: customseance){
 
-                    for(UNE_SALLE salle : salle_service.getAllUNE_SALLE()){
-                        if(salle.getCODE().equals(seance.getSalle().getCODE_RESSOURCE())){
-                            seance.getSalle().setTYPE(salle.getALIAS());
-                            // NOM SALLES  from  SEANCE
-                        }
-                    }
-
-                System.out.println(" 2  "+ (System.currentTimeMillis()-debut));
-
-
-                    for(UN_GROUPES grp:  groupes_service.getAllUN_GROUPES()){
-                        if(grp.getCODE().equals(seance.getGroupe().getCODE_RESSOURCE())){
-                            seance.getGroupe().setTYPE( grp.getALIAS()  );
-                            if( grp.getLES_ETUDIANTS_DU_GROUPE() != null  ){
-                                // seance.setListeEtudiant(this.transfom(grp.getLES_ETUDIANTS_DU_GROUPE()) );
-                            }
-
-                            // Alias group from POUR SEANCE.liste etudiants
-                        }
-                    }
-
-                System.out.println(" 3  "+ (System.currentTimeMillis()-debut));
-
-
-                    for(UN_PROFESSEUR grp: professeur_service.getAllUN_PROFESSEUR()){
-                        if(grp.getCODE().equals(seance.getProf().getCODE_RESSOURCE())){
-                            seance.getProf().setTYPE("validprof");
-                            seance.setNomprof( grp.getNOM()  );
-                            seance.setPrenomprof( grp.getPRENOM() );
-                            seance.setPrenomprof( grp.getPRENOM2() );
-                            //  infos prof POUR CHAQUE SEANCE from UN_PROFESSEUR
-                        }
-                    }
-
-
-
-            }
-        System.out.println(" 4  "+ (System.currentTimeMillis()-debut));
-
-        List<CustomSeance> customseanceRES = new ArrayList<>();
-
-            for(CustomSeance c : customseance){
-                if(c.getGroupe().getTYPE().equals(value) ){
-                    customseanceRES.add(c);
+                UNE_SALLE salle = mongoTemplate.findOne(new Query(where("CODE").is(seance.getIdSalle())), UNE_SALLE.class);
+                if (  salle != null ){
+                    seance.setNomSalle(salle.getNOM());
                 }
+
+                UN_GROUPES groupe = mongoTemplate.findOne(new Query(where("CODE").is(seance.getIdGroupe())), UN_GROUPES.class);
+                if (  groupe != null   ){
+                    seance.setNomFiliere(groupe.getALIAS());
+                    seance.setListEtudiants(groupe.getLES_ETUDIANTS_DU_GROUPE());
+                }
+
+
+                UN_PROFESSEUR prof = mongoTemplate.findOne(new Query(where("CODE").is(seance.getIdProf())), UN_PROFESSEUR.class);
+                if ( prof != null){
+                    seance.setNomProf( prof.getNOM() );
+                    seance.setPrenomProf( prof.getPRENOM() );
+                    seance.setPrenomProf2( prof.getPRENOM2() );
+
+
+                }
+
+                UN_ENSEIGNEMENT enseignement = mongoTemplate.findOne(new Query(where("CODE").is(seance.getIdEnseignement())), UN_ENSEIGNEMENT.class);
+
+                if ( enseignement != null ){
+                    seance.setNomMatiere( enseignement.getNOM());
+
+
+                }
+
+
+
+
+
+                /////////////
             }
+
+
+
 
         mongoTemplate.insert(customseance, CustomSeance.class);
-        return customseanceRES;
+        return customseance;
+
+
     }
 
     @GetMapping("/getseance")
     @CrossOrigin
     public List<CustomSeance> getseance(@RequestParam(required = false) String value) throws Exception {
-
-        return mongoTemplate.findAll(CustomSeance.class);
+        Query query = new Query();
+        query.addCriteria(Criteria.where("nomFiliere").is(value));
+       // List<CustomSeance> seance = mongoTemplate.find(query, CustomSeance.class);
+        return mongoTemplate.find(query, CustomSeance.class) ;
     }
 
     private List<String> transfom(String[] old){

@@ -168,4 +168,26 @@ public class UNE_SALLE {
     public void setTYPES_DE_LA_SALLE(String TYPES_DE_LA_SALLE) {
         this.TYPES_DE_LA_SALLE = TYPES_DE_LA_SALLE;
     }
+
+
+    @Override
+    public String toString() {
+        return "UNE_SALLE{" +
+                "id='" + id + '\'' +
+                ", CODE='" + CODE + '\'' +
+                ", DATE_MODIFICATION='" + DATE_MODIFICATION + '\'' +
+                ", NOM='" + NOM + '\'' +
+                ", ALIAS='" + ALIAS + '\'' +
+                ", IDENTIFIANT='" + IDENTIFIANT + '\'' +
+                ", COMMENTAIRE='" + COMMENTAIRE + '\'' +
+                ", COMPOSANTE='" + COMPOSANTE + '\'' +
+                ", CAPACITE='" + CAPACITE + '\'' +
+                ", SURFACE='" + SURFACE + '\'' +
+                ", COULEUR='" + COULEUR + '\'' +
+                ", COULEUR_POLICE='" + COULEUR_POLICE + '\'' +
+                ", CODE_PROPRIETAIRE='" + CODE_PROPRIETAIRE + '\'' +
+                ", CODE_ZONE='" + CODE_ZONE + '\'' +
+                ", TYPES_DE_LA_SALLE='" + TYPES_DE_LA_SALLE + '\'' +
+                '}';
+    }
 }
