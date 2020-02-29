@@ -72,7 +72,6 @@ public class CustomController {
         Collection<UN_ENSEIGNEMENT> colEnsei = enseignement_service.getAllUN_ENSEIGNEMENT();
 
         List<CustomSeance> customseance = new ArrayList<>();
-        long debut = System.currentTimeMillis();
 
         for(UNE_SEANCE seance: seance_service.getAllUNE_SEANCE()){
 
@@ -108,10 +107,6 @@ public class CustomController {
 
             customseance.add(q);
         }
-        System.out.println( "groupe trouve "+
-                mongoTemplate.findOne(new Query(where("CODE").is(
-                "15824245"
-        )), UN_GROUPES.class) ) ;
 
         //// G RECUPERER SEANCE => GO CHERCHER LES SALLES
             for(CustomSeance seance: customseance){
@@ -124,7 +119,7 @@ public class CustomController {
                 UN_GROUPES groupe = mongoTemplate.findOne(new Query(where("CODE").is(seance.getIdGroupe())), UN_GROUPES.class);
                 if (  groupe != null   ){
                     seance.setNomFiliere(groupe.getALIAS());
-                    seance.setListEtudiants(groupe.getLES_ETUDIANTS_DU_GROUPE());
+                   // seance.setListEtudiants(groupe.getLES_ETUDIANTS_DU_GROUPE());
                 }
 
 

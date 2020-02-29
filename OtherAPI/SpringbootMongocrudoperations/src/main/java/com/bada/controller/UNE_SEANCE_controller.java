@@ -2,15 +2,20 @@ package com.bada.controller;
 
 
 import com.bada.model.UNE_SEANCE;
+import com.bada.model.UN_PROFESSEUR;
 import com.bada.service.UNE_SEANCE_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UNE_SEANCE")
@@ -18,7 +23,8 @@ public class UNE_SEANCE_controller {
 
     @Autowired
     UNE_SEANCE_SERVICE serv;
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -36,9 +42,11 @@ public class UNE_SEANCE_controller {
     }
 
     @GetMapping(value= "/getbyid/{UNE_SEANCE-Id}")
-    public Optional<UNE_SEANCE> getById(@PathVariable(value= "UNE_SEANCE-Id") String Id) {
+    public UNE_SEANCE getById(@PathVariable(value= "UNE_SEANCE-Id") String Id) {
         logger.debug("Getting UNE_SEANCE with UNE_SEANCE-Id= {}.", Id);
-        return serv.findUNE_SEANCEById(Id);
+       //  return serv.findUNE_SEANCEById(Id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UNE_SEANCE.class);
+
     }
 
     @PutMapping(value= "/update/{UNE_SEANCE-Id}")

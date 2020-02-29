@@ -1,16 +1,21 @@
 package com.bada.controller;
 
+import com.bada.model.UNE_SALLE;
 import com.bada.model.UN_ENSEIGNEMENT;
 import com.bada.model.UN_ETUDIANT;
 import com.bada.service.UN_ETUDIANT_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UN_ETUDIANT")
@@ -18,6 +23,9 @@ public class UN_ETUDIANT_controller {
 
     @Autowired
     UN_ETUDIANT_SERVICE serv;
+
+    @Autowired
+    MongoTemplate mongoTemplate;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -38,9 +46,10 @@ public class UN_ETUDIANT_controller {
 
 
     @GetMapping(value= "/getbyid/{UN_ETUDIANT-Id}")
-    public Optional<UN_ETUDIANT> getById(@PathVariable(value= "UN_ETUDIANT-Id") String Id) {
+    public UN_ETUDIANT getById(@PathVariable(value= "UN_ETUDIANT-Id") String Id) {
         logger.debug("Getting UN_ETUDIANT with UN_ETUDIANT-Id= {}.", Id);
-        return serv.findUN_ETUDIANTById(Id);
+
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UN_ETUDIANT.class);
     }
 
     @PutMapping(value= "/update/{UN_ETUDIANT-Id}")

@@ -1,15 +1,20 @@
 package com.bada.controller;
 
 import com.bada.model.UN_CNU;
+import com.bada.model.UN_ETUDIANT;
 import com.bada.service.UN_CNU_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UN_CNU")
@@ -18,6 +23,8 @@ public class UN_CNU_controller {
     @Autowired
     UN_CNU_SERVICE serv;
 
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -37,9 +44,10 @@ public class UN_CNU_controller {
 
 
     @GetMapping(value= "/getbyid/{UN_CNU-id}")
-    public Optional<UN_CNU> getById(@PathVariable(value= "UN_CNU-id") String id) {
+    public UN_CNU getById(@PathVariable(value= "UN_CNU-id") String id) {
         logger.debug("Getting UN_CNU with UN_CNU-Id= {}.", id);
-        return serv.findUN_CNUById(id);
+        // return serv.findUN_CNUById(id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(id)), UN_CNU.class);
     }
 
     @PutMapping(value= "/update/{UN_CNU-Id}")

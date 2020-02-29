@@ -2,15 +2,20 @@ package com.bada.controller;
 
 
 import com.bada.model.UNE_MATIERE;
+import com.bada.model.UN_PROFESSEUR;
 import com.bada.service.UNE_MATIERE_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UNE_MATIERE")
@@ -18,7 +23,8 @@ public class UNE_MATIERE_controller {
 
     @Autowired
     UNE_MATIERE_SERVICE serv;
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -38,10 +44,12 @@ public class UNE_MATIERE_controller {
 
 
     @GetMapping(value= "/getbyid/{UNE_MATIERE-Id}")
-    public Optional<UNE_MATIERE> getById(@PathVariable(value= "UNE_MATIERE-Id") String Id) {
+    public UNE_MATIERE getById(@PathVariable(value= "UNE_MATIERE-Id") String Id) {
         logger.debug("Getting UNE_MATIERE with UNE_MATIERE-Id= {}.", Id);
         System.out.println(serv.findUNE_MATIEREById(Id));
-        return serv.findUNE_MATIEREById(Id);
+         // return serv.findUNE_MATIEREById(Id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UNE_MATIERE.class);
+
     }
 
     @PutMapping(value= "/update/{UNE_MATIERE-Id}")

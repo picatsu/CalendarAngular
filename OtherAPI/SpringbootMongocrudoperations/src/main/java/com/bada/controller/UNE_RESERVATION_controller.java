@@ -2,15 +2,20 @@ package com.bada.controller;
 
 
 import com.bada.model.UNE_RESERVATION;
+import com.bada.model.UN_PROFESSEUR;
 import com.bada.service.UNE_RESERVATION_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UNE_RESERVATION")
@@ -18,7 +23,8 @@ public class UNE_RESERVATION_controller {
 
     @Autowired
     UNE_RESERVATION_SERVICE serv;
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -36,9 +42,11 @@ public class UNE_RESERVATION_controller {
     }
 
     @GetMapping(value= "/getbyid/{UNE_RESERVATION-Id}")
-    public Optional<UNE_RESERVATION> getById(@PathVariable(value= "UNE_RESERVATION-Id") String Id) {
+    public UNE_RESERVATION getById(@PathVariable(value= "UNE_RESERVATION-Id") String Id) {
         logger.debug("Getting UNE_RESERVATION with UNE_RESERVATION-Id= {}.", Id);
-        return serv.findUNE_RESERVATIONById(Id);
+        //return serv.findUNE_RESERVATIONById(Id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UNE_RESERVATION.class);
+
     }
 
     @PutMapping(value= "/update/{UNE_RESERVATION-Id}")

@@ -5,16 +5,21 @@ package com.bada.controller;
 
 import com.bada.model.UN_NIVEAU;
 import com.bada.model.UN_NIVEAU;
+import com.bada.model.UN_PROFESSEUR;
 import com.bada.service.UN_NIVEAU_SERVICE;
 import com.bada.service.UN_NIVEAU_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UN_NIVEAU")
@@ -22,7 +27,8 @@ public class UN_NIVEAU_controller {
 
     @Autowired
     UN_NIVEAU_SERVICE serv;
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -40,9 +46,11 @@ public class UN_NIVEAU_controller {
     }
 
     @GetMapping(value= "/getbyid/{UN_NIVEAU-Id}")
-    public Optional<UN_NIVEAU> getById(@PathVariable(value= "UN_NIVEAU-Id") String Id) {
+    public UN_NIVEAU getById(@PathVariable(value= "UN_NIVEAU-Id") String Id) {
         logger.debug("Getting UN_NIVEAU with UN_NIVEAU-Id= {}.", Id);
-        return serv.findUN_NIVEAUById(Id);
+        //return serv.findUN_NIVEAUById(Id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UN_NIVEAU.class);
+
     }
 
     @PutMapping(value= "/update/{UN_NIVEAU-Id}")

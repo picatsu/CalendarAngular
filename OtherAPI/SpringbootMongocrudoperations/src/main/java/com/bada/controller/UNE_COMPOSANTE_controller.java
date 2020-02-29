@@ -2,15 +2,20 @@ package com.bada.controller;
 
 
 import com.bada.model.UNE_COMPOSANTE;
+import com.bada.model.UN_CNU;
 import com.bada.service.UNE_COMPOSANTE_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UNE_COMPOSANTE")
@@ -18,7 +23,8 @@ public class UNE_COMPOSANTE_controller {
 
     @Autowired
     UNE_COMPOSANTE_SERVICE serv;
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -37,9 +43,10 @@ public class UNE_COMPOSANTE_controller {
 
 
     @GetMapping(value= "/getbyid/{UNE_COMPOSANTE-Id}")
-    public Optional<UNE_COMPOSANTE> getById(@PathVariable(value= "UNE_COMPOSANTE-Id") String Id) {
+    public UNE_COMPOSANTE getById(@PathVariable(value= "UNE_COMPOSANTE-Id") String Id) {
         logger.debug("Getting UNE_COMPOSANTE with UNE_COMPOSANTE-Id= {}.", Id);
-        return serv.findUNE_COMPOSANTEById(Id);
+       // return serv.findUNE_COMPOSANTEById(Id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UNE_COMPOSANTE.class);
     }
 
     @PutMapping(value= "/update/{UNE_COMPOSANTE-Id}")

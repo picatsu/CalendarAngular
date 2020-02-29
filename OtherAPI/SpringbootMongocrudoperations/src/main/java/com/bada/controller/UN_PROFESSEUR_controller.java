@@ -1,16 +1,21 @@
 package com.bada.controller;
 
 
+import com.bada.model.UN_CNU;
 import com.bada.model.UN_PROFESSEUR;
 import com.bada.service.UN_PROFESSEUR_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UN_PROFESSEUR")
@@ -18,7 +23,8 @@ public class UN_PROFESSEUR_controller {
 
     @Autowired
     UN_PROFESSEUR_SERVICE serv;
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -36,9 +42,10 @@ public class UN_PROFESSEUR_controller {
     }
 
     @GetMapping(value= "/getbyid/{UN_PROFESSEUR-Id}")
-    public Optional<UN_PROFESSEUR> getById(@PathVariable(value= "UN_PROFESSEUR-Id") String Id) {
+    public UN_PROFESSEUR getById(@PathVariable(value= "UN_PROFESSEUR-Id") String Id) {
         logger.debug("Getting UN_PROFESSEUR with UN_PROFESSEUR-Id= {}.", Id);
-        return serv.findUN_PROFESSEURById(Id);
+        // return serv.findUN_PROFESSEURById(Id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UN_PROFESSEUR.class);
     }
 
     @PutMapping(value= "/update/{UN_PROFESSEUR-Id}")

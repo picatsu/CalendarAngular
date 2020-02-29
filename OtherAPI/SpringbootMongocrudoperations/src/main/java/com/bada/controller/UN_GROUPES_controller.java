@@ -2,15 +2,20 @@ package com.bada.controller;
 
 
 import com.bada.model.UN_GROUPES;
+import com.bada.model.UN_PROFESSEUR;
 import com.bada.service.UN_GROUPES_SERVICE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 @RestController
 @RequestMapping(value= "/api/mongo/UN_GROUPES")
@@ -18,7 +23,8 @@ public class UN_GROUPES_controller {
 
     @Autowired
     UN_GROUPES_SERVICE serv;
-
+    @Autowired
+    MongoTemplate mongoTemplate;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @PostMapping(value= "/create")
@@ -37,9 +43,11 @@ public class UN_GROUPES_controller {
 
 
     @GetMapping(value= "/getbyid/{UN_GROUPES-Id}")
-    public Optional<UN_GROUPES> getById(@PathVariable(value= "UN_GROUPES-Id") String Id) {
+    public UN_GROUPES getById(@PathVariable(value= "UN_GROUPES-Id") String Id) {
         logger.debug("Getting UN_GROUPES with UN_GROUPES-Id= {}.", Id);
-        return serv.findUN_GROUPESById(Id);
+       // return serv.findUN_GROUPESById(Id);
+        return mongoTemplate.findOne(new Query(where("CODE").is(Id)), UN_GROUPES.class);
+
     }
 
     @PutMapping(value= "/update/{UN_GROUPES-Id}")
