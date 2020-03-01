@@ -132,6 +132,7 @@ public class GeneralController {
 
     @GetMapping("/getseance")
     @CrossOrigin
+    // http://localhost:9090/api/getseance?dbName=mongo&value=l1_gr7
     public Object getseance(@RequestParam(required = false) String dbName,
                             @RequestParam(required = false) String value  ) throws Exception {
         String lien = urlMap.get(dbName)+"api/"+dbName+"/customcontroller/getseance?value="+value;

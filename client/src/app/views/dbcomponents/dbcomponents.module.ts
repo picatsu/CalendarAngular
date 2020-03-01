@@ -1,7 +1,7 @@
 // Angular
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 // Tabs Component
 import { TabsModule } from "ngx-bootstrap/tabs";
@@ -36,6 +36,7 @@ import { UpdateComponent } from "./update/update.component";
 import { DeleteComponent } from "./delete/delete.component";
 import { GetComponent } from "./get/get.component";
 import { HttpClientModule } from "@angular/common/http";
+import { ServiceService } from "./service.service";
 
 @NgModule({
   imports: [
@@ -52,6 +53,8 @@ import { HttpClientModule } from "@angular/common/http";
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot()
   ],
-  declarations: [PostComponent, GetComponent, UpdateComponent, DeleteComponent]
+  declarations: [PostComponent, GetComponent, UpdateComponent, DeleteComponent],
+  providers: [ServiceService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DbComponentsModule {}

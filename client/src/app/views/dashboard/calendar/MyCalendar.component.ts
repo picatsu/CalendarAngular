@@ -186,11 +186,25 @@ export class MyCalendarComponent {
   refresh: Subject<any> = new Subject();
   activeDayIsOpen: boolean = true;
   public loading = false;
-
+  mongoisactive = true;
+  couchdbisactive = false;
   constructor(private modal: NgbModal, private dashService: DashboardService) {
     this.loadData();
   }
 
+  somethingChanged(s: string) {
+    console.log("somthing changed : ", s);
+    if (s == "mongo") {
+      this.mongoisactive = true;
+      this.couchdbisactive = false;
+      this.dashService.setActivedb(s);
+    }
+    if (s == "couchdb") {
+      this.couchdbisactive = true;
+      this.mongoisactive = false;
+      this.dashService.setActivedb(s);
+    }
+  }
   loadData() {
     this.events2 = [];
     this.loading = true;

@@ -1,34 +1,6 @@
 const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser"),
-  fetch = require("node-fetch");
 const app = express();
-const server = require("http").createServer(app);
-
-const PORT = 3000,
-  request = require("request");
-//  ENV = require("./config/variables");
-//console.log("Server is running");
-const rp = require("request-promise");
-
-function asyncCall(postData, uri) {
-  const clientServerOptions = {
-    uri: uri,
-    body: postData,
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    json: true // Automatically stringifies the body to JSON
-  };
-  request(clientServerOptions, function(error, response, body) {
-    if (error != null) {
-      console.log("error:", error);
-    } else {
-      console.log("SUCESS");
-    }
-  });
-}
+const request = require("request");
 
 ENVGROUPE = require("./config/LES_GROUPES.js");
 ENVSEANCE = require("./config/LES_SEANCES");
@@ -46,42 +18,76 @@ ENVPERIODE = require("./config/LES_PERIODES");
 ENVSALLE = require("./config/LES_SALLES");
 ENVTA = require("./config/LES_TYPES_ACTIVITES");
 ENVZS = require("./config/LES_ZONES_DE_SALLES");
+CUSTUMSEANCE = require("./config/CUSTOMSEANCE");
 
-asyncCall(ENVGROUPE, "http://localhost:8100/api/mongo/UN_GROUPES/create/");
-asyncCall(ENVSEANCE, "http://localhost:8100/api/mongo/UNE_SEANCE/create/");
-asyncCall(
-  ENVENSEIGNEMENT,
-  "http://localhost:8100/api/mongo/UN_ENSEIGNEMENT/create/"
-);
-asyncCall(ENVGRADE, "http://localhost:8100/api/mongo/UN_GRADE/create/");
-asyncCall(
-  ENVRESERVATION,
-  "http://localhost:8100/api/mongo/UNE_RESERVATION/create/"
-);
-asyncCall(ENVCNU, "http://localhost:8100/api/mongo/UN_CNU/create/");
-asyncCall(
-  ENVCOMPOSANTE,
-  "http://localhost:8100/api/mongo/UNE_COMPOSANTE/create/"
-);
-asyncCall(ENVPROF, "http://localhost:8100/api/mongo/UN_PROFESSEUR/create/");
-asyncCall(ENVETUDIANT, "http://localhost:8100/api/mongo/UN_ETUDIANT/create/");
-asyncCall(ENVMATIERE, "http://localhost:8100/api/mongo/UNE_MATIERE/create/");
-asyncCall(ENVNIVEAU, "http://localhost:8100/api/mongo/UN_NIVEAU/create/");
-asyncCall(
-  ENVPARAM,
-  "http://localhost:8100/api/mongo/LES_PARAMETRES_GENERAUX/create/"
-);
-asyncCall(ENVPERIODE, "http://localhost:8100/api/mongo/UNE_PERIODE/create/");
-asyncCall(ENVSALLE, "http://localhost:8100/api/mongo/UNE_SALLE/create/");
-asyncCall(
-  ENVTA,
-  "http://localhost:8100/api/mongo/api/mongo/UN_TYPE_ACTIVITE/create"
-);
-asyncCall(
-  ENVZS,
-  "http://localhost:8100/api/mongo/api/mongo/UNE_ZONE_DE_SALLE/create/"
-);
+BASELINK = "http://localhost:8100/api/mongo";
+BASELINKCouchdb = "http://127.0.0.1:5984/couchdb/";
+
+function asyncCall(method, postData, uri) {
+  const clientServerOptions = {
+    uri: uri,
+    body: postData,
+    method: method,
+    headers: {
+      "Content-Type": "application/json"
+    },
+    json: true // Automatically stringifies the body to JSON
+  };
+
+  request(clientServerOptions, function(error, response, body) {
+    //console.log("response :", response);
+    if (error != null) {
+      console.log("error:", error);
+    } else {
+      console.log("SUCESS");
+    }
+  });
+}
+
+// LOAD MONGO DB
+function loadMongo() {
+  asyncCall("POST", ENVGROUPE, BASELINK + "/UN_GROUPES/create/");
+  asyncCall("POST", ENVSEANCE, BASELINK + "/UNE_SEANCE/create/");
+  asyncCall("POST", ENVENSEIGNEMENT, BASELINK + "/UN_ENSEIGNEMENT/create/");
+  asyncCall("POST", ENVGRADE, BASELINK + "/UN_GRADE/create/");
+  asyncCall("POST", ENVRESERVATION, BASELINK + "/UNE_RESERVATION/create/");
+  asyncCall("POST", ENVCNU, BASELINK + "/UN_CNU/create/");
+  asyncCall("POST", ENVCOMPOSANTE, BASELINK + "/UNE_COMPOSANTE/create/");
+  asyncCall("POST", ENVPROF, BASELINK + "/UN_PROFESSEUR/create/");
+  asyncCall("POST", ENVETUDIANT, BASELINK + "/UN_ETUDIANT/create/");
+  asyncCall("POST", ENVMATIERE, BASELINK + "/UNE_MATIERE/create/");
+  asyncCall("POST", ENVNIVEAU, BASELINK + "/UN_NIVEAU/create/");
+  asyncCall("POST", ENVPARAM, BASELINK + "/LES_PARAMETRES_GENERAUX/create/");
+  asyncCall("POST", ENVPERIODE, BASELINK + "/UNE_PERIODE/create/");
+  asyncCall("POST", ENVSALLE, BASELINK + "/UNE_SALLE/create/");
+  asyncCall("POST", ENVTA, BASELINK + "/UN_TYPE_ACTIVITE/create");
+  asyncCall("POST", ENVZS, BASELINK + "/UNE_ZONE_DE_SALLE/create/");
+}
+
+function loadCouchDB() {
+  asyncCall("PUT", ENVGROUPE, BASELINKCouchdb + '"UN_GROUPES"');
+  asyncCall("PUT", ENVSEANCE, BASELINKCouchdb + '"UNE_SEANCE"');
+  asyncCall("PUT", ENVENSEIGNEMENT, BASELINKCouchdb + '"UN_ENSEIGNEMENT"');
+  asyncCall("PUT", ENVGRADE, BASELINKCouchdb + '"UN_GRADE"');
+  asyncCall("PUT", ENVRESERVATION, BASELINKCouchdb + '"UNE_RESERVATION"');
+  asyncCall("PUT", ENVCNU, BASELINKCouchdb + '"UN_CNU"');
+  asyncCall("PUT", ENVCOMPOSANTE, BASELINKCouchdb + '"UNE_COMPOSANTE"');
+  asyncCall("PUT", ENVPROF, BASELINKCouchdb + '"UN_PROFESSEUR"');
+  asyncCall("PUT", ENVETUDIANT, BASELINKCouchdb + '"UN_ETUDIANT"');
+  asyncCall("PUT", ENVMATIERE, BASELINKCouchdb + '"UNE_MATIERE"');
+  asyncCall("PUT", ENVNIVEAU, BASELINKCouchdb + '"UN_NIVEAU"');
+  asyncCall("PUT", ENVPARAM, BASELINKCouchdb + '"LES_PARAMETRES_GENERAUX"');
+  asyncCall("PUT", ENVPERIODE, BASELINKCouchdb + '"UNE_PERIODE"');
+  asyncCall("PUT", ENVSALLE, BASELINKCouchdb + '"UNE_SALLE"');
+  asyncCall("PUT", ENVTA, BASELINKCouchdb + '"UN_TYPE_ACTIVITE"');
+  asyncCall("PUT", ENVZS, BASELINKCouchdb + '"UNE_ZONE_DE_SALLE"');
+}
+for (var i = 0; i < CUSTUMSEANCE.length; i++) {
+  delete CUSTUMSEANCE[i]._id;
+  asyncCall("POST", CUSTUMSEANCE[i], BASELINKCouchdb + '"CUSTOMSEANCE"');
+}
+asyncCall("POST", CUSTUMSEANCE, BASELINKCouchdb + '"CUSTOMSEANCE"');
 
 /*GROUPE.array.forEach(element => {
-  this.asyncCall(element, "http://localhost:8100/api/mongo/UN_GROUPES/create");
+  this.asyncCall(element, "/UN_GROUPES/create");
 }); */

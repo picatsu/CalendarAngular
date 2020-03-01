@@ -1,0 +1,27 @@
+server:
+    port: 9100
+app:
+    name: couchdbApp
+    description: Projet bdd NoSql BADA couchdb
+
+couch:
+    url: http://localhost:5984/couchdb/
+
+mongo:
+    url: http://localhost:8100/
+
+
+neo4j:
+    url: llll
+
+cassandra:
+    url: kkkk
+
+redis:
+    url: redis
+
+firebase:
+    url: llooj
+
+projetvoldemort:
+    url: lllok

@@ -1,20 +1,16 @@
 import { Component } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { ServiceService } from "../service.service";
 
 @Component({
   templateUrl: "Post.component.html"
 })
 export class PostComponent {
-  constructor(private http: HttpClient) {}
+  constructor(private service: ServiceService, private http: HttpClient) {}
 
   isCollapsed: boolean = false;
   iconCollapse: string = "icon-arrow-up";
 
-  getSwagger() {
-    return this.http.get(
-      "http://localhost:9090/swagger-ui.html#/general-controller"
-    );
-  }
   collapsed(event: any): void {
     // console.log(event);
   }

@@ -44,6 +44,15 @@ import { FlatpickrModule } from "angularx-flatpickr";
 import { ToastrModule } from "ngx-toastr";
 import { FormsModule } from "@angular/forms";
 import { NgxLoadingModule } from "ngx-loading";
+import { TooltipModule } from "ngx-bootstrap/tooltip";
+import { ModalModule } from "ngx-bootstrap/modal";
+
+import { ScrollingModule } from "@angular/cdk/scrolling";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatDividerModule } from "@angular/material/divider";
 
 @NgModule({
   imports: [
@@ -62,11 +71,21 @@ import { NgxLoadingModule } from "ngx-loading";
     NgbModalModule,
     FlatpickrModule.forRoot(),
     FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSlideToggleModule,
+    FormsModule,
+    ScrollingModule,
+    MatDividerModule,
+    MatExpansionModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
     NgxLoadingModule.forRoot({}),
+
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
     ToastrModule.forRoot() // ToastrModule added
   ],
   declarations: [

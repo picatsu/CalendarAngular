@@ -21,28 +21,24 @@
   <div class="row" style="width: 200%;">
     <div class="block">
       <label class="switch switch-3d switch-primary">
-        <input type="checkbox" class="switch-input" checked />mongo
+        <input
+          type="checkbox"
+          class="switch-input"
+          (change)="somethingChanged('mongo')"
+          [(ngModel)]="mongoisactive"
+        />mongo
         <span class="switch-slider"></span>
       </label>
     </div>
 
     <div class="block">
       <label class="switch switch-3d switch-primary">
-        <input type="checkbox" class="switch-input" />couchdb
-        <span class="switch-slider"></span>
-      </label>
-    </div>
-
-    <div class="block">
-      <label class="switch switch-3d switch-primary">
-        <input type="checkbox" class="switch-input" />cassandra
-        <span class="switch-slider"></span>
-      </label>
-    </div>
-
-    <div class="block">
-      <label class="switch switch-3d switch-primary">
-        <input type="checkbox" class="switch-input" />neo4j
+        <input
+          type="checkbox"
+          class="switch-input"
+          (change)="somethingChanged('couchdb')"
+          [(ngModel)]="couchdbisactive"
+        />couchdb
         <span class="switch-slider"></span>
       </label>
     </div>

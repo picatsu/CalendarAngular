@@ -33,7 +33,7 @@ public class TdbadaApplication {
 	@Bean Map<String, String> getMap(){
         Map<String, String> urlMap = new HashMap<String, String>();
         urlMap.put("mongo", env.getProperty("mongo.url"));
-        urlMap.put("couch", env.getProperty("couch.url"));
+        urlMap.put("couchdb", env.getProperty("couchdb.url"));
         urlMap.put("neo4j", env.getProperty("neo4j.url"));
         urlMap.put("cassandra", env.getProperty("cassandra.url"));
         urlMap.put("redis", env.getProperty("redis.url"));
