@@ -82,12 +82,5 @@ function loadCouchDB() {
   asyncCall("PUT", ENVTA, BASELINKCouchdb + '"UN_TYPE_ACTIVITE"');
   asyncCall("PUT", ENVZS, BASELINKCouchdb + '"UNE_ZONE_DE_SALLE"');
 }
-for (var i = 0; i < CUSTUMSEANCE.length; i++) {
-  delete CUSTUMSEANCE[i]._id;
-  asyncCall("POST", CUSTUMSEANCE[i], BASELINKCouchdb + '"CUSTOMSEANCE"');
-}
-asyncCall("POST", CUSTUMSEANCE, BASELINKCouchdb + '"CUSTOMSEANCE"');
 
-/*GROUPE.array.forEach(element => {
-  this.asyncCall(element, "/UN_GROUPES/create");
-}); */
+loadMongo();

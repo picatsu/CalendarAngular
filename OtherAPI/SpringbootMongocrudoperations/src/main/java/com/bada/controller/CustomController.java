@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -109,7 +107,7 @@ public class CustomController {
             for(CustomSeance seance: customseance){
 
                 UNE_SALLE salle = mongoTemplate.findOne(new Query(where("CODE").is(seance.getIdSalle())), UNE_SALLE.class);
-                if (  salle != null ){
+                    if (  salle != null ){
                     seance.setNomSalle(salle.getNOM());
                 }
 

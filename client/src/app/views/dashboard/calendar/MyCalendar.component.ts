@@ -4,7 +4,8 @@ import {
   ViewChild,
   TemplateRef,
   ElementRef,
-  Input
+  Input,
+  LOCALE_ID
 } from "@angular/core";
 import {
   startOfDay,
@@ -24,13 +25,16 @@ import {
   CalendarEvent,
   CalendarEventAction,
   CalendarEventTimesChangedEvent,
-  CalendarView
+  CalendarView,
+  CalendarDateFormatter,
+  DAYS_OF_WEEK
 } from "angular-calendar";
 import { DashboardService } from "../service/dashboard.service";
-import { formatDate } from "@angular/common";
+import { formatDate, registerLocaleData } from "@angular/common";
 import { CustomSeance } from "../model/customSeance";
 import { Un_Etudiant } from "../model/un_etudiant";
-
+import localeFr from "@angular/common/locales/fr";
+registerLocaleData(localeFr);
 const colors: any = {
   red: {
     primary: "#ad2121",
@@ -58,7 +62,8 @@ const colors: any = {
   selector: "mwl-MyCalendar-component",
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ["styles.css"],
-  templateUrl: "MyCalendar.html"
+  templateUrl: "MyCalendar.html",
+  providers: [{ provide: LOCALE_ID, useValue: "fr-FR" }]
 })
 export class MyCalendarComponent {
   @ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
@@ -187,6 +192,12 @@ export class MyCalendarComponent {
   activeDayIsOpen: boolean = true;
   public loading = false;
   mongoisactive = true;
+  locale: string = "fr";
+
+  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+
+  weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
+
   couchdbisactive = false;
   constructor(private modal: NgbModal, private dashService: DashboardService) {
     this.loadData();

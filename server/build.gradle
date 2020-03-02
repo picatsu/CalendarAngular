@@ -1,10 +1,32 @@
+buildscript {
+    ext {
+        springBootVersion = '2.2.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
- 
+apply plugin: 'org.springframework.boot'
 group = 'com.bada'
 // artifactId is taken by default, from folder name
 version = '0.1-SNAPSHOT'
- 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+repositories {
+    mavenCentral()
+}
 dependencies {
-compile 'commons-lang:commons-lang:2.3'
+    compile "org.springframework.boot:spring-boot-starter:*"
+    compile "org.hibernate:hibernate-validator:5.2.4.Final"
+    compile "io.springfox:springfox-swagger2:2.9.2"
+    compile "io.springfox:springfox-swagger-ui:2.9.2"
+    compile "joda-time:joda-time:2.9.2"
+    testCompile "org.springframework.boot:spring-boot-starter-test:*"
+    compile "org.springframework.boot:spring-boot-starter-web:*"
 }

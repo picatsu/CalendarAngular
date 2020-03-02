@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ducat.springboot.mongodb</groupId>
-	<artifactId>SpringbootMongocrudoperations</artifactId>
+	<artifactId>MongoDbApp</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	
-	<name>SpringbootMongocrudoperations Maven Webapp</name>
+	<name>MongoDbApp</name>
 	<url>http://maven.apache.org</url>
 	
 	<!-- spring boot parent dependency jar -->

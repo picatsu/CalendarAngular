@@ -1,7 +1,7 @@
 server:
     port: 9090
 app:
-    name: tdbada
+    name: ApiGateway
     description: Projet bdd NoSql BADA
 
 couchdb:
