@@ -132,12 +132,25 @@ public class GeneralController {
 
     @GetMapping("/getseance")
     @CrossOrigin
-    // http://localhost:9090/api/getseance?dbName=mongo&value=l1_gr7
+    // http://localhost:9090/api/getseance?dbName=mongo&value=l1_gr7&nomprof=prof
     public Object getseance(@RequestParam(required = false) String dbName,
-                            @RequestParam(required = false) String value  ) throws Exception {
-        String lien = urlMap.get(dbName)+"api/"+dbName+"/customcontroller/getseance?value="+value;
+                            @RequestParam(required = false) String value,
+                            @RequestParam(required = false) String nomprof) throws Exception {
+        String lien = "";
+
+        if(value != null && nomprof != null){
+            lien = urlMap.get(dbName)+"api/"+dbName+"/customcontroller/getseance?value="+value+"&nomprof="+nomprof;
+
+        } if(value != null && nomprof == null) {
+            lien = urlMap.get(dbName)+"api/"+dbName+"/customcontroller/getseance?value="+value;
+
+        }
+        else{
+            lien = urlMap.get(dbName)+"api/"+dbName+"/customcontroller/getseance?nomprof="+nomprof;
+
+        }
         System.out.println(lien);
-        URL myURL = new URL( lien);
+        URL myURL = new URL(lien);
         return  new ResponseEntity<>( rest.getForObject( myURL.toURI()  , Object.class), HttpStatus.OK);
     }
 

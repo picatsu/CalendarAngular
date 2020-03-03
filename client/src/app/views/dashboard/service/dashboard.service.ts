@@ -21,13 +21,34 @@ export class DashboardService {
     );
   }
 
-  getCustomSeance(value: string) {
+  getCustomSeance(value: string, admin: boolean) {
+    if (admin) {
+      return this.http.get(
+        environment.apiUrl +
+          "api/getseance?dbName=" +
+          this.activedb +
+          "&value=" +
+          value +
+          "&role=prof"
+      );
+    } else {
+      return this.http.get(
+        environment.apiUrl +
+          "api/getseance?dbName=" +
+          this.activedb +
+          "&value=" +
+          value
+      );
+    }
+  }
+
+  getCustomSeanceForProf(nomprof: string) {
     return this.http.get(
       environment.apiUrl +
         "api/getseance?dbName=" +
         this.activedb +
-        "&value=" +
-        value
+        "&nomprof=" +
+        nomprof
     );
   }
 

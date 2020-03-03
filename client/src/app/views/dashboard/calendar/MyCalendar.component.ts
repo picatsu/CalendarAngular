@@ -184,7 +184,33 @@ export class MyCalendarComponent {
     "m2bss_bio",
     "m2bss_math"
   ];
+  listProf = [
+    "DELAPLACEFRANCK",
+    "DEBILYMARIE-ANNE",
+    "BOUDETNATHALIE",
+    "GONNETFLORENCE",
+    "SANSOMFRANCK",
+    "BOUNARFLORENCE",
+    "PETIT-TEIXEIRAELISABETH",
+    "BIGEARDJEAN",
+    "PASTREDAVID",
+    "LEBERPIERRE",
+    "ARTIGUENEUVEFRANCOIS",
+    "WIARTLAURENT",
+    "SGHIRABDELGHANI",
+    "ROUSSEAUFRANCIS",
+    "ZEHRAOUIFARIDA",
+    "COLCOMBETJEAN",
+    "SAVARINPHILIPPE",
+    "AMBROISECHRISTOPHE",
+    "HUTZLERGUILLAUME",
+    "CORELEDUARDO",
+    "ZAAGRIM",
+    "RIZZONCARENE",
+    "PLOIXDAMIEN"
+  ];
   defaultclass = this.listclass[0];
+  defaultprof = this.listProf[0];
   testElement = {};
   view: CalendarView = CalendarView.Week;
   CalendarView = CalendarView;
@@ -225,27 +251,49 @@ export class MyCalendarComponent {
   loadData() {
     this.events2 = [];
     this.loading = true;
-
-    this.dashService
-      .getCustomSeance(this.defaultclass)
-      .subscribe((val: CustomSeance[]) => {
-        val.forEach(x => {
-          this.events2.push({
-            start: new Date(x.formatedDate),
-            end: new Date(x.formatedDateEnd),
-            title:
-              "<center> <Strong>" +
-              x.nomMatiere +
-              "</Strong> <br />" +
-              this.hideIfNull("", x.nomProf) +
-              "<br />  " +
-              this.hideIfNull("Salle: ", x.nomSalle) +
-              " </center> ",
-            color: this.selectColor(x.nomMatiere)
+    if (!this.admin) {
+      this.dashService
+        .getCustomSeance(this.defaultclass, this.admin)
+        .subscribe((val: CustomSeance[]) => {
+          val.forEach(x => {
+            this.events2.push({
+              start: new Date(x.formatedDate),
+              end: new Date(x.formatedDateEnd),
+              title:
+                "<center> <Strong>" +
+                x.nomMatiere +
+                "</Strong> <br />" +
+                this.hideIfNull("", x.nomProf) +
+                "<br />  " +
+                this.hideIfNull("Salle: ", x.nomSalle) +
+                " </center> ",
+              color: this.selectColor(x.nomMatiere)
+            });
           });
+          this.loading = false;
         });
-        this.loading = false;
-      });
+    } else {
+      this.dashService
+        .getCustomSeanceForProf(this.defaultprof)
+        .subscribe((val: CustomSeance[]) => {
+          val.forEach(x => {
+            this.events2.push({
+              start: new Date(x.formatedDate),
+              end: new Date(x.formatedDateEnd),
+              title:
+                "<center> <Strong>" +
+                x.nomMatiere +
+                "</Strong> <br />" +
+                this.hideIfNull("", x.nomProf) +
+                "<br />  " +
+                this.hideIfNull("Salle: ", x.nomSalle) +
+                " </center> ",
+              color: this.selectColor(x.nomMatiere)
+            });
+          });
+          this.loading = false;
+        });
+    }
   }
 
   hideIfNull(element: string, value: string) {
@@ -274,8 +322,16 @@ export class MyCalendarComponent {
     return colors.yellow;
   }
   public setDefaultListClass(value: string) {
-    console.log("default", value);
+    console.log(" default class ", value);
     this.defaultclass = value;
+    this.events2 = [];
+    this.loadData();
+  }
+
+  public setDefaultListProf(value: any) {
+    console.log(" default prof  ddd ", value);
+
+    this.defaultprof = value;
     this.events2 = [];
     this.loadData();
   }

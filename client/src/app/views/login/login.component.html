@@ -1,6 +1,17 @@
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"
+/>
+
 <div class="container-fluid">
   <div class="container">
-    <form>
+    <br />
+    <h4>admin/admin for prof OUBIEN user user pour etudiant</h4>
+    <form style="margin-top: 10vh;">
       <p class="text-muted"></p>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -48,15 +59,111 @@
         </div>
       </div>
     </form>
+
+    <br />
+    <br />
+
+    <div class="text-center">
+      <H1 class="text-center">Méteo d'Evry</H1>
+      <br />
+      <img
+        src="https://www.prevision-meteo.ch/uploads/widget/Evry-91_0.png"
+        width="650"
+        height="250"
+        style="text-align: center"
+      />
+    </div>
+
+    <!--  /////////////////////////////    -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <p>
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              (click)="isCollapsed = !isCollapsed"
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+            >
+              Infos Trafic Trains
+            </button>
+          </p>
+        </div>
+        <div class="col-sm">
+          <p>
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              (click)="isCollapsedInfos = !isCollapsedInfos"
+              [attr.aria-expanded]="!isCollapsedInfos"
+              aria-controls="collapseExample"
+            >
+              Infos News Paris
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--  /////////////////////////////    -->
+
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+      <div class="card">
+        <div class="card-body">
+          <table
+            class="table table-hover table-dark"
+            style="max-height: 400px;"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Ligne</th>
+                <th scope="col">Status</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Message</th>
+              </tr>
+            </thead>
+
+            <tbody *ngFor="let item of trafic.result.rers">
+              <tr>
+                <th scope="row">{{ item.line }}</th>
+
+                <td [ngClass]="{ 'text-danger': item.slug === 'critical' }">
+                  {{ item.slug }}
+                </td>
+                <td colspan="row">{{ item.title }}</td>
+                <td colspan="row">{{ item.message }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!--  /////////////////////////////    -->
+
+    <div id="collapseExample" [ngbCollapse]="isCollapsedInfos">
+      <div style=" max-height: 600px; overflow: scroll; margin-bottom: 100px;">
+        <div class="card-group" *ngFor="let item of article.articles">
+          <div class="card border-secondary mb-3">
+            <div class="card-header">{{ item.publishedAt }}</div>
+
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">
+                This is a wider card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </p>
+              <p class="card-text">
+                <a href="{{ item.url }}" target="_blank" class="btn btn-primary"
+                  >Lire</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <br />
-  <br />
-
-  <melvin-calendar> Melvin Calender </melvin-calendar>
-
-  <br />
-  <br />
-
-  <melvin-meteo> Melvin Meteo </melvin-meteo>
 </div>

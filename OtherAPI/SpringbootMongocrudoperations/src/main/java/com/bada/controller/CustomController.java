@@ -69,8 +69,13 @@ public class CustomController {
         List<CustomSeance> customseance = new ArrayList<>();
 
         for(UNE_SEANCE seance: seance_service.getAllUNE_SEANCE()){
-
             CustomSeance q = new CustomSeance(seance.getDATE(), seance.getHEURE(), seance.getDUREE());
+            if(seance.getCODE_PROPRIETAIRE() != null &&
+                    seance.getCODE_PROPRIETAIRE().equals("2")){
+                q.setIsProf("yes");
+            } else {
+                q.setIsProf("no");
+            }
             for(UNE_RESSOURCE uneressource: seance.getLES_RESSOURCES()){
 
                 try{
@@ -153,11 +158,28 @@ public class CustomController {
 
     @GetMapping("/getseance")
     @CrossOrigin
-    public List<CustomSeance> getseance(@RequestParam(required = false) String value) throws Exception {
+    public List<CustomSeance> getseance(@RequestParam(required = false) String value,
+                                        @RequestParam(required = false) String nomprof) throws Exception {
         Query query = new Query();
-        query.addCriteria(Criteria.where("nomFiliere").is(value));
-       // List<CustomSeance> seance = mongoTemplate.find(query, CustomSeance.class);
+        if(nomprof != null ){
+
+            List<CustomSeance> seance = new ArrayList<>() ;
+            System.out.println("  affichage  "+nomprof+ " and : "+ mongoTemplate.findAll(CustomSeance.class).size());
+
+            for(CustomSeance s : mongoTemplate.findAll(CustomSeance.class)) {
+                if( s.getIsProf() != null &&
+                        (s.getNomProf()+s.getPrenomProf()).toUpperCase().replace(" ", "").equals(nomprof) ){
+                    seance.add(s);
+
+                }
+            }
+
+            return seance;
+        }
+        query.addCriteria(Criteria.where("nomFiliere").is(value) );
+        // List<CustomSeance> seance = mongoTemplate.find(query, CustomSeance.class);
         return mongoTemplate.find(query, CustomSeance.class) ;
+
     }
 
     private List<String> transfom(String[] old){

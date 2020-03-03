@@ -53,11 +53,13 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatDividerModule } from "@angular/material/divider";
-
+import { HttpClientModule } from "@angular/common/http";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    NgbModule,
     AppRoutingModule,
     AppAsideModule,
     AppBreadcrumbModule.forRoot(),
@@ -71,6 +73,7 @@ import { MatDividerModule } from "@angular/material/divider";
     NgbModalModule,
     FlatpickrModule.forRoot(),
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatIconModule,
     MatSlideToggleModule,

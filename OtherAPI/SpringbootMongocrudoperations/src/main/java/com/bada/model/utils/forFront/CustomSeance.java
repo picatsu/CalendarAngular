@@ -19,6 +19,7 @@ public class CustomSeance {
     private String prenomProf2;
     private String nomSalle;
     private String[] listEtudiants;
+    private String isProf;
     private String idSalle;
     private String idGroupe;
     private String idProf;
@@ -129,6 +130,14 @@ public class CustomSeance {
 
         return annee;
 
+    }
+
+    public String getIsProf() {
+        return isProf;
+    }
+
+    public void setIsProf(String isProf) {
+        this.isProf = isProf;
     }
 
     public String getNomProf() {

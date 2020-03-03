@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { NgModule } from "@angular/core";
 // import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { ToastrService } from "ngx-toastr";
 import { Router } from "@angular/router";
 // import { HttpModule } from '@angular/http';
@@ -15,15 +15,26 @@ import { Router } from "@angular/router";
 @Injectable({
   providedIn: "root"
 })
-@Injectable()
 export class LoginService {
   credentialuser = { username: "user", password: "user", role: "user" };
   credentialadmin = { username: "admin", password: "admin", role: "admin" };
 
   private loggedIn = false;
   public static role: String;
-  constructor(private router: Router, private toastr: ToastrService) {}
+  constructor(
+    private router: Router,
+    private toastr: ToastrService,
+    private http: HttpClient
+  ) {}
 
+  getNews() {
+    return this.http.get(
+      "http://newsapi.org/v2/everything?q=ratp&from=2020-02-03&sortBy=publishedAt&apiKey=d0a2f8408a82466eb670a896d190b985&fbclid=IwAR3y25bl5EeygsxsBaF3BKO3_P03bbU5y5XhTLgDn032KE_337UU7Ff_u6w"
+    );
+  }
+  getTrafic() {
+    return this.http.get("https://api-ratp.pierre-grimaud.fr/v4/traffic");
+  }
   sendCredential(username: string, password: string) {
     // let url = AppConst.serverPath+"/token";
     let encodedCredentials = btoa(username + ":" + password);
@@ -68,13 +79,7 @@ export class LoginService {
         }
       );
       this.router.navigate(["/dashboard"]);
-    } else {
-      LoginService.role = "user";
-      this.toastr.error(" Please Request Acces ", "Cannot Access", {
-        timeOut: 1500
-      });
     }
-
     console.log("my role ", LoginService.role);
 
     /*

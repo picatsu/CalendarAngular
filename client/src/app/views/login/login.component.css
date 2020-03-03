@@ -52,3 +52,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.container,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  max-width: 1540px;
+}

@@ -14,12 +14,34 @@ import { ToastrService } from "ngx-toastr";
 })
 export class LoginComponent implements OnInit {
   credential = { username: "", password: "" };
-
+  article: any;
+  trafic: ratp;
+  rerD: ligne;
+  public isCollapsed = true;
+  public isCollapsedInfos = true;
   constructor(
     private router: Router,
     private loginService: LoginService,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.loginService.getNews().subscribe(element => {
+      this.article = element;
+      console.log(element);
+    });
+    this.loginService.getTrafic().subscribe((element: ratp) => {
+      this.trafic = element;
+      console.log(element);
+      this.getRerD();
+    });
+  }
+
+  getRerD() {
+    this.trafic.result.rers.forEach(element => {
+      if (element.line.includes("D")) {
+        this.rerD = element;
+      }
+    });
+  }
 
   onSubmit() {
     this.loginService.onSubmit(this.credential);
@@ -53,4 +75,20 @@ export class LoginComponent implements OnInit {
     );
     */
   }
+}
+
+export interface ligne {
+  line: string;
+  slug: string;
+  title: string;
+  message: string;
+}
+
+export interface ratp {
+  result: {
+    metros: ligne[];
+    rers: ligne[];
+    tramways: ligne[];
+  };
+  _metadata: any;
 }
