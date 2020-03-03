@@ -1,17 +1,4 @@
-module.exports = [    
-    {
-        "code": "2152",
-        "date_MODIFICATION": "41291,5923726852",
-        "nom": "DEPARTEMENT BIOLOGIE",
-        "alias": "DEPBIO",
-        "commentaire": "",
-        "identifiant": "",
-        "type_DE_COMPOSANTE": "2",
-        "couleur": "33023",
-        "couleur_POLICE": "0",
-        "code_PROPRIETAIRE": "2"
-    }
-];module.exports = [
+module.exports = [
   {
       "code": "16098640",
       "date_MODIFICATION": "41606,4457407407",

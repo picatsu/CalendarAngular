@@ -14,11 +14,6 @@ import { ToastrService } from "ngx-toastr";
 })
 export class LoginComponent implements OnInit {
   credential = { username: "", password: "" };
-  credentialuser = { username: "user", password: "user", role: "user" };
-  credentialadmin = { username: "admin", password: "admin", role: "admin" };
-
-  private loggedIn = false;
-  public role: String;
 
   constructor(
     private router: Router,
@@ -27,30 +22,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   onSubmit() {
-    if (
-      this.credential.username == this.credentialuser.username &&
-      this.credential.password == this.credentialuser.password
-    ) {
-      this.role = this.credentialuser.role;
-      this.toastr.success(" Your Role is : " + this.role, "Success ! ", {
-        timeOut: 1500
-      });
-      this.router.navigate(["/dashboard"]);
-    }
-    if (
-      this.credential.username == this.credentialadmin.username &&
-      this.credential.password == this.credentialadmin.password
-    ) {
-      this.role = this.credentialadmin.role;
-      this.toastr.success(" Your Role is : " + this.role, "Success ! ", {
-        timeOut: 1500
-      });
-      this.router.navigate(["/dashboard"]);
-    } else {
-      this.toastr.error(" Please Request Acces ", "Cannot Access", {
-        timeOut: 1500
-      });
-    }
+    this.loginService.onSubmit(this.credential);
     /*
     this.loginService.sendCredential(this.credential.username, 
       this.credential.password).subscribe(
