@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   article: any;
   trafic: ratp;
   rerD: ligne;
+  allligne: ligne[];
   public isCollapsed = true;
   public isCollapsedInfos = true;
   constructor(
@@ -41,6 +42,10 @@ export class LoginComponent implements OnInit {
         this.rerD = element;
       }
     });
+  }
+
+  getAllLignes() {
+    return this.trafic.result.rers.concat(this.trafic.result.metros);
   }
 
   onSubmit() {

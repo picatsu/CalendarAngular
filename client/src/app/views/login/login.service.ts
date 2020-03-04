@@ -28,8 +28,18 @@ export class LoginService {
   ) {}
 
   getNews() {
+    let date = new Date();
+    console.log(
+      date,
+      date.getUTCFullYear(),
+      Date.now().toLocaleString(),
+      date.getDay()
+    );
     return this.http.get(
-      "http://newsapi.org/v2/everything?q=ratp&from=2020-02-03&sortBy=publishedAt&apiKey=d0a2f8408a82466eb670a896d190b985&fbclid=IwAR3y25bl5EeygsxsBaF3BKO3_P03bbU5y5XhTLgDn032KE_337UU7Ff_u6w"
+      "http://newsapi.org/v2/everything?q=ratp&from=2020-02-0" +
+        date.getDay() +
+        1 +
+        "&sortBy=publishedAt&apiKey=d0a2f8408a82466eb670a896d190b985&fbclid=IwAR3y25bl5EeygsxsBaF3BKO3_P03bbU5y5XhTLgDn032KE_337UU7Ff_u6w"
     );
   }
   getTrafic() {
