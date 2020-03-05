@@ -100,8 +100,6 @@ public class CustomController {
 
                 }
 
-
-
                 q.setIdEnseignement( seance.getENSEIGNEMENT()  );
             }
 

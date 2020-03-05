@@ -132,7 +132,7 @@ public class GeneralController {
 
     @GetMapping("/getseance")
     @CrossOrigin
-    // http://localhost:9090/api/getseance?dbName=mongo&value=l1_gr7&nomprof=prof
+    // http://localhost:9090/api/getseance?dbName=mongo&value=l1_gr7&nomprof=nomprof
     public Object getseance(@RequestParam(required = false) String dbName,
                             @RequestParam(required = false) String value,
                             @RequestParam(required = false) String nomprof) throws Exception {

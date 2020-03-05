@@ -157,6 +157,7 @@
     [refresh]="refresh"
     [activeDayIsOpen]="activeDayIsOpen"
     (dayClicked)="dayClicked($event.day)"
+    [excludeDays]="excludeDays"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
   >
@@ -167,6 +168,9 @@
     [viewDate]="viewDate"
     [events]="events2"
     [refresh]="refresh"
+    [dayStartHour]="8"
+    [dayEndHour]="20"
+    [excludeDays]="excludeDays"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
   >
@@ -176,6 +180,9 @@
     [viewDate]="viewDate"
     [events]="events2"
     [refresh]="refresh"
+    [dayStartHour]="8"
+    [dayEndHour]="20"
+    [excludeDays]="excludeDays"
     (eventClicked)="handleEvent('Clicked', $event.event)"
     (eventTimesChanged)="eventTimesChanged($event)"
   >

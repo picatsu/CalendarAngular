@@ -35,6 +35,8 @@ import { CustomSeance } from "../model/customSeance";
 import { Un_Etudiant } from "../model/un_etudiant";
 import localeFr from "@angular/common/locales/fr";
 import { LoginService } from "../../login/Login.service";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import bootstrapPlugin from "@fullcalendar/bootstrap";
 registerLocaleData(localeFr);
 const colors: any = {
   red: {
@@ -69,7 +71,8 @@ const colors: any = {
 export class MyCalendarComponent {
   @ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
   @ViewChild("month") myId: ElementRef;
-  @Input() dayEndHour: number = 9;
+  @Input() dayStartHour = 0;
+  @Input() dayEndHour = 23;
 
   modalData: {
     action: string;
@@ -221,9 +224,10 @@ export class MyCalendarComponent {
   mongoisactive = true;
   locale: string = "fr";
   admin: boolean = false;
-  weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
+  excludeDays: number[] = [0, 6];
   weekendDays: number[] = [DAYS_OF_WEEK.FRIDAY, DAYS_OF_WEEK.SATURDAY];
   couchdbisactive = false;
+  weekStartsOn = DAYS_OF_WEEK.SUNDAY;
   constructor(
     private modal: NgbModal,
     private dashService: DashboardService,

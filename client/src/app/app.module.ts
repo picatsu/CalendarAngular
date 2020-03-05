@@ -89,7 +89,10 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot({
+      positionClass: "toast-top-left",
+      preventDuplicates: true
+    }) // ToastrModule added
   ],
   declarations: [
     AppComponent,

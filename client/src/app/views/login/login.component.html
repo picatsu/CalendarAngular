@@ -6,165 +6,203 @@
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic"
 />
-
-<div class="container-fluid">
-  <div class="container">
-    <br />
-    <h4>admin/admin for prof OUBIEN user user pour etudiant</h4>
-    <form style="margin-top: 10vh;">
-      <p class="text-muted"></p>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-user"></i></span>
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          mdInput
-          [(ngModel)]="credential.username"
-          name="username"
-          id="username"
-          placeholder="Username"
-        />
-      </div>
-      <div class="input-group mb-4">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="icon-lock"></i></span>
-        </div>
-        <input
-          type="password"
-          class="form-control"
-          mdInput
-          [(ngModel)]="credential.password"
-          name="password"
-          id="password"
-          placeholder="Password"
-        />
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <!-- ROUTER LINK -->
-          <button
-            type="button"
-            class="btn btn-primary px-4"
-            (click)="onSubmit()"
-          >
-            Valider
-          </button>
-        </div>
-        <div class="col-6 text-right">
-          <button type="button" class="btn btn-link px-0">
-            Mot de passe oublié ?
-          </button>
-        </div>
-      </div>
-    </form>
-
-    <br />
-    <br />
-
-    <div class="text-center">
-      <H1 class="text-center">Méteo d'Evry</H1>
-      <br />
-      <img
-        src="https://www.prevision-meteo.ch/uploads/widget/Evry-91_0.png"
-        width="650"
-        height="250"
-        style="text-align: center"
-      />
-    </div>
-
-    <!--  /////////////////////////////    -->
+<img
+  src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Universite_Evry.png"
+  width="250"
+  height="100"
+/>
+<div class="app-body">
+  <main class="main d-flex align-items-center">
     <div class="container">
+      <div class="text-center">
+        <H1 class="text-center">Méteo d'Evry</H1>
+        <br />
+        <img
+          src="https://www.prevision-meteo.ch/uploads/widget/Evry-91_0.png"
+          width="650"
+          height="250"
+          style="text-align: center"
+        />
+      </div>
+      <br />
+      <br />
       <div class="row">
-        <div class="col-sm">
-          <p>
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="isCollapsed = !isCollapsed"
-              [attr.aria-expanded]="!isCollapsed"
-              aria-controls="collapseExample"
-            >
-              Infos Trafic Trains
-            </button>
-          </p>
-        </div>
-        <div class="col-sm">
-          <p>
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              (click)="isCollapsedInfos = !isCollapsedInfos"
-              [attr.aria-expanded]="!isCollapsedInfos"
-              aria-controls="collapseExample"
-            >
-              Infos News Paris
-            </button>
-          </p>
-        </div>
-      </div>
-    </div>
+        <div class="mx-auto">
+          <div>
+            <div class="card p-4">
+              <div class="card-body">
+                <div class="card-body"></div>
 
-    <!--  /////////////////////////////    -->
-
-    <div
-      id="collapseExample"
-      [ngbCollapse]="isCollapsed"
-      style="height: 400px; overflow-y: scroll; margin-bottom: 100px;"
-    >
-      <div class="card">
-        <div class="card-body">
-          <table class="table table-hover table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Ligne</th>
-                <th scope="col">Status</th>
-                <th scope="col">Titre</th>
-                <th scope="col">Message</th>
-              </tr>
-            </thead>
-
-            <tbody *ngFor="let item of getAllLignes()">
-              <tr>
-                <th scope="row">{{ item.line }}</th>
-
-                <td [ngClass]="{ 'text-danger': item.slug === 'critical' }">
-                  {{ item.slug }}
-                </td>
-                <td colspan="row">{{ item.title }}</td>
-                <td colspan="row">{{ item.message }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <!--  /////////////////////////////    -->
-
-    <div id="collapseExample" [ngbCollapse]="isCollapsedInfos">
-      <div style=" max-height: 600px; overflow: scroll; margin-bottom: 100px;">
-        <div class="card-group" *ngFor="let item of article.articles">
-          <div class="card border-secondary mb-3">
-            <div class="card-header">{{ item.publishedAt }}</div>
-
-            <div class="card-body">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <p class="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p class="card-text">
-                <a href="{{ item.url }}" target="_blank" class="btn btn-primary"
-                  >Lire</a
-                >
+                <form>
+                  <p class="text-muted">Identification Directe</p>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="icon-user"></i
+                      ></span>
+                    </div>
+                    <input
+                      type="text"
+                      class="form-control"
+                      mdInput
+                      [(ngModel)]="credential.username"
+                      name="username"
+                      id="username"
+                      placeholder="Username"
+                    />
+                  </div>
+                  <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"
+                        ><i class="icon-lock"></i
+                      ></span>
+                    </div>
+                    <input
+                      type="password"
+                      class="form-control"
+                      mdInput
+                      [(ngModel)]="credential.password"
+                      name="password"
+                      id="password"
+                      placeholder="Password"
+                    />
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <!-- ROUTER LINK -->
+                      <button
+                        type="button"
+                        class="btn btn-primary px-4"
+                        (click)="onSubmit()"
+                      >
+                        Valider
+                      </button>
+                    </div>
+                    <div class="col-6 text-right">
+                      <button type="button" class="btn btn-link px-0">
+                        Mot de passe oublié ?
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                &nbsp; &nbsp;
+              </div>
+              &nbsp;
+              <p class="text-muted">
+                Pour toute autre demande : demandeacces@univ-evry.fr <br />
+                admin/admin => prof OUBIEN user/user => etudiant
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </main>
+</div>
+
+<div class="container-fluid">
+  <div class="container">
+    <br />
+    <h4 style="text-align: center;"></h4>
+
+    <br />
+    <br />
+
+    <!--  /////////////////////////////    -->
+    <div class="container">
+      <div
+        class="row"
+        style="width: 50%;
+      margin-left: 40%;
+      margin-right: 30%"
+      >
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample"
+          style="align-items: center;"
+        >
+          Infos Trafic Trains
+        </button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="isCollapsedInfos = !isCollapsedInfos"
+          [attr.aria-expanded]="!isCollapsedInfos"
+          aria-controls="collapseExample"
+        >
+          Infos News Paris
+        </button>
+      </div>
+
+      <div
+        id="collapseExample"
+        [ngbCollapse]="isCollapsed"
+        style="height: 400px; overflow-y: scroll; margin-bottom: 100px;"
+      >
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-hover table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">Ligne</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Titre</th>
+                  <th scope="col">Message</th>
+                </tr>
+              </thead>
+
+              <tbody *ngFor="let item of getAllLignes()">
+                <tr>
+                  <th scope="row">{{ item.line }}</th>
+
+                  <td [ngClass]="{ 'text-danger': item.slug === 'critical' }">
+                    {{ item.slug }}
+                  </td>
+                  <td colspan="row">{{ item.title }}</td>
+                  <td colspan="row">{{ item.message }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!--  /////////////////////////////    -->
+
+      <div id="collapseExample" [ngbCollapse]="isCollapsedInfos">
+        <div
+          style=" max-height: 600px; overflow: scroll; margin-bottom: 100px;"
+        >
+          <div class="card-group" *ngFor="let item of article.articles">
+            <div class="card border-secondary mb-3">
+              <div class="card-header">{{ item.publishedAt }}</div>
+
+              <div class="card-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">
+                  This is a wider card with supporting text below as a natural
+                  lead-in to additional content. This content is a little bit
+                  longer.
+                </p>
+                <p class="card-text">
+                  <a
+                    href="{{ item.url }}"
+                    target="_blank"
+                    class="btn btn-primary"
+                    >Lire</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  /////////////////////////////    -->
   </div>
 </div>
